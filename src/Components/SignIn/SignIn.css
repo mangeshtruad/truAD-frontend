@@ -1,0 +1,135 @@
+.login-container{
+    height: 100vh;
+    width: 100%;
+    display: flex;
+}
+
+.login-left{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #23303B;
+}
+
+.login-left .login-logo{
+    height: 100%;
+    width: 100%;
+}
+
+.login-left .login-logo > img{
+    height: 100%;
+    width: 100%;
+    border-end-end-radius: 150px;
+}
+
+.login-right{
+    width: 50%;
+    background-color: #23303B;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.login-right .login-form-container{
+    width: 50%;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.login-right .login-info{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 5px;
+    margin-bottom: 0.9rem;
+}
+
+.login-right .login-info > h4{
+    font-size: 22px;
+    color: #2FBDA3
+}
+
+.login-right .login-info > p{
+    color:  white
+}
+
+.login-right .login-form{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 0.9rem;
+}
+
+.login-right .login-form form{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    color: white;
+}
+
+.login-right .login-form form > input[type=email],.login-right .login-form form > input[type=password]{
+    background-color: transparent;
+    border: 0.5px solid white;
+    border-radius: 8px;
+    height: 30px;
+    margin-bottom: 15px;
+    margin-top: 5px;
+    color: white;
+    padding-left: 10px;
+    background-image: url('../../Assets/pass-show.png');
+  /* background-position: 10px 10px; */
+  background-repeat: no-repeat;
+}
+
+
+.login-right .login-form form > img{
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top:95px;
+    right: 15px;
+}
+
+.login-right .login-form form > input[type=email]::placeholder,.login-right .login-form form > input[type=password]::placeholder{
+    color: white;
+    opacity: 0.5;
+}
+
+.login-right .login-form form .checkbox{
+    display: flex;
+    align-items: center;
+    margin: 1rem 0 1.5rem 0;
+    justify-content: space-between;
+}
+
+.login-right .login-form form .checkbox > label{
+    font-size: 12px;
+}
+
+.login-right .login-form form .checkbox > span{
+    font-size: 14px;
+    color: #2FBDA3
+}
+
+.login-right .login-form form > button{
+    height: 3rem;
+    border-radius: 1rem;
+    background-color: #2FBDA3;
+    color: white;
+    margin-bottom: 1rem;
+    border-color: transparent;
+}
+
+.login-right .login-form form .login-form-end > span{
+    font-size: 14px;
+}
+
+.login-right .login-form form .login-form-end > span > a{
+    color: #2FBDA3;
+}

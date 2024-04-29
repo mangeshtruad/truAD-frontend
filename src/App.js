@@ -1,29 +1,24 @@
-import logo from './logo.svg';
 import './App.css';
 import SideBar from './Components/SideBar';
-
+import SignIn from './Components/SignIn/SignIn';
+import SignUp from './Components/SignUp/SignUp';
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 function App() {
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <SignIn />,
+  
+    },
+    {
+      path: "/signup",
+      element: <SignUp />
+    }
+  ])
   return (
-    // <div className="App">
-    //   <header className="App-header">
-    //     <img src={logo} className="App-logo" alt="logo" />
-    //     <p>
-    //       Edit <code>src/App.js</code> and save to reload.
-    //     </p>
-    //     <a
-    //       className="App-link"
-    //       href="https://reactjs.org"
-    //       target="_blank"
-    //       rel="noopener noreferrer"
-    //     >
-    //       Learn React
-    //     </a>
-    //   </header>
-    // </div>
-    <div style={{width:"20%"}}>
-    <SideBar/>
-    </div>
-  );
+    <RouterProvider router={router}></RouterProvider>
+
+  )
 }
 
 export default App;
