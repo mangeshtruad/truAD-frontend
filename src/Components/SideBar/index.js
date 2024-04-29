@@ -13,12 +13,12 @@ export default function SideBar() {
   const [list1, setlist] = React.useState(list);
 
   return (
-    <div>
+    <div style={{height:"100%"}}>
       <main>
         <div className="logo">
           <img src={TruAdlogo} alt="TruAd Logo" width={"50%"} />
         </div>
-        {/* <ul className="list-sidebar">
+        <ul className="list-sidebar">
             <li><a href="#">Dashboard</a></li>
             <li className="active">Popular Picks</li>
             <li>Resource Management</li>
@@ -26,8 +26,8 @@ export default function SideBar() {
             <li>Invoices</li>
             <li>Place Promotion</li>
             <li>Data Report</li>
-        </ul> */}
-        <List className="list-sidebar" sx={{paddingLeft:2, marginTop:3}}>
+        </ul>
+        {/* <List className="list-sidebar" sx={{paddingLeft:2, marginTop:3}}>
           {list1.map((e, i) => (
             // <Link
             //   to={e.targetLink}
@@ -84,7 +84,7 @@ export default function SideBar() {
             </ListItem>
             // </Link>
           ))}
-        </List>
+        </List> */}
         <div className="signout_div">
           <button className="signout_button btn rounded-4 p-1.5">
             Sign Out
