@@ -3,6 +3,7 @@ import HomePage from './Components/HomePage/HomePage';
 import SideBar from './Components/SideBar';
 import SignIn from './Components/SignIn/SignIn';
 import SignUp from './Components/SignUp/SignUp';
+import DashBoardContainer from "./Page"
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 function App() {
   const router = createBrowserRouter([
@@ -14,11 +15,15 @@ function App() {
     {
       path: "/signup",
       element: <SignUp />
+    },
+    {
+      path: "/dashboard",
+      element: <DashBoardContainer />
     }
   ])
   return (
     // <RouterProvider router={router}></RouterProvider>
-    <HomePage />
+    <DashBoardContainer />
   )
 }
 
