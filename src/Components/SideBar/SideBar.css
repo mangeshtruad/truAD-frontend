@@ -58,6 +58,8 @@ div.signout_div>.signout_button{
   margin-inline: auto;
   font-size: larger;
   font-weight: 400;
+  text-overflow: ellipsis;
+  overflow: hidden;
  }
 
 .list-sidebar>li:hover{

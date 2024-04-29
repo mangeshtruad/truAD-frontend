@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import "./SideBar.css";
 import TruAdlogo from "../../logo/Logo.png";
 import ItemList from "./itemList";
-import HomeIcon from "@mui/icons-material/Home";
 
 export default function SideBar() {
   const[list, setlist]=useState(ItemList)
