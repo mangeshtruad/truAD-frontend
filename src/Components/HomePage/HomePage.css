@@ -2,8 +2,8 @@
     width: 100%;
     height: 100%;
     display: flex;
-    justify-content: center;
-    padding: 0.5rem;
+    flex-direction: column;
+    padding: 1.5rem;
     background-color: #23303B;
 }
 
@@ -99,4 +99,95 @@
     width: 25px;
     height: 25px;
     border-radius: 50%;
+}
+
+.homepage-container .homepage-info-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.homepage-container .homepage-info {
+    width: 12rem;
+    height: 4.5rem;
+    background-color: #656261;
+    border-radius: 1rem;
+    padding-left: 8px;
+}
+
+.homepage-container .homepage-info .homepage-infobox {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    gap: 10px
+}
+
+.homepage-container .homepage-info .homepage-infobox .homepage-infobox-icon{
+    display: flex;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: #3CA59C;
+    padding: 10px 10px;
+}
+
+.homepage-container .homepage-info .homepage-infobox .homepage-infobox-icon > img {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+}
+
+.homepage-container .homepage-info .homepage-infobox .homepage-infobox-info{
+    width: max-content;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: start;
+}
+
+.homepage-container .homepage-info .homepage-infobox .homepage-infobox-info > p {
+    margin: 0;
+    color: white;
+    font-size: 10px;
+}
+
+.homepage-container .homepage-info .homepage-infobox .homepage-infobox-info > h4{
+    color: white;
+    margin: 0;
+    font-size: 20px;
+}
+
+.homepage-container .homepage-info-container .homepage-ticket-btn{
+    width: 12rem;
+    height: 3rem;
+    border: 1px solid #3CA59C;
+    padding: 3px 2px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 1rem;
+}
+
+.homepage-container .homepage-info-container .homepage-ticket-btn > P{
+    font-size: 14px;
+    color: #3CA59C;
+    margin: 0
+}
+
+.homepage-container .homepage-info-container .homepage-upload-btn{
+    width: 12rem;
+    height: 3rem;
+    background-color: #3CA59C;;
+    padding: 3px 2px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 1rem;
+}
+
+.homepage-container .homepage-info-container .homepage-upload-btn > P{
+    font-size: 14px;
+    color: white;
+    margin: 0
 }
