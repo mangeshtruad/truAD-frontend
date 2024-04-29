@@ -18,12 +18,18 @@ function App() {
     },
     {
       path: "/dashboard",
-      element: <DashBoardContainer />
+      element: <DashBoardContainer />,
+      children: [
+        {
+        path: "/dashboard",
+        element: <HomePage />
+      }
+      ]
     }
   ])
   return (
-    // <RouterProvider router={router}></RouterProvider>
-    <DashBoardContainer />
+    <RouterProvider router={router}></RouterProvider>
+    // <DashBoardContainer />
   )
 }
 
