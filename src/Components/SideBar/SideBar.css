@@ -2,7 +2,6 @@ main {
   background-color: #000000;
   color: white;
   height: 100%;
-  position: relative;
 }
 
 .logo{
@@ -11,42 +10,46 @@ main {
     padding-block: 1.4rem;
 }
 .list-sidebar{
+  list-style: none;
   display: flex;
   flex-direction: column;
-  
+  margin-top: 2rem;
+  overflow-y: hidden;
+  height: 75%;
+  gap: 2rem;
+  padding-block: 2rem;
 }
 
 .list-sidebar>li{
-  padding: 0.5rem;
   text-overflow: ellipsis;
-  overflow: hidden;
+  color: #a3aed0;
+  width: 100%;
+  padding-right: 0.6rem;
 }
-.list-sidebar li a{
-  color: inherit;
-  text-decoration: none;
+.list-sidebar>li> div{
+  display: flex;
+  gap: 0.7rem;
+  align-items: center;
 }
 ul.list-sidebar>li.active{
-  border: 1px solid red;
   color: #2fbda3;
   position: relative;
-  border: 2px solid #2fbda3;
 }
-ul.list-sidebar>li.active::after{
+ul.list-sidebar>li.active::before{
   position: absolute;
   display: inline;
   content: "";
   border: 2px solid #2fbda3;
   right: 0;
-  margin-top: -8px;
   height: 100%;
   border-radius: 4rem;
   text-align: end;
 }
 .signout_div{
-  position: absolute;
-  bottom: 50px;
+  /* position: absolute; */
+  /* bottom: 50px; */
   text-align: center;
-  width: 100%;
+  /* width: 100%; */
 }
 div.signout_div>.signout_button{
   background-color: #2fbda3;
