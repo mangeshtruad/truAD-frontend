@@ -27,7 +27,7 @@ function DashBoardContainer() {
   gridTemplateColumns: "repeat(12, 1fr)"
  }}>
   <div style={{ gridColumn: "span 2", border: "1px solid blue"}}><SideBar/></div>
-  <div style={{ gridColumn: "span 10" }}>gsfs</div>
+  <div style={{ gridColumn: "span 10" }}> <Outlet /></div>
  </div>
   );
 }
