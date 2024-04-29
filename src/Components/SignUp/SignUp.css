@@ -10,7 +10,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: gold;
+    background-color: #23303B;
 }
 
 .signup-left .signup-logo{
@@ -21,6 +21,7 @@
 .signup-left .signup-logo > img{
     height: 100%;
     width: 100%;
+    border-end-end-radius: 150px;
 }
 
 .signup-right{
