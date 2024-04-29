@@ -1,4 +1,5 @@
 import './App.css';
+import HomePage from './Components/HomePage/HomePage';
 import SideBar from './Components/SideBar';
 import SignIn from './Components/SignIn/SignIn';
 import SignUp from './Components/SignUp/SignUp';
@@ -16,8 +17,8 @@ function App() {
     }
   ])
   return (
-    <RouterProvider router={router}></RouterProvider>
-
+    // <RouterProvider router={router}></RouterProvider>
+    <HomePage />
   )
 }
 
