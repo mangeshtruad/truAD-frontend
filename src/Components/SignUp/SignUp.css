@@ -1,0 +1,135 @@
+.signup-container{
+    height: 100vh;
+    width: 100%;
+    display: flex;
+}
+
+.signup-left{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: gold;
+}
+
+.signup-left .signup-logo{
+    height: 100%;
+    width: 100%;
+}
+
+.signup-left .signup-logo > img{
+    height: 100%;
+    width: 100%;
+}
+
+.signup-right{
+    width: 50%;
+    background-color: #23303B;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.signup-right .signup-form-container{
+    width: 50%;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.signup-right .signup-info{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 5px;
+    margin-bottom: 0.9rem;
+}
+
+.signup-right .signup-info > h4{
+    font-size: 22px;
+    color: #2FBDA3
+}
+
+.signup-right .signup-info > p{
+    color:  white
+}
+
+.signup-right .signup-form{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 0.9rem;
+}
+
+.signup-right .signup-form form{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    color: white;
+}
+
+.signup-right .signup-form form > input[type=email],.signup-right .signup-form form > input[type=password]{
+    background-color: transparent;
+    border: 0.5px solid white;
+    border-radius: 8px;
+    height: 30px;
+    margin-bottom: 15px;
+    margin-top: 5px;
+    color: white;
+    padding-left: 10px;
+    background-image: url('../../Assets/pass-show.png');
+  /* background-position: 10px 10px; */
+  background-repeat: no-repeat;
+}
+
+
+.signup-right .signup-form form > img{
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top:164px;
+    right: 15px;
+}
+
+.signup-right .signup-form form > input[type=email]::placeholder,.signup-right .signup-form form > input[type=password]::placeholder{
+    color: white;
+    opacity: 0.5;
+}
+
+.signup-right .signup-form form .checkbox{
+    display: flex;
+    align-items: center;
+    margin: 1rem 0 1.5rem 0;
+    justify-content: space-between;
+}
+
+.signup-right .signup-form form .checkbox > label{
+    font-size: 12px;
+}
+
+.signup-right .signup-form form .checkbox > span{
+    font-size: 14px;
+    color: #2FBDA3
+}
+
+.signup-right .signup-form form > button{
+    height: 3rem;
+    border-radius: 1rem;
+    background-color: #2FBDA3;
+    color: white;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+    border-color: transparent;
+}
+
+.signup-right .signup-form form .signup-form-end > span{
+    font-size: 14px;
+}
+
+.signup-right .signup-form form .signup-form-end > span > a{
+    color: #2FBDA3;
+}
