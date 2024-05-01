@@ -4,7 +4,7 @@
     display: flex;
     flex-direction: column;
     padding: 1.5rem;
-    background-color: #23303B;
+    background-color: #414141;
 }
 
 .homepage-container .homepage-header{
@@ -22,6 +22,7 @@
 }
 
 .homepage-container .homepage-header .homepage-user-info > p{
+    font-family: "DM Sans", sans-serif;
     margin: 0;
     font-size: 12px;
     color: white;
@@ -29,6 +30,7 @@
 
 .homepage-container .homepage-header .homepage-user-info > h4{
     color: #2FBDA3;
+    font-family: "DM Sans", sans-serif;
 }
 
 .homepage-container .homepage-header .homepage-searchbar{
@@ -128,7 +130,7 @@
     display: flex;
     justify-content: center;
     border-radius: 50%;
-    background-color: #3CA59C;
+    background: linear-gradient(0deg, #215273 -29.77%, #359D9E 32.47%, #55C597 93.83%, #D0F3D2 145.55%);
     padding: 10px 10px;
 }
 
@@ -190,4 +192,251 @@
     font-size: 14px;
     color: white;
     margin: 0
+}
+
+.homepage-container .homepage-clips{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    /* height: 15rem; */
+    margin-top: 25px;
+}
+
+.homepage-container .homepage-clips .clips-container{
+    width: 48.5%;
+    background-color: #656261;
+    border-radius: 1rem;
+    padding: 12px 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.homepage-container .homepage-clips .clips-container > p {
+    color: white;
+    font-weight: bold;
+    margin: 0;
+}
+
+.homepage-container .homepage-clips .clips-container .clips-row {
+    display: flex;
+    height: max-content;
+    justify-content: space-between;
+    margin-top: 8px;
+}
+
+.homepage-container .homepage-clips .clips-container .clips-row .clip-container{
+    position: relative;
+    height: 500px; /* Set the height of your div */
+    overflow: hidden; /* Ensures the video is cut off outside the div */
+    background-color: black;
+    width: 49%;
+    height: 11rem;
+    border-radius: 1rem;
+}
+.homepage-container .homepage-clips .clips-container .clips-row .clip-container > video{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 75%;
+    width: 100%;
+    height: 75%;
+    transform: translate(-50%, -50%); /* Center the video */
+    z-index: 1; /* Keep the video behind other content */
+    object-fit: cover;
+}
+
+/* .homepage-container .homepage-clips .clips-container .clips-row .clip-container > p {
+    color: white;
+    font-size: 12px;
+    margin: 0;
+    text-align: center;
+    top: 128px;
+    left: 30px;
+} */
+
+.homepage-container .homepage-clips .clips-container .clips-row .clip-container .content{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: end;
+    z-index: 2;
+    color: white;
+    padding-bottom: 5px;
+}
+
+.homepage-container .homepage-clips .clips-container .clips-row .clip-container .content > h1{
+    font-size: 14px;
+}
+
+.homepage-container .homepage-clips .clips-container .clips-row .clip-container .content > p{
+    font-size: 12px;
+    margin: 0;
+}
+
+.homepage-container .homepage-available-clips{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    /* height: 15rem; */
+    margin-top: 25px;
+}
+
+.homepage-container .homepage-available-clips .available-clips-container{
+    width: 100%;
+    background-color: #656261;
+    border-radius: 1rem;
+    padding: 12px 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.homepage-container .homepage-available-clips .available-clips-container > p {
+    color: white;
+    font-weight: bold;
+    margin: 0;
+}
+
+.homepage-container .homepage-available-clips .available-clips-row{
+    display: flex;
+    height: max-content;
+    justify-content: space-between;
+    margin-top: 8px;
+}
+
+.homepage-container .homepage-available-clips .available-clips-row .available-clip-container{
+    position: relative;
+    height: 500px; /* Set the height of your div */
+    overflow: hidden; /* Ensures the video is cut off outside the div */
+    background-color: black;
+    width: 24%;
+    height: 11rem;
+    border-radius: 1rem;
+}
+
+.homepage-container .homepage-available-clips .available-clips-row .available-clip-container > video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 75%;
+    width: 100%;
+    height: 75%;
+    transform: translate(-50%, -50%); /* Center the video */
+    z-index: 1; /* Keep the video behind other content */
+    object-fit: cover;
+}
+
+.homepage-container .homepage-available-clips .available-clips-row .available-clip-container .available-content{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: end;
+    z-index: 2;
+    color: white;
+    padding-bottom: 5px;
+}
+
+.homepage-container .homepage-available-clips .available-clips-row .available-clip-container .available-content > p{
+    font-size: 12px;
+    margin: 0;
+}
+
+.homepage-container .homepage-tickets-advertisements{
+    display: flex;
+    width: 100%;
+    margin-top: 20px;
+    justify-content: space-between;
+}
+
+.homepage-container .homepage-tickets-advertisements .homepage-tickets{
+    background-color: #656261;
+    border-radius: 1rem;
+    padding: 12px 10px;
+    width: 48.5%;
+}
+
+.homepage-container .homepage-tickets-advertisements .homepage-tickets .homepage-tickets-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.homepage-container .homepage-tickets-advertisements .homepage-tickets .homepage-tickets-header > p {
+    margin: 0;
+    color: white;
+    font-weight: bold;
+}
+
+.homepage-container .homepage-tickets-advertisements .homepage-tickets .homepage-tickets-header .more-btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    padding: 5px;
+    border-radius: 0.5rem;
+}
+
+.homepage-container .homepage-tickets-advertisements .homepage-tickets .homepage-tickets-header .more-btn > img{
+    width: 17px;
+    height: 17;
+}
+
+.homepage-container .homepage-tickets-advertisements .homepage-tickets .homepage-tickets-table{
+    width: 100%;
+}
+
+.homepage-container .homepage-tickets-advertisements .homepage-tickets .homepage-tickets-table table {
+    width: 100%;
+    table-layout: fixed; /* Ensures the table layout doesn't depend on content */
+}
+
+.homepage-container .homepage-tickets-advertisements .homepage-tickets .homepage-tickets-table table th,
+.homepage-container .homepage-tickets-advertisements .homepage-tickets .homepage-tickets-table table td {
+    width: 25%; /* Equal width for each cell */
+    padding: 8px; /* Adjust as needed */
+    text-align: left; /* Align text to the left */
+    color: white; /* Text color */
+    font-size: 12px;
+}
+
+.homepage-container .homepage-tickets-advertisements .homepage-tickets .homepage-tickets-table table tr{
+    font-size: 12px;
+}
+
+.homepage-container .homepage-tickets-advertisements .homepage-tickets .homepage-tickets-table table th{
+    border-bottom: 1px solid white;
+}
+
+.homepage-container .homepage-tickets-advertisements .homepage-tickets .homepage-tickets-table table #file{
+    width: 6rem;
+    border-radius: 5px; /* Add border radius */
+}
+
+.homepage-container .homepage-tickets-advertisements .homepage-tickets .homepage-tickets-table table progress {
+    width: 100%; /* Ensure the progress bar fills the cell */
+    height: 5px; /* Set the height of the progress bar */
+    appearance: none; /* Remove default styling */
+    background-color: transparent; /* Set background to transparent */
+    border-radius: 5px; /* Add border radius */
+}
+
+/* Style the filled portion of the progress bar */
+.homepage-container .homepage-tickets-advertisements .homepage-tickets .homepage-tickets-table table progress::-webkit-progress-value {
+    background-color: orange; /* Set the filled portion color to orange */
+    border-radius: 5px; /* Add border radius */
+}
+
+.homepage-container .homepage-tickets-advertisements .homepage-tickets .homepage-tickets-table table tr{
+    display: flex;
+    align-items: center;
+}
+
+.homepage-container .homepage-tickets-advertisements .homepage-tickets .homepage-tickets-table table  img{
+    width: 15px;
+    height: 15px;
 }

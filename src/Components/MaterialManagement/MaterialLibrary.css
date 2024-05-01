@@ -1,0 +1,179 @@
+.material-container{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem;
+    background-color: #414141;
+}
+.material-container .material-header{
+    width: 100%;
+    height: max-content;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.material-container .material-header .material-user-info{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 80%;
+}
+
+.material-container .material-header .material-user-info > p{
+    font-family: "DM Sans", sans-serif;
+    margin: 0;
+    font-size: 14px;
+    color: white;
+}
+
+.material-container .material-header .material-user-info > h4{
+    color: #2FBDA3;
+    font-family: "DM Sans", sans-serif;
+}
+
+.material-container .material-header .material-searchbar{
+    background-color: white;
+    border-radius: 2rem;
+    display: flex;
+    align-items: center;
+    width: 12%;
+
+}
+
+.material-container .material-header .material-searchbar .material-searchbar-container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.material-container .material-header .material-searchbar .material-searchbar-container .material-searchbar-icons{
+    display: flex;
+    width: 100%;
+    padding: 10px 8px 10px 22px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.material-container .material-header .material-searchbar .material-searchbar-container .material-searchbar-icons > img{
+    height: 15px;
+    width: 15px
+}
+
+.material-container .material-header .material-searchbar .material-searchbar-container .material-searchbar-icons .material-profile{
+    display: flex;
+    align-items: center;
+}
+
+.material-container .material-header .material-searchbar .material-searchbar-container .material-searchbar-icons .material-profile > img{
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+}
+
+.material-container .material-info{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 20px;
+    width: 100%;
+    display: flex;
+}
+
+.material-container .material-info .material-library-searchbar{
+    display: flex;
+    width: 30%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.material-container .material-info .material-library-searchbar > p{
+    font-size: 14px;
+    color: white;
+    margin: 0;
+}
+
+.material-container .material-info .material-library-searchbar .searchbar{
+    position: relative;
+    height: 100%;
+    width: 60%;
+    padding: 0px 6px;
+}
+
+.material-container .material-info .material-library-searchbar .searchbar > input{
+    background-color: #F4F7FE;
+    border: none;
+    border-radius: 2rem;
+    height: 30px;
+    width: 100%;
+    padding-left: 25px;
+}
+
+.material-container .material-info .material-library-searchbar .searchbar > input::placeholder{
+    color: black;
+    opacity: 0.5;
+}
+
+.material-container .material-info .material-library-searchbar .searchbar > img {
+    position: absolute;
+    height: 10px;
+    width: 10px;
+    top: 11px;
+    left: 11px;
+}
+
+.material-container .material-info .homepage-upload-btn{
+    width: 12rem;
+    height: 3rem;
+    background-color: #3CA59C;
+    padding: 3px 2px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 1rem;
+}
+
+.material-container .material-info .homepage-upload-btn > P{
+    font-size: 14px;
+    color: white;
+    margin: 0
+}
+
+.material-container .materials-container{
+    margin-top: 20px;
+    width: 100%;
+    background-color: #656261;
+    flex-grow: 1;
+    border-radius: 1rem;
+}
+
+.material-container .materials-container .materials-container-header{
+    width: 100%;
+    height: 40px;
+    border-bottom: 1px solid white;
+    display: flex;
+}
+
+.material-container .materials-container .materials-container-header .materials-container-tab{
+    width: 8rem;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.materials-container .materials-container-header .materials-container-tab.active {
+    border-bottom: 2px solid #3CA59C;
+}
+
+.materials-container .materials-container-header .materials-container-tab.active > p {
+    color: #3CA59C;
+}
+
+.materials-container .materials-container-header .materials-container-tab > p {
+    margin: 0;
+    font-size: 12px;
+    color: white;
+}
