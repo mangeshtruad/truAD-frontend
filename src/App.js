@@ -5,7 +5,12 @@ import SignUp from "./Components/SignUp/SignUp";
 import DashBoardContainer from "./Page";
 import Resource from "./Components/Resource Management";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Dialog from "./Components/Resource Management/Dialog"
+import Dialog from "./Components/Resource Management/Dialog";
+
+import Analytics from "./Components/Analytics/Analytics";
+
+import MaterialLibrary from "./Components/MaterialManagement/MaterialLibrary";
+
 function App() {
   const router = createBrowserRouter([
     {
@@ -17,31 +22,32 @@ function App() {
       element: <SignUp />,
     },
     {
-      path: "dialog",
-      element:<Dialog/>
-    },
-    {
       path: "/dashboard",
       element: <DashBoardContainer />,
       children: [
         {
-
           path: "/dashboard/res",
           element: <Resource />,
         },
-     
+
         {
           path: "/dashboard",
           element: <HomePage />,
         },
+
+        {
+          path: "/dashboard/analytics",
+          element: <Analytics />,
+        },
+        {
+          path: "/dashboard/material",
+          element: <MaterialLibrary />,
+        },
       ],
     },
-   
   ]);
-  return (
-    <RouterProvider router={router}></RouterProvider>
-  
-  );
+
+  return <RouterProvider router={router}></RouterProvider>;
 }
 
 export default App;

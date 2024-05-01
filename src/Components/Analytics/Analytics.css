@@ -1,0 +1,339 @@
+.analytics-container{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem;
+    background-color: #414141;
+}
+
+.analytics-container .analytics-header{
+    width: 100%;
+    height: max-content;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.analytics-container .analytics-header .analytics-user-info{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+}
+
+.analytics-container .analytics-header .analytics-user-info > p{
+    margin: 0;
+    font-size: 12px;
+    color: white;
+}
+
+.analytics-container .analytics-header .analytics-user-info > h4{
+    color: #2FBDA3;
+}
+
+.analytics-container .analytics-header .analytics-searchbar{
+    background-color: white;
+    border-radius: 2rem;
+    display: flex;
+    align-items: center;
+    width: 35%;
+
+}
+
+.analytics-container .analytics-header .analytics-searchbar .analytics-searchbar-container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+
+.analytics-container .analytics-header .analytics-searchbar .analytics-searchbar-container .searchbar{
+    position: relative;
+    height: 100%;
+    width: 60%;
+    padding: 0px 6px;
+}
+
+.analytics-container .analytics-header .analytics-searchbar .analytics-searchbar-container .searchbar > input{
+    background-color: #F4F7FE;
+    border: none;
+    border-radius: 2rem;
+    height: 30px;
+    width: 100%;
+    padding-left: 25px;
+}
+
+.analytics-container .analytics-header .analytics-searchbar .analytics-searchbar-container .searchbar > input::placeholder{
+    color: black;
+    opacity: 0.5;
+}
+
+.analytics-container .analytics-header .analytics-searchbar .analytics-searchbar-container .searchbar > img {
+    position: absolute;
+    height: 10px;
+    width: 10px;
+    top: 11px;
+    left: 11px;
+}
+
+.analytics-container .analytics-header .analytics-searchbar .analytics-searchbar-container .analytics-searchbar-icons{
+    display: flex;
+    width: 40%;
+    padding: 10px 8px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.analytics-container .analytics-header .analytics-searchbar .analytics-searchbar-container .analytics-searchbar-icons > img{
+    height: 15px;
+    width: 15px
+}
+
+.analytics-container .analytics-header .analytics-searchbar .analytics-searchbar-container .analytics-searchbar-icons .analytics-profile{
+    display: flex;
+    align-items: center;
+}
+
+.analytics-container .analytics-header .analytics-searchbar .analytics-searchbar-container .analytics-searchbar-icons .analytics-profile > img{
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+}
+
+.analytics-container .analytics-info-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.analytics-container .analytics-info {
+    width: 23rem;
+    height: 4.5rem;
+    background-color: #656261;
+    border-radius: 1rem;
+    padding-left: 8px;
+}
+
+.analytics-container .analytics-info .analytics-infobox {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    gap: 10px
+}
+
+.analytics-container .analytics-info .analytics-infobox .analytics-infobox-icon{
+    display: flex;
+    justify-content: center;
+    border-radius: 50%;
+    background: linear-gradient(0deg, #215273 -29.77%, #359D9E 32.47%, #55C597 93.83%, #D0F3D2 145.55%);
+    padding: 10px 10px;
+}
+
+.analytics-container .analytics-info .analytics-infobox .analytics-infobox-icon > img {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+}
+
+.analytics-container .analytics-info .analytics-infobox .analytics-infobox-info{
+    width: max-content;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: start;
+}
+
+.analytics-container .analytics-info .analytics-infobox .analytics-infobox-info > p {
+    margin: 0;
+    color: white;
+    font-size: 10px;
+}
+
+.analytics-container .analytics-info .analytics-infobox .analytics-infobox-info > h4{
+    color: white;
+    margin: 0;
+    font-size: 20px;
+}
+
+.analytics-container .analytics-tickets-advertisements{
+    display: flex;
+    width: 100%;
+    margin-top: 20px;
+    justify-content: space-between;
+}
+
+.analytics-container .analytics-tickets-advertisements .analytics-tickets{
+    background-color: #656261;
+    border-radius: 1rem;
+    padding: 12px 10px;
+    width: 48.5%;
+}
+
+.analytics-container .analytics-tickets-advertisements .analytics-tickets .analytics-tickets-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.analytics-container .analytics-tickets-advertisements .analytics-tickets .analytics-tickets-header > a{
+    color: #3CA59C
+}
+
+.analytics-container .analytics-tickets-advertisements .analytics-tickets .analytics-tickets-header > p {
+    margin: 0;
+    color: white;
+    font-weight: bold;
+}
+
+.analytics-container .analytics-tickets-advertisements .analytics-tickets .analytics-tickets-header .more-btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    padding: 5px;
+    border-radius: 0.5rem;
+}
+
+.analytics-container .analytics-tickets-advertisements .analytics-tickets .analytics-tickets-header .more-btn > img{
+    width: 17px;
+    height: 17;
+}
+
+.analytics-container .analytics-tickets-advertisements .analytics-tickets .analytics-tickets-table{
+    width: 100%;
+}
+
+.analytics-container .analytics-tickets-advertisements .analytics-tickets .analytics-tickets-table table {
+    width: 100%;
+    table-layout: fixed; /* Ensures the table layout doesn't depend on content */
+}
+
+.analytics-container .analytics-tickets-advertisements .analytics-tickets .analytics-tickets-table table th,
+.analytics-container .analytics-tickets-advertisements .analytics-tickets .analytics-tickets-table table td {
+    width: 25%; /* Equal width for each cell */
+    padding: 8px; /* Adjust as needed */
+    text-align: left; /* Align text to the left */
+    color: white; /* Text color */
+    font-size: 12px;
+}
+
+.analytics-container .analytics-tickets-advertisements .analytics-tickets .analytics-tickets-table table tr{
+    font-size: 12px;
+}
+
+.analytics-container .analytics-tickets-advertisements .analytics-tickets .analytics-tickets-table table th{
+    border-bottom: 1px solid white;
+}
+
+.analytics-container .analytics-tickets-advertisements .analytics-tickets .analytics-tickets-table table #file{
+    width: 6rem;
+    border-radius: 5px; /* Add border radius */
+}
+
+.analytics-container .analytics-tickets-advertisements .analytics-tickets .analytics-tickets-table table progress {
+    width: 100%; /* Ensure the progress bar fills the cell */
+    height: 5px; /* Set the height of the progress bar */
+    appearance: none; /* Remove default styling */
+    background-color: transparent; /* Set background to transparent */
+    border-radius: 5px; /* Add border radius */
+}
+
+/* Style the filled portion of the progress bar */
+.analytics-container .analytics-tickets-advertisements .analytics-tickets .analytics-tickets-table table progress::-webkit-progress-value {
+    background-color: orange; /* Set the filled portion color to orange */
+    border-radius: 5px; /* Add border radius */
+}
+
+.analytics-container .analytics-tickets-advertisements .analytics-tickets .analytics-tickets-table table tr{
+    display: flex;
+    align-items: center;
+}
+
+.analytics-container .analytics-tickets-advertisements .analytics-tickets .analytics-tickets-table table  img{
+    width: 15px;
+    height: 15px;
+}
+
+.analytics-container .analytics-tickets-advertisements .analytics-tickets .analytics-sales-table{
+    width: 100%;
+}
+
+.analytics-container .analytics-tickets-advertisements .analytics-tickets .analytics-sales-table table {
+    width: 100%;
+    table-layout: fixed; /* Ensures the table layout doesn't depend on content */
+}
+
+.analytics-container .analytics-tickets-advertisements .analytics-tickets .analytics-sales-table table th,
+.analytics-container .analytics-tickets-advertisements .analytics-tickets .analytics-sales-table table td {
+    width: 20%; /* Equal width for each cell */
+    padding: 8px; /* Adjust as needed */
+    text-align: left; /* Align text to the left */
+    color: white; /* Text color */
+    font-size: 12px;
+}
+
+.analytics-container .analytics-tickets-advertisements .analytics-tickets .analytics-sales-table table tr{
+    font-size: 12px;
+}
+
+.analytics-container .analytics-tickets-advertisements .analytics-tickets .analytics-sales-table table th{
+    border-bottom: 1px solid white;
+}
+
+.analytics-container .analytics-tickets-advertisements .analytics-tickets .analytics-sales-table table #file{
+    width: 6rem;
+    border-radius: 5px; /* Add border radius */
+}
+
+.analytics-container .analytics-tickets-advertisements .analytics-tickets .analytics-sales-table table progress {
+    width: 100%; /* Ensure the progress bar fills the cell */
+    height: 5px; /* Set the height of the progress bar */
+    appearance: none; /* Remove default styling */
+    background-color: transparent; /* Set background to transparent */
+    border-radius: 5px; /* Add border radius */
+}
+
+/* Style the filled portion of the progress bar */
+.analytics-container .analytics-tickets-advertisements .analytics-tickets .analytics-sales-table table progress::-webkit-progress-value {
+    background-color: orange; /* Set the filled portion color to orange */
+    border-radius: 5px; /* Add border radius */
+}
+
+.analytics-container .analytics-tickets-advertisements .analytics-tickets .analytics-sales-table table tr{
+    display: flex;
+    align-items: center;
+}
+
+.analytics-container .analytics-tickets-advertisements .analytics-tickets .analytics-sales-table table  img{
+    width: 15px;
+    height: 15px;
+}
+
+.analytics-container .analytics-tickets-advertisements .analytics-charts{
+    display: flex;
+    width: 48.5%;
+    justify-content: space-between;
+}
+
+.analytics-container .analytics-tickets-advertisements .analytics-charts .analytics-charts-results{
+    width: 48.5%;
+    background-color: #656261;
+    padding: 12px 10px;
+    border-radius: 1rem;
+}
+
+.analytics-container .analytics-tickets-advertisements .analytics-charts .analytics-charts-results .chart-container{
+    width: 100%;
+    height: 80%;
+    display: flex;
+    justify-content: start;
+}
+
+.analytics-container .analytics-tickets-advertisements .analytics-charts .analytics-charts-results > p{
+    margin: 0;
+    color: white;
+    font-weight: bold;
+}

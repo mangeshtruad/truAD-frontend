@@ -8,10 +8,21 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
+import Dialog from "./Dialog"
 import "./resource.css";
 
 export default function ResourceManagement() {
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   return (
+    <React.Fragment>
     <div style={{ height: "100%" }}>
       <main className="main">
         <div className="main_div">
@@ -244,7 +255,7 @@ export default function ResourceManagement() {
           <div className="card_container">
             {[1, 2, 3, 4, 5, 6, 7].map((el) => {
               return (
-                <div key={el} className="card">
+                <div key={el} className="card"  onClick={handleClickOpen}>
                   <div className="card-text dm-sans">card_container</div>
                   <div className="card-image">
                     <img src={image} alt="" />
@@ -265,5 +276,7 @@ export default function ResourceManagement() {
         </div>
       </main>
     </div>
+    <Dialog  handleClose={handleClose} open={open}/>
+    </React.Fragment>
   );
 }
