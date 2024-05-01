@@ -5,6 +5,7 @@ import SignUp from "./Components/SignUp/SignUp";
 import DashBoardContainer from "./Page";
 import Resource from "./Components/Resource Management";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Dialog from "./Components/Resource Management/Dialog"
 function App() {
   const router = createBrowserRouter([
     {
@@ -16,12 +17,16 @@ function App() {
       element: <SignUp />,
     },
     {
+      path: "dialog",
+      element:<Dialog/>
+    },
+    {
       path: "/dashboard",
       element: <DashBoardContainer />,
       children: [
         {
 
-          path: "/dashboard/",
+          path: "/dashboard/res",
           element: <Resource />,
         },
      
