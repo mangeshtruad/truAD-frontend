@@ -5,9 +5,16 @@ main {
 }
 
 .logo{
-    height: 5rem;
+    height: 60px;
+    width: 60%;
+    margin-left: 2rem;
     text-align: center;
     padding-block: 1.4rem;
+}
+.logo>img{
+  width: 100%;
+  object-fit: fill;
+  margin-top: 0.6rem;
 }
 .list-sidebar{
   list-style: none;
@@ -22,7 +29,7 @@ main {
 
 .list-sidebar>li{
   text-overflow: ellipsis;
-  color: #a3aed0;
+  color: #A3AED0;
   width: 100%;
   padding-right: 0.6rem;
 }
@@ -32,14 +39,14 @@ main {
   align-items: center;
 }
 ul.list-sidebar>li.active{
-  color: #2fbda3;
+  color: #2FBDA3;
   position: relative;
 }
 ul.list-sidebar>li.active::before{
   position: absolute;
   display: inline;
   content: "";
-  border: 2px solid #2fbda3;
+  border: 1px solid #2fbda3;
   right: 0;
   height: 100%;
   border-radius: 4rem;
@@ -58,6 +65,8 @@ div.signout_div>.signout_button{
   margin-inline: auto;
   font-size: larger;
   font-weight: 400;
+  text-overflow: ellipsis;
+  overflow: hidden;
  }
 
 .list-sidebar>li:hover{

@@ -2,8 +2,7 @@ import React from "react";
 import SideBar from './Components/SideBar/index';
 import { Outlet } from "react-router-dom";
 // import { CookiesProvider, useCookies } from "react-cookie";
-// import ChatBox from './ChatBox';
-
+import { useNavigate } from "react-router-dom";
 
 function DashBoardContainer() {
 //   const [cookies, setCookie, removeCookie] = useCookies(["user"]);
@@ -19,7 +18,7 @@ function DashBoardContainer() {
 
   return (
  <div style={{
-  height:"100vh",
+  height:"99.8vh",
   display:"grid",
   gridTemplateColumns: "repeat(12, 1fr)"
  }}>

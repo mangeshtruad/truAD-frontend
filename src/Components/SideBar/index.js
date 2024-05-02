@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import "./SideBar.css";
 import TruAdlogo from "../../logo/Logo.png";
 import ItemList from "./itemList";
-import HomeIcon from "@mui/icons-material/Home";
 
 export default function SideBar() {
   const[list, setlist]=useState(ItemList)
@@ -21,7 +20,7 @@ export default function SideBar() {
     <div style={{ height: "100%" }}>
       <main>
         <div className="logo">
-          <img src={TruAdlogo} alt="TruAd Logo" width={"50%"} />
+          <img src={TruAdlogo} alt="TruAd Logo" />
         </div>
         <ul className="list-sidebar">
           {list.map((el, index) => {
