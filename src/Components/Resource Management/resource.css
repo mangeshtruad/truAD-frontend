@@ -148,3 +148,34 @@
 .card:hover .hover-data {
   display: block;
 }
+
+@media screen and (max-width: 992px) {
+  .card_container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .card_container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media screen and (max-width: 768px) {
+  .card_container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media screen and (max-width: 650px) {
+  .card_container > div.card {
+    min-height: 250px;
+  }
+}
+@media screen and (max-width: 450px) {
+  .card_container {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+  }
+}

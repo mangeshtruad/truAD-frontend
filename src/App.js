@@ -10,6 +10,8 @@ import Dialog from "./Components/Resource Management/Dialog";
 import Analytics from "./Components/Analytics/Analytics";
 
 import MaterialLibrary from "./Components/MaterialManagement/MaterialLibrary";
+import RaiseTicket from "./Components/RaiseTicket";
+import TablePaginationDemo from "./Components/RaiseTicket/Pagination";
 
 function App() {
   const router = createBrowserRouter([
@@ -22,14 +24,17 @@ function App() {
       element: <SignUp />,
     },
     {
+      path: "/page",
+      element: <TablePaginationDemo />,
+    },
+    {
       path: "/dashboard",
       element: <DashBoardContainer />,
       children: [
         {
-          path: "/dashboard/res",
+          path: "/dashboard/resource",
           element: <Resource />,
         },
-
         {
           path: "/dashboard",
           element: <HomePage />,
@@ -42,6 +47,10 @@ function App() {
         {
           path: "/dashboard/material",
           element: <MaterialLibrary />,
+        },
+        {
+          path: "/dashboard/raise",
+          element: <RaiseTicket />,
         },
       ],
     },
