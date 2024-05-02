@@ -1,0 +1,157 @@
+.popup{
+    width: 40%;
+    background-color: black;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 3;
+}
+
+.popup .popup-header{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: white;
+    width: 100%;
+    padding: 5px 10px;
+    border-bottom: 1px solid white;
+}
+
+.popup .popup-header svg{
+    cursor: pointer;
+}
+
+.popup .popup-fields{
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    padding: 0 12px;
+}
+
+.popup .popup-fields .popup-field-input{
+    border: 1px solid white;
+    border-radius: 8px;
+}
+
+.popup .popup-fields .popup-field-input > input {
+    background-color: transparent;
+    padding: 5px;
+    width: 100%;
+    border: none;
+}
+
+.popup .popup-fields .popup-field-input > input::placeholder{
+    color: white;
+}
+
+.popup .popup-fields .popup-field-input > select{
+    background-color: transparent;
+    width: 100%;
+    padding: 5px;
+    color: white;
+    border: none;
+}
+
+.popup .popup-fields .popup-field-input > select option{
+    background-color: black;
+}
+
+.popup .popup-fields .popup-field-input > .custom-file-input{
+    height: 10rem;
+    display: flex;
+    flex-direction: column;
+    padding: 8px;
+    justify-content: space-between;
+}
+
+.popup .popup-fields .popup-field-input > .custom-file-input > input {
+    opacity: 0;
+    width: 0.1px;
+    height: 0.1px;
+    position: absolute;
+}
+
+.popup .popup-fields .popup-field-input > .custom-file-input p {
+    color: white;
+    margin: 0;
+}
+
+.popup .popup-fields .popup-field-input > .custom-file-input .upload-btn-container{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.popup .popup-fields .popup-field-input > .custom-file-input p {
+    color: white;
+    margin: 0;
+}
+
+.popup .popup-fields .popup-field-input > .custom-file-input .upload-btn-container button{
+    padding: 3px 8px;
+    background-color: transparent;
+    border: 1px solid #2FBDA3;
+    border-radius: 5px;
+    color: #2FBDA3;
+}
+
+.popup .popup-fields .popup-file{
+    width: 100%;
+    height: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.popup .popup-fields .popup-file > img{
+    height: 200px;
+    width: 200px;
+    object-fit: cover;
+}
+
+/* .popup .popup-fields .popup-field-input > .custom-file-input::-webkit-file-upload-button {
+    background-color: transparent;
+    border: 1px solid #2FBDA3;
+    color: #2FBDA3;
+    border-radius: 5px;
+    content: 'Upload';
+} */
+
+/* .popup .popup-fields .popup-field-input > .custom-file-input::before {
+    content: 'Select some files';
+    color: black;
+    height: 100%;
+    width: 100%;
+} */
+.popup .popup-header > p{
+    margin: 0;
+}
+
+.popup .popup-submit-btn{
+    margin-top: 50px;
+    height: 3rem;
+    width: 100%;
+    border-top: 1px solid white;
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 12px;
+}
+
+.popup .popup-submit-btn .popup-cancel-btn{
+    width: 48%;
+    border: 1px solid #2FBDA3;
+    background-color: transparent;
+    color: #2FBDA3;
+    border-radius: 8px;
+}
+
+.popup .popup-submit-btn .popup-next-btn{
+    width: 48%;
+    border-radius: 8px;
+    border: none;
+}

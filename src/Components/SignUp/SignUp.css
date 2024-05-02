@@ -94,6 +94,7 @@
     height: 20px;
     top:184px;
     right: 15px;
+    cursor: pointer;
 }
 
 .signup-right .signup-form form > input[type=email]::placeholder,.signup-right .signup-form form > input[type=password]::placeholder{
@@ -125,6 +126,11 @@
     margin-bottom: 1rem;
     margin-top: 1rem;
     border-color: transparent;
+    transition: all 0.5s ease;
+}
+
+.signup-right .signup-form form > button:hover{
+    background-color: #205072;
 }
 
 .signup-right .signup-form form .signup-form-end > span{
@@ -133,4 +139,5 @@
 
 .signup-right .signup-form form .signup-form-end > span > a{
     color: #2FBDA3;
+    cursor: pointer;
 }

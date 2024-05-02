@@ -94,6 +94,7 @@
     height: 20px;
     top:106px;
     right: 15px;
+    cursor: pointer;
 }
 
 .login-right .login-form form > input[type=email]::placeholder,.login-right .login-form form > input[type=password]::placeholder{
@@ -114,7 +115,13 @@
 
 .login-right .login-form form .checkbox > span{
     font-size: 14px;
-    color: #2FBDA3
+    color: #2FBDA3;
+    cursor: pointer;
+}
+
+.login-right .login-form form .checkbox > span > a{
+    text-decoration: none;
+    color: #2FBDA3;
 }
 
 .login-right .login-form form > button{
@@ -124,6 +131,11 @@
     color: white;
     margin-bottom: 1rem;
     border-color: transparent;
+    transition: all 0.5s ease;
+}
+
+.login-right .login-form form > button:hover{
+    background-color: #205072;
 }
 
 .login-right .login-form form .login-form-end > span{
@@ -132,4 +144,6 @@
 
 .login-right .login-form form .login-form-end > span > a{
     color: #2FBDA3;
+    cursor: pointer;
+    text-decoration: none;
 }

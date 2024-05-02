@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./HomePage.css";
 import dark_mode from "../../Assets/dark_mode.png";
 import bell from "../../Assets/bell.png";
@@ -10,10 +10,20 @@ import chart from "../../Assets/chart.png";
 import pending from "../../Assets/pending.png";
 import BarChartIcon from "@mui/icons-material/BarChart";
 import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
+import PopUp from "../UploadMaterial/PopUp";
 
 const HomePage = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const togglePopup = () => {
+    setIsOpen(!isOpen);
+  };
+
   return (
     <div className="homepage-container">
+      {isOpen && (
+        <PopUp togglePopup={togglePopup}/>
+      )}
       <div className="homepage-header">
         <div className="homepage-user-info">
           <p>aniketm@truad.co</p>
@@ -73,7 +83,7 @@ const HomePage = () => {
         <div className="homepage-ticket-btn">
           <p>Have an Issue? Raise a ticket</p>
         </div>
-        <div className="homepage-upload-btn">
+        <div className="homepage-upload-btn" onClick={togglePopup}>
           <p>Upload New Materials</p>
         </div>
       </div>
@@ -84,7 +94,7 @@ const HomePage = () => {
             <div className="clip-container">
               <video autoplay muted loop playsinline>
                 <source
-                  src="https://videotruad.s3.ap-south-1.amazonaws.com/popat.mp4"
+                  src="https://videotruad.s3.ap-south-1.amazonaws.com/split_video_3.mp4"
                   type="video/mp4"
                 />
                 Your browser does not support the video tag.
@@ -96,7 +106,7 @@ const HomePage = () => {
             <div className="clip-container">
               <video autoplay muted loop playsinline>
                 <source
-                  src="https://videotruad.s3.ap-south-1.amazonaws.com/popat.mp4"
+                  src="https://videotruad.s3.ap-south-1.amazonaws.com/split_video_3.mp4"
                   type="video/mp4"
                 />
                 Your browser does not support the video tag.
@@ -113,7 +123,7 @@ const HomePage = () => {
             <div className="clip-container">
               <video autoplay muted loop playsinline>
                 <source
-                  src="https://videotruad.s3.ap-south-1.amazonaws.com/popat.mp4"
+                  src="https://videotruad.s3.ap-south-1.amazonaws.com/split_video_3.mp4"
                   type="video/mp4"
                 />
                 Your browser does not support the video tag.
@@ -125,7 +135,7 @@ const HomePage = () => {
             <div className="clip-container">
               <video autoplay muted loop playsinline>
                 <source
-                  src="https://videotruad.s3.ap-south-1.amazonaws.com/popat.mp4"
+                  src="https://videotruad.s3.ap-south-1.amazonaws.com/split_video_3.mp4"
                   type="video/mp4"
                 />
                 Your browser does not support the video tag.
@@ -144,7 +154,7 @@ const HomePage = () => {
             <div className="available-clip-container">
               <video autoplay muted loop playsinline>
                 <source
-                  src="https://videotruad.s3.ap-south-1.amazonaws.com/popat.mp4"
+                  src="https://videotruad.s3.ap-south-1.amazonaws.com/split_video_3.mp4"
                   type="video/mp4"
                 />
                 Your browser does not support the video tag.
@@ -156,7 +166,7 @@ const HomePage = () => {
             <div className="available-clip-container">
               <video autoplay muted loop playsinline>
                 <source
-                  src="https://videotruad.s3.ap-south-1.amazonaws.com/popat.mp4"
+                  src="https://videotruad.s3.ap-south-1.amazonaws.com/split_video_3.mp4"
                   type="video/mp4"
                 />
                 Your browser does not support the video tag.
@@ -168,7 +178,7 @@ const HomePage = () => {
             <div className="available-clip-container">
               <video autoplay muted loop playsinline>
                 <source
-                  src="https://videotruad.s3.ap-south-1.amazonaws.com/popat.mp4"
+                  src="https://videotruad.s3.ap-south-1.amazonaws.com/split_video_3.mp4"
                   type="video/mp4"
                 />
                 Your browser does not support the video tag.
@@ -180,7 +190,7 @@ const HomePage = () => {
             <div className="available-clip-container">
               <video autoplay muted loop playsinline>
                 <source
-                  src="https://videotruad.s3.ap-south-1.amazonaws.com/popat.mp4"
+                  src="https://videotruad.s3.ap-south-1.amazonaws.com/split_video_3.mp4"
                   type="video/mp4"
                 />
                 Your browser does not support the video tag.

@@ -5,7 +5,9 @@
     flex-direction: column;
     padding: 1.5rem;
     background-color: #414141;
+    position: relative;
 }
+
 .material-container .material-header{
     width: 100%;
     height: max-content;
@@ -176,4 +178,98 @@
     margin: 0;
     font-size: 12px;
     color: white;
+}
+
+.material-container .materials-container .material-cards{
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+    width: 100%;
+    padding: 20px 8px;
+}
+
+.material-container .materials-container .material-cards .material-card{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: max-content;
+    padding: 10px;
+    background-color: black;
+    border-radius: 8px;
+}
+
+.material-container .materials-container .material-cards .material-card > img{
+    width: 15rem;
+    height: 10rem;
+    border-radius: 8px;
+}
+
+.material-container .materials-container .material-cards .material-card .material-card-title{
+    margin-top: 10px;
+    width: 100%;
+}
+
+.material-container .materials-container .material-cards .material-card .material-card-title > p {
+    font-size: 13px;
+    color: white;
+    margin: 0;
+}
+
+.material-container .materials-container .material-cards .material-card .material-card-group{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.material-container .materials-container .material-cards .material-card .material-card-group > a,
+.material-container .materials-container .material-cards .material-card .material-card-group > p{
+    font-size: 10px;
+    margin: 0;
+}
+
+.material-container .materials-container .material-cards .material-card .material-card-group > p{
+    color: white;
+}
+
+.material-container .materials-container .material-cards .material-card .material-card-group > a{
+    color: #3CA59C;
+}
+
+.material-container .materials-container .material-cards .material-card .material-card-btn{
+    margin-top: 8px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.material-container .materials-container .material-cards .material-card .material-card-btn .material-card-operate-btn{
+    width: 66%;
+    height: 2rem;
+    background-color: #3CA59C;
+    padding: 3px 2px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+}
+
+.material-container .materials-container .material-cards .material-card .material-card-btn .material-card-operate-btn > p{
+    font-size: 14px;
+    color: black;
+    margin: 0
+}
+
+.material-container .materials-container .material-cards .material-card .material-card-btn .material-card-delete-btn{
+    width: 32%;
+    height: 2rem;
+    padding: 3px 7px 3px 2px;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+
+.material-container .materials-container .material-cards .material-card .material-card-btn .material-card-delete-btn > img{
+    width: 30px;
+    height: 30px;
 }

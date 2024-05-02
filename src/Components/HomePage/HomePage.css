@@ -5,6 +5,7 @@
     flex-direction: column;
     padding: 1.5rem;
     background-color: #414141;
+    position: relative;
 }
 
 .homepage-container .homepage-header{
