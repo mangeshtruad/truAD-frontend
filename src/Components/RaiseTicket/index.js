@@ -6,11 +6,17 @@ import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import TuneIcon from "@mui/icons-material/Tune";
 import Avatar from "@mui/material/Avatar";
 import { Divider, Box, Button } from "@mui/material";
+import TablePagination from "./Pagination";
+import image from "../../Assets/TruAd_White _Logo.png";
+import IconButton from "@mui/material/IconButton";
+import Checkbox from "@mui/material/Checkbox";
+import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
+import MoreVertIcon from "@mui/icons-material/MoreVert";
 import "./raiseticket.css";
-
+const label = { inputProps: { "aria-label": "Checkbox demo" } };
 export default function RaiseTicket() {
   return (
-    <div style={{ height: "100%", border: "1px solid red" }}>
+    <div style={{ height: "100%" }}>
       <main className="main_container">
         <div className="main_div">
           <div className="main-heading">
@@ -22,10 +28,8 @@ export default function RaiseTicket() {
             <div className="align-self-center" style={{ width: "50%" }}>
               <p className="p-2 pt-3 dm-sans">
                 <Box
+                  className="mainHelp_text"
                   sx={{
-                    display: "flex",
-                    alignItems: "center",
-                    height: 50, // Example fixed height to ensure visibility of the vertical divider
                     "& svg": {
                       m: 1,
                     },
@@ -84,14 +88,14 @@ export default function RaiseTicket() {
                     type="text"
                     class="form-control"
                     id="search_bar"
-                    placeholder="Username"
+                    placeholder="Enter Ticket ID"
                     aria-label="Username"
                     aria-describedby="addon-wrapping"
                   />
                 </div>
               </div>
               <div class="col-4">
-                <TuneIcon />
+                <TuneIcon sx={{ color: "#2FBDA3" }} />
               </div>
             </div>
           </div>
@@ -99,27 +103,110 @@ export default function RaiseTicket() {
             <Button
               endIcon={<KeyboardArrowRightIcon />}
               variant="contained"
-              class="add_resource dm-sans"
-              sx={{
-                bgcolor: "#2FBDA3",
-                color: "white",
-                textTransform: "none",
-                fontSize: "small",
-                borderRadius: "8px",
-                "&:hover": {
-                  bgcolor: "rgb(60, 212, 184)",
-                },
-              }}
+              className="add_resource dm-sans"
             >
               Send for AI detection
             </Button>
           </div>
         </div>
         <div className="table_div">
-          <div>d</div>
+          <ul className="row table_navbar" style={{ flexWrap: "nowrap" }}>
+            <li className="col navigationItem">All(10)</li>
+            <li className="col navigationItem">Resoved(5)</li>
+            <li className="col navigationItem">Pending(4)</li>
+            <li className="col-7"></li>
+          </ul>
+          <table id="table">
+            <thead>
+              <tr>
+                <th scope="col"></th>
+                <th scope="col">
+                  Ticket ID <ArrowDownwardIcon />
+                </th>
+                <th scope="col">
+                  Subject <ArrowDownwardIcon />
+                </th>
+                <th scope="col">Ticket Status</th>
+                <th scope="col">
+                  Support <ArrowDownwardIcon />
+                </th>
+                <th scope="col">
+                  Ticket raise Date & Time <ArrowDownwardIcon />
+                </th>
+                <th scope="col">Last Updated</th>
+                <th scope="col">Action</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              {[1,2,3,4,5,6,7,8,9,10].map((el) => {
+                return (
+                  <tr>
+                <th scope="row">
+                  <Checkbox
+                    {...label}
+                    sx={{
+                      color: "#B8BABC", // Default color
+                      "&.Mui-checked": {
+                        // This targets the checkbox when it is checked
+                        color: "#2FBDA3", // Change this value to whatever color you want for the checked state
+                      },
+                    }}
+                  />
+                </th>
+                <td>EN001</td>
+                <td>
+                  <div className="flex-center-end">
+                    <div className="image-container">
+                      <img
+                        src={image}
+                        alt="Profile"
+                        style={{
+                          width: "100%",
+                          height: "auto",
+                          maxWidth: "40px",
+                        }}
+                      />
+                    </div>
+                    <div className="email-details">
+                      Qayyum@gmail.com
+                      <br />
+                      Truad Pvt Ltd
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <p className="status-label rounded-pill">Resolved</p>
+                </td>
+                <td>ABC</td>
+                <td>12 Feb 2024 | 13:30</td>
+                <td>5 days ago</td>
+                <td>
+                  <Button
+                    className="button-outlined-small rounded-3"
+                    variant="outlined"
+                    size="small"
+                  >
+                    View File
+                  </Button>
+                </td>
+                <td>
+                  <IconButton
+                    aria-label="delete"
+                    size="small"
+                    className="icon-button-small"
+                  >
+                    <MoreVertIcon />
+                  </IconButton>
+                </td>
+              </tr>
+                );
+              })}
+            </tbody>
+          </table>
         </div>
-        <div>s
-            
+        <div>
+          <TablePagination />
         </div>
       </main>
     </div>

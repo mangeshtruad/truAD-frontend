@@ -10,6 +10,8 @@ import CloseIcon from "@mui/icons-material/Close";
 import Typography from "@mui/material/Typography";
 import { Stack, Box } from "@mui/material";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
+import { bgcolors as bg, textcolors as tx } from "../color";
+
 import "./Dialog.css";
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiDialogContent-root": {
@@ -26,6 +28,7 @@ export default function CustomizedDialogs({ handleClose, open}) {
       onClose={handleClose}
       aria-labelledby="customized-dialog-title"
       open={open}
+
       sx={{
         "& .MuiDialog-container": {
           justifyContent: "flex-end", // Flex end aligns the dialog content to the end of the flex container
@@ -35,8 +38,8 @@ export default function CustomizedDialogs({ handleClose, open}) {
           height: "100%",
           maxHeight: "calc(100% - 40px)",
           width: "35%",
-          bgcolor: "#000000",
-          color: "#FFFFFF",
+          bgcolor: bg.bgDialog,
+          color: tx.textDialog,
         },
       }}
     >
@@ -79,70 +82,38 @@ export default function CustomizedDialogs({ handleClose, open}) {
                   </div>
                 </div>
                 <Box sx={{ width: "50%" }}>
+                  
                   <Button
-                    endIcon={<KeyboardArrowRightIcon />}
-                    variant="contained"
-                    sx={{
-                      bgcolor: "#2FBDA3",
-                      color: "white",
-                      textTransform: "none",
-                      fontSize: "small",
-                      borderRadius: "8px",
-                      "&:hover": {
-                        bgcolor: "rgb(60, 212, 184)",
-                      },
-                    }}
-                  >
-                    Send for AI detection
-                  </Button>
+      endIcon={<KeyboardArrowRightIcon />}
+      variant="contained"
+      className="ai-detection-btn"
+    >
+      Send for AI detection
+    </Button>
+  
                 </Box>
               </Stack>
             );
           })}
         </Stack>
       </DialogContent>
-      <DialogActions
-        sx={{
-          justifyContent: "space-between",
-          gap: 2,
-          borderTopColor: "red",
-        }}
+      
+      <DialogActions className="dialog-actions">
+      <Button
+        variant="outlined"
+        onClick={handleClose}
+        className="button-outlined rounded-3"
       >
-        <Button
-          variant="outlined"
-          onClick={handleClose}
-          className="rounded-3"
-          sx={{
-            textAlign: "center",
-            width: "100%",
-            borderColor: "#2FBDA3",
-            color: "#2FBDA3",
-            "&:hover": {
-              borderColor: "rgb(60, 212, 184)",
-              color: "rgb(60, 212, 184)",
-              boxShadow: "0px 6px 12px rgba(0, 0, 0, 0.15)",
-            },
-          }}
-        >
-          Cancel
-        </Button>
-        <Button
-          variant="contained"
-          onClick={handleClose}
-          className="rounded-3"
-          sx={{
-            textAlign: "center",
-            width: "100%",
-            background: "#2FBDA3",
-            color: "white",
-            "&:hover": {
-              bgcolor: "rgb(60, 212, 184)",
-            },
-          }}
-        >
-          Done
-        </Button>
-      </DialogActions>
+        Cancel
+      </Button>
+      <Button
+        variant="contained"
+        onClick={handleClose}
+        className="button-contained rounded-3"
+      >
+        Done
+      </Button>
+    </DialogActions>
     </BootstrapDialog>
   );
 }
