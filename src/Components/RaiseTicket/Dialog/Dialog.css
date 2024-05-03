@@ -1,53 +1,44 @@
-
-
-.clip-container {
-  position: relative;
-  height: 20%; /* Set the height of your div */
-  overflow: hidden; /* Ensures the video is cut off outside the div */
-  width: 50%;
-  height: 10rem;
+.textarea-feedback {
+  width: 90%;
+  padding: 1rem;
+  margin-block: 1rem;
+  background-color: inherit;
+  border-radius: 0.25rem; /* Assuming you want a small border-radius */
+  color: #fff;
+}
+.textarea-feedback:focus{
+  border-color: #0779ff;
+  outline: none;
+}
+.upload-section {
+  width: 90%;
+  border: 1px dashed #B8BABC;
+  margin-top: 20px;
+  height: 25%;
+  border-radius: 5px;
+  padding: 1rem;
+}
+.upload-button {
+  border-color: #033c80;
+}
+.image-preview {
+  width: 60%;
+  margin-top: 20px;
+  margin-left: 20%;
+  border-radius: 5px;
+  overflow: hidden;
 }
 
-.clip-container > video {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  min-width: 100%;
-  /* min-height: 75%; */
-  width: 100%;
-  height: 80%;
-  transform: translate(-50%); /* Center the video */
-  z-index: 1; /* Keep the video behind other content */
+.image-preview img{
   object-fit: cover;
+  width: 80%;
+  height: 30%;
 }
-
-.clip-container .content {
-  display: flex;
-  width: 100%;
-  height: 100%;
-  justify-content: center;
-  align-items: end;
-  z-index: 2;
-  padding-bottom: 7px;
-  background-color: #414141;
+.upload-label {
+  display: block;
+  margin-bottom: 1rem;
+  text-align: center;
 }
-
-.clip-container .content > p {
-  font-size: 12px;
-  margin: 0;
-}
-button.ai-detection-btn {
-  background-color: #2fbda3; /* Default background color */
-  color: white; /* Text color */
-  text-transform: none; /* No text transformation */
-  font-size: 0.875rem; /* 'small' typically equates to 0.875rem */
-  border-radius: 8px; /* Rounded corners */
-}
-
-button.ai-detection-btn:hover {
-  background-color: rgb(60, 212, 184); /* Hover state background color */
-}
-
 .dialog-actions {
   display: flex;
   justify-content: space-between;
@@ -71,7 +62,6 @@ button.button-contained {
   text-align: center;
   width: 100%;
   background-color: #2fbda3;
-  color: white;
 }
 
 button.button-contained:hover {

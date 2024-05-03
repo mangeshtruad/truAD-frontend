@@ -7,8 +7,6 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogActions from "@mui/material/DialogActions";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
-import { useTheme } from "@mui/material/styles";
-import OutlinedInput from "@mui/material/OutlinedInput";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
@@ -24,51 +22,26 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     padding: theme.spacing(1),
   },
 }));
-
-const ITEM_HEIGHT = 48;
-const ITEM_PADDING_TOP = 8;
-const MenuProps = {
-  PaperProps: {
-    style: {
-      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-      width: 250,
-    },
-  },
-};
-
-const names = [
-  "Oliver Hansen",
-  "Van Henry",
-  "April Tucker",
-  "Ralph Hubbard",
-  "Omar Alexander",
-  "Carlos Abbott",
-  "Miriam Wagner",
-  "Bradley Wilkerson",
-  "Virginia Andrews",
-  "Kelly Snyder",
-];
-
-function getStyles(name, personName, theme) {
-  return {
-    fontWeight:
-      personName.indexOf(name) === -1
-        ? theme.typography.fontWeightRegular
-        : theme.typography.fontWeightMedium,
-  };
-}
+const VisuallyHiddenInput = styled("input")({
+  clip: "rect(0 0 0 0)",
+  clipPath: "inset(50%)",
+  height: 1,
+  overflow: "hidden",
+  position: "absolute",
+  bottom: 0,
+  left: 0,
+  whiteSpace: "nowrap",
+  width: 1,
+});
 
 export default function CustomizedDialogs({ handleClose, open }) {
-  const theme = useTheme();
-  const [personName, setPersonName] = React.useState([]);
-  const handleChange = (event) => {
-    const {
-      target: { value },
-    } = event;
-    setPersonName(
-      // On autofill we get a stringified value.
-      typeof value === "string" ? value.split(",") : value
-    );
+  const [image, setimage] = React.useState("");
+  const handleFile = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const url = URL.createObjectURL(file);
+      setimage(url);
+    }
   };
   return (
     <BootstrapDialog
@@ -111,30 +84,74 @@ export default function CustomizedDialogs({ handleClose, open }) {
         }}
       >
         <textarea
-          className="rounded"
-          style={{
-            width: "80%",
-            padding: "1rem",
-            marginBlock: "1rem",
-            backgroundColor: "inherit",
-          }}
+          className="rounded textarea-feedback"
           placeholder="Enter Your Feedback here..."
           rows="4"
         ></textarea>
-        <FormControl fullWidth>
-        <InputLabel id="demo-simple-select-label">Select Support Team</InputLabel>
-        <Select
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
-          // value={age}
-          label="Age"
-          onChange={handleChange}
-        >
-          <MenuItem value={10}>Ten</MenuItem>
-          <MenuItem value={20}>Twenty</MenuItem>
-          <MenuItem value={30}>Thirty</MenuItem>
-        </Select>
-      </FormControl>
+        <FormControl sx={{ width: "90%" }}>
+          <InputLabel
+            id="demo-simple-select-label"
+            sx={{
+              color: "white", // Ensures the label is visible against a dark background
+              "&.Mui-focused": {
+                color: "#0779ff",
+              },
+            }}
+          >
+            Select Support Team
+          </InputLabel>
+          <Select
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            // value={age}
+            label="Select Support Team"
+            sx={{
+              width: "100%", // Make the select width consistent with FormControl
+              color: "white", // Text color for the items
+              ".MuiOutlinedInput-notchedOutline": {
+                 borderColor: "#B8BABC", // Ensures the border is visible
+              },
+              "&:hover .MuiOutlinedInput-notchedOutline": {
+                borderColor: "white", // Border color on hover
+              },
+              "& .MuiSvgIcon-root": {
+                // This targets the dropdown icon specifically
+                color: "white", // Ensures the dropdown arrow icon is white
+              },
+              "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                borderColor: "#0779ff", // Border color on focus
+              },
+            }}
+          >
+            <MenuItem value={10}>Ten</MenuItem>
+            <MenuItem value={20}>Twenty</MenuItem>
+            <MenuItem value={30}>Thirty</MenuItem>
+          </Select>
+        </FormControl>
+        <div className="upload-section">
+          <p>Upload Screenshot if issue</p>
+
+          <label className="upload-label">Select or Drop a file here</label>
+          <div style={{ textAlign: "center" }}>
+            <Button
+              component="label"
+              role={undefined}
+              variant="outlined"
+              tabIndex={-1}
+              className="upload-button"
+            >
+              Upload file
+              <VisuallyHiddenInput
+                type="file"
+                onChange={handleFile}
+                fullwidth
+              />
+            </Button>
+          </div>
+        </div>
+        { image && <div className="image-preview">
+          <img src={image} alt="" />
+        </div>}
       </DialogContent>
 
       <DialogActions className="dialog-actions">
