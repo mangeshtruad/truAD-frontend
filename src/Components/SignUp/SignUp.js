@@ -3,27 +3,29 @@ import logo from "../../Assets/TruAd_White _Logo.png";
 import pass_show from "../../Assets/pass-show.png";
 import pass_hide from "../../Assets/pass-hide.png";
 import { useNavigate } from "react-router";
+import CircularProgress from "@mui/material/CircularProgress";
 import "./SignUp.css";
 
 const SignUp = () => {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
-  const [user, setUser] = useState({})
-  const [error, setError] = useState('')
+  const [user, setUser] = useState({});
+  const [error, setError] = useState("");
+  const [loader, setloader] = useState(false);
 
   function isValidEmail(email) {
     const emailRegex = /^[^\s@]+@(?:(?!gmail\.com)[^\s@]+\.)?truad\.co$/;
     return emailRegex.test(email);
   }
 
-
   const handleChange = (e) => {
-    setError("")
-    setUser((prev) => ({...prev, [e.target.name]: e.target.value}))
-  }
+    setError("");
+    setUser((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
 
-  const handleSubmit = async() => {
-  const valid = isValidEmail(user.email);
+  const handleSubmit = async () => {
+    setloader(true);
+    const valid = isValidEmail(user.email);
 
     if (valid) {
       try {
@@ -39,21 +41,25 @@ const SignUp = () => {
         );
 
         if (response.status === 409) {
+          setloader(false);
           return setError("User already exists");
         }
 
         if (response.status === 200) {
           // const data = await response.json();
           // console.log(data);
-          console.log("sucess")
+          console.log("sucess");
+          setloader(false);
         }
       } catch (error) {
+        setloader(false);
         console.log(error);
       }
     } else {
+      setloader(false);
       setError("Invalid email format");
     }
-  }
+  };
 
   return (
     <div className="signup-container">
@@ -71,17 +77,28 @@ const SignUp = () => {
           <div className="signup-form">
             <form>
               <label>Name</label>
-              <input type="email" placeholder="Jeff Bezoz" name="name" onChange={(e) => handleChange(e)}/>
+              <input
+                type="email"
+                placeholder="Jeff Bezoz"
+                name="name"
+                onChange={(e) => handleChange(e)}
+              />
               <label>Email:</label>
-              <input type="email" placeholder="mail@shimple.com" name="email" onChange={(e) => handleChange(e)}/>
+              <input
+                type="email"
+                placeholder="mail@shimple.com"
+                name="email"
+                onChange={(e) => handleChange(e)}
+              />
 
               <label>Password:</label>
               <input
                 type={showPassword ? "email" : "password"}
                 placeholder="Min. 8 characters"
-                name="password"  onChange={(e) => handleChange(e)}
+                name="password"
+                onChange={(e) => handleChange(e)}
               />
-               {error && <p style={{ color: 'red' }}>{error}</p>}
+              {error && <p style={{ color: "red" }}>{error}</p>}
               <img
                 src={showPassword ? pass_show : pass_hide}
                 onClick={() => setShowPassword(!showPassword)}
@@ -95,7 +112,23 @@ const SignUp = () => {
                 </div>
                 <span><a>Forgot Password</a></span>
               </div> */}
-              <button type="button" onClick={handleSubmit}>Sign Up</button>
+              <button type="button" onClick={handleSubmit}>
+                Sign Up
+              </button>
+              {loader ? (
+                <CircularProgress color="inherit" sx={{ margin: "auto" }} />
+              ) : (
+                <button
+                  type="button"
+                  onClick={() => {
+                    handleSubmit();
+                    // setloader(true);
+                  }}
+                  // style={{ marginTop: "20px", borderRadius: "5px" }}
+                >
+                  Sign Up
+                </button>
+              )}
 
               <div className="signup-form-end">
                 <span>
