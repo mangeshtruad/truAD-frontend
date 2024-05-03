@@ -286,15 +286,7 @@ export default function ResourceManagement() {
       </div>
       {/* <Dialog handleClose={handleClose} open={open} /> */}
 
-      {clips.length === 0 ? (
-        <Uploadvideo
-          handleClose={handleClose}
-          open={open}
-          setClips={setClips}
-        />
-      ) : (
-        <Dialog handleClose={handleClose} open={open} clips={clips}/>
-      )}
+      
     </React.Fragment>
   );
 }

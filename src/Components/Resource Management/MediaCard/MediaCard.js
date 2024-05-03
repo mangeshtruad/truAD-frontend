@@ -1,8 +1,18 @@
 import React, { useState, useEffect } from "react";
-
-const MediaCard = ({ el, handleClickOpen,  setClips}) => {
+import Dialog from "../Dialog/Dialog";
+import Uploadvideo from "../Dialog/Uploadvideo";
+const MediaCard = ({ el,}) => {
   const [media, setMedia] = useState({});
-  // const [clips, setClips] = useState([]);
+  const [clips, setClips] = useState([]);
+  const [open, setOpen] = useState(false);
+
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   const searchMovies = async () => {
     const apiKey = "37f889dd"; // Replace with your OMDb API key
@@ -57,6 +67,7 @@ const MediaCard = ({ el, handleClickOpen,  setClips}) => {
   }, []);
 
   return (
+    <>
     <div key={media.imdbID} className="card" onClick={handleClickOpen}>
       <div className="card-text dm-sans">{media.Title}</div>
       <div className="card-image">
@@ -64,6 +75,16 @@ const MediaCard = ({ el, handleClickOpen,  setClips}) => {
         <div className="hover-data rounded-bottom-3">{media.Plot}</div>
       </div>
     </div>
+    {clips.length === 0 ? (
+      <Uploadvideo
+        handleClose={handleClose}
+        open={open}
+        setClips={setClips}
+      />
+    ) : (
+      <Dialog handleClose={handleClose} open={open} clips={clips}/>
+    )}
+    </>
   );
 };
 
