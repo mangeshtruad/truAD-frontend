@@ -4,6 +4,9 @@ import SignIn from "./Components/SignIn/SignIn";
 import SignUp from "./Components/SignUp/SignUp";
 import DashBoardContainer from "./Page";
 import Resource from "./Components/Resource Management";
+import PopularPicks from "./Components/PopularPicks/PopularPicks";
+import Invoices from "./Components/Invoices/Invoices";
+import PlacePromotions from "./Components/PlacePromotions/PlacePromotions";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import Analytics from "./Components/Analytics/Analytics";
@@ -50,6 +53,18 @@ function App() {
         {
           path: "/dashboard/raise",
           element: <RaiseTicket />,
+        },
+        {
+          path: "/dashboard/popularpicks",
+          element: <PopularPicks />,
+        },
+        {
+          path: "/dashboard/invoices",
+          element: <Invoices />,
+        },
+        {
+          path: "/dashboard/placepromotion",
+          element: <PlacePromotions />,
         },
       ],
     },
