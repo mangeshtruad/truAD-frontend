@@ -230,7 +230,7 @@
     position: relative;
     height: 500px; /* Set the height of your div */
     overflow: hidden; /* Ensures the video is cut off outside the div */
-    background-color: black;
+    background-color: white;
     width: 49%;
     height: 11rem;
     border-radius: 1rem;

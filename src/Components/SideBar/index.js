@@ -2,8 +2,13 @@ import React, { useState } from "react";
 import "./SideBar.css";
 import TruAdlogo from "../../logo/Logo.png";
 import ItemList from "./itemList";
+import { CookiesProvider, useCookies } from "react-cookie";
+import { useNavigate } from "react-router-dom";
 
 export default function SideBar() {
+  const [cookies, setCookie, removeCookie] = useCookies(["user"]);
+  const navigate = useNavigate();
+
   const[list, setlist]=useState(ItemList)
   const hendleClick=(index)=>{
     const newlist=list.map((el,ind)=>{
@@ -35,7 +40,10 @@ export default function SideBar() {
           })}
         </ul>
         <div className="signout_div">
-          <button className="signout_button btn rounded-4 p-1.5">
+          <button className="signout_button btn rounded-4 p-1.5"  onClick={() => {
+            removeCookie('user',  {path:'/'});
+            navigate("/")
+          }}>
             Sign Out
           </button>
         </div>

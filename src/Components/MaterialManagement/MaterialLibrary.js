@@ -1,23 +1,63 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./MaterialLibrary.css";
 import dark_mode from "../../Assets/dark_mode.png";
 import bell from "../../Assets/bell.png";
 import info from "../../Assets/info.png";
 import search from "../../Assets/search.png";
-import trash from "../../Assets/trash.png"
+import trash from "../../Assets/trash.png";
 import PopUp from "../UploadMaterial/PopUp";
 
 const MaterialLibrary = () => {
-    const [isOpen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(false);
+  const [data, setData] = useState([]);
 
-    const togglePopup = () => {
-        setIsOpen(!isOpen)
+  const togglePopup = () => {
+    setIsOpen(!isOpen);
+  };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await fetch(
+        "https://truad-dashboard-backend.onrender.com/api/getMaterial"
+      );
+      const datar = await response.json();
+
+      const materials = datar.materials;
+
+      console.log(datar);
+      setData(materials);
+
+      console.log("updated", data);
+    };
+
+    fetchData();
+  }, []);
+
+  async function handleDelete(key) {
+    const response = await fetch("https://truad-dashboard-backend.onrender.com/api/deleteMaterial", {
+      method: "POST",
+      body: JSON.stringify( {
+        materialID : key
+      }),
+      headers: {
+        "Content-Type" : "application/json"
+      }
+    })
+
+    if(response.status == 404){
+      console.log("Material not found")
+      return 
+    };
+
+    if(response.status == 200){
+      const filtered = data.filter((elem) => elem._id !== key)
+      setData(filtered);
     }
+  }
+
   return (
     <div className="material-container">
-        {isOpen && (
-            <PopUp togglePopup={togglePopup}/>
-        )}
+      {isOpen && <PopUp togglePopup={togglePopup} />}
       <div className="material-header">
         <div className="material-user-info">
           <h4>Material Management</h4>
@@ -38,11 +78,11 @@ const MaterialLibrary = () => {
       </div>
       <div className="material-info">
         <div className="material-library-searchbar">
-            <p>Material Library</p>
-            <div className="searchbar">
-              <input type="text" placeholder="Search"></input>
-              <img src={search}></img>
-            </div>
+          <p>Material Library</p>
+          <div className="searchbar">
+            <input type="text" placeholder="Search"></input>
+            <img src={search}></img>
+          </div>
         </div>
         <div className="homepage-upload-btn" onClick={togglePopup}>
           <p>Upload New Materials</p>
@@ -50,161 +90,40 @@ const MaterialLibrary = () => {
       </div>
       <div className="materials-container">
         <div className="materials-container-header">
-            <div className="materials-container-tab active">
-                <p>Picture</p>
-            </div>
-            <div className="materials-container-tab">
-                <p>Video</p>
-            </div>
-            <div className="materials-container-tab">
-                <p>3D</p>
-            </div>
+          <div className="materials-container-tab active">
+            <p>Picture</p>
+          </div>
+          <div className="materials-container-tab">
+            <p>Video</p>
+          </div>
+          <div className="materials-container-tab">
+            <p>3D</p>
+          </div>
         </div>
         <div className="material-cards">
-            <div className="material-card">
-                <img src="https://s3-alpha-sig.figma.com/img/ee23/d584/acf93a85cb33e8bf45f30510876a8621?Expires=1715558400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=XcDBx4t6K~VpFaKLGbbO1UTVf~GfKI-ZyBSZ-zpZtuQ-JkRJ-bgR2PEDlYddnBoklVSr6Ycm5JvCT61IPKfJ2dPXIvul~lkJFvIo6R1NARDB9khroXzEE0uTHH10vJsbhW2APdPbotyPAqO7KJXJ4E-9vJBzE-VS6w22k66usfDAvu3ZJvyb0MQe5Osxa6QeSHMUBiD0qWXPqRsctBB1SDWcNYNt7J0RWFxdGt1hIkq0yRF4cDZojsdwsDcpAAOypEZPCukrcm8~Zb-EEKWXQbthLDyscwmC5TsFDC16D00gb2A89vsGr~HFaZ6hJAaJbdgKY-pC1WdAnb6WagQV~A"></img>
+          {data.length > 0 &&
+            data.map((item) => (
+              <div className="material-card">
+                <img src={item.url}></img>
                 <div className="material-card-title">
-                    <p>Coca Cola</p>
+                  <p>{item.name}</p>
                 </div>
                 <div className="material-card-group">
-                    <p>Material group: </p><a>TV</a>
-                    <p>Material size: </p><a>16:9</a>
+                  <p>Material group: </p>
+                  <a>{item.group}</a>
+                  <p>Material size: </p>
+                  <a>{item.size}</a>
                 </div>
                 <div className="material-card-btn">
-                    <div className="material-card-operate-btn">
-                        <p>Operate</p>
-                    </div>
-                    <div className="material-card-delete-btn">
-                        <img src={trash}></img>
-                    </div>
+                  <div className="material-card-operate-btn">
+                    <p>Operate</p>
+                  </div>
+                  <div className="material-card-delete-btn">
+                    <img src={trash} onClick={() => handleDelete(item._id)}></img>
+                  </div>
                 </div>
-            </div>
-            <div className="material-card">
-                <img src="https://s3-alpha-sig.figma.com/img/ee23/d584/acf93a85cb33e8bf45f30510876a8621?Expires=1715558400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=XcDBx4t6K~VpFaKLGbbO1UTVf~GfKI-ZyBSZ-zpZtuQ-JkRJ-bgR2PEDlYddnBoklVSr6Ycm5JvCT61IPKfJ2dPXIvul~lkJFvIo6R1NARDB9khroXzEE0uTHH10vJsbhW2APdPbotyPAqO7KJXJ4E-9vJBzE-VS6w22k66usfDAvu3ZJvyb0MQe5Osxa6QeSHMUBiD0qWXPqRsctBB1SDWcNYNt7J0RWFxdGt1hIkq0yRF4cDZojsdwsDcpAAOypEZPCukrcm8~Zb-EEKWXQbthLDyscwmC5TsFDC16D00gb2A89vsGr~HFaZ6hJAaJbdgKY-pC1WdAnb6WagQV~A"></img>
-                <div className="material-card-title">
-                    <p>Coca Cola</p>
-                </div>
-                <div className="material-card-group">
-                    <p>Material group: </p><a>TV</a>
-                    <p>Material size: </p><a>16:9</a>
-                </div>
-                <div className="material-card-btn">
-                    <div className="material-card-operate-btn">
-                        <p>Operate</p>
-                    </div>
-                    <div className="material-card-delete-btn">
-                        <img src={trash}></img>
-                    </div>
-                </div>
-            </div>
-            <div className="material-card">
-                <img src="https://s3-alpha-sig.figma.com/img/ee23/d584/acf93a85cb33e8bf45f30510876a8621?Expires=1715558400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=XcDBx4t6K~VpFaKLGbbO1UTVf~GfKI-ZyBSZ-zpZtuQ-JkRJ-bgR2PEDlYddnBoklVSr6Ycm5JvCT61IPKfJ2dPXIvul~lkJFvIo6R1NARDB9khroXzEE0uTHH10vJsbhW2APdPbotyPAqO7KJXJ4E-9vJBzE-VS6w22k66usfDAvu3ZJvyb0MQe5Osxa6QeSHMUBiD0qWXPqRsctBB1SDWcNYNt7J0RWFxdGt1hIkq0yRF4cDZojsdwsDcpAAOypEZPCukrcm8~Zb-EEKWXQbthLDyscwmC5TsFDC16D00gb2A89vsGr~HFaZ6hJAaJbdgKY-pC1WdAnb6WagQV~A"></img>
-                <div className="material-card-title">
-                    <p>Coca Cola</p>
-                </div>
-                <div className="material-card-group">
-                    <p>Material group: </p><a>TV</a>
-                    <p>Material size: </p><a>16:9</a>
-                </div>
-                <div className="material-card-btn">
-                    <div className="material-card-operate-btn">
-                        <p>Operate</p>
-                    </div>
-                    <div className="material-card-delete-btn">
-                        <img src={trash}></img>
-                    </div>
-                </div>
-            </div>
-            <div className="material-card">
-                <img src="https://s3-alpha-sig.figma.com/img/ee23/d584/acf93a85cb33e8bf45f30510876a8621?Expires=1715558400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=XcDBx4t6K~VpFaKLGbbO1UTVf~GfKI-ZyBSZ-zpZtuQ-JkRJ-bgR2PEDlYddnBoklVSr6Ycm5JvCT61IPKfJ2dPXIvul~lkJFvIo6R1NARDB9khroXzEE0uTHH10vJsbhW2APdPbotyPAqO7KJXJ4E-9vJBzE-VS6w22k66usfDAvu3ZJvyb0MQe5Osxa6QeSHMUBiD0qWXPqRsctBB1SDWcNYNt7J0RWFxdGt1hIkq0yRF4cDZojsdwsDcpAAOypEZPCukrcm8~Zb-EEKWXQbthLDyscwmC5TsFDC16D00gb2A89vsGr~HFaZ6hJAaJbdgKY-pC1WdAnb6WagQV~A"></img>
-                <div className="material-card-title">
-                    <p>Coca Cola</p>
-                </div>
-                <div className="material-card-group">
-                    <p>Material group: </p><a>TV</a>
-                    <p>Material size: </p><a>16:9</a>
-                </div>
-                <div className="material-card-btn">
-                    <div className="material-card-operate-btn">
-                        <p>Operate</p>
-                    </div>
-                    <div className="material-card-delete-btn">
-                        <img src={trash}></img>
-                    </div>
-                </div>
-            </div>
-            <div className="material-card">
-                <img src="https://s3-alpha-sig.figma.com/img/ee23/d584/acf93a85cb33e8bf45f30510876a8621?Expires=1715558400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=XcDBx4t6K~VpFaKLGbbO1UTVf~GfKI-ZyBSZ-zpZtuQ-JkRJ-bgR2PEDlYddnBoklVSr6Ycm5JvCT61IPKfJ2dPXIvul~lkJFvIo6R1NARDB9khroXzEE0uTHH10vJsbhW2APdPbotyPAqO7KJXJ4E-9vJBzE-VS6w22k66usfDAvu3ZJvyb0MQe5Osxa6QeSHMUBiD0qWXPqRsctBB1SDWcNYNt7J0RWFxdGt1hIkq0yRF4cDZojsdwsDcpAAOypEZPCukrcm8~Zb-EEKWXQbthLDyscwmC5TsFDC16D00gb2A89vsGr~HFaZ6hJAaJbdgKY-pC1WdAnb6WagQV~A"></img>
-                <div className="material-card-title">
-                    <p>Coca Cola</p>
-                </div>
-                <div className="material-card-group">
-                    <p>Material group: </p><a>TV</a>
-                    <p>Material size: </p><a>16:9</a>
-                </div>
-                <div className="material-card-btn">
-                    <div className="material-card-operate-btn">
-                        <p>Operate</p>
-                    </div>
-                    <div className="material-card-delete-btn">
-                        <img src={trash}></img>
-                    </div>
-                </div>
-            </div>
-            <div className="material-card">
-                <img src="https://s3-alpha-sig.figma.com/img/ee23/d584/acf93a85cb33e8bf45f30510876a8621?Expires=1715558400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=XcDBx4t6K~VpFaKLGbbO1UTVf~GfKI-ZyBSZ-zpZtuQ-JkRJ-bgR2PEDlYddnBoklVSr6Ycm5JvCT61IPKfJ2dPXIvul~lkJFvIo6R1NARDB9khroXzEE0uTHH10vJsbhW2APdPbotyPAqO7KJXJ4E-9vJBzE-VS6w22k66usfDAvu3ZJvyb0MQe5Osxa6QeSHMUBiD0qWXPqRsctBB1SDWcNYNt7J0RWFxdGt1hIkq0yRF4cDZojsdwsDcpAAOypEZPCukrcm8~Zb-EEKWXQbthLDyscwmC5TsFDC16D00gb2A89vsGr~HFaZ6hJAaJbdgKY-pC1WdAnb6WagQV~A"></img>
-                <div className="material-card-title">
-                    <p>Coca Cola</p>
-                </div>
-                <div className="material-card-group">
-                    <p>Material group: </p><a>TV</a>
-                    <p>Material size: </p><a>16:9</a>
-                </div>
-                <div className="material-card-btn">
-                    <div className="material-card-operate-btn">
-                        <p>Operate</p>
-                    </div>
-                    <div className="material-card-delete-btn">
-                        <img src={trash}></img>
-                    </div>
-                </div>
-            </div>
-            <div className="material-card">
-                <img src="https://s3-alpha-sig.figma.com/img/ee23/d584/acf93a85cb33e8bf45f30510876a8621?Expires=1715558400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=XcDBx4t6K~VpFaKLGbbO1UTVf~GfKI-ZyBSZ-zpZtuQ-JkRJ-bgR2PEDlYddnBoklVSr6Ycm5JvCT61IPKfJ2dPXIvul~lkJFvIo6R1NARDB9khroXzEE0uTHH10vJsbhW2APdPbotyPAqO7KJXJ4E-9vJBzE-VS6w22k66usfDAvu3ZJvyb0MQe5Osxa6QeSHMUBiD0qWXPqRsctBB1SDWcNYNt7J0RWFxdGt1hIkq0yRF4cDZojsdwsDcpAAOypEZPCukrcm8~Zb-EEKWXQbthLDyscwmC5TsFDC16D00gb2A89vsGr~HFaZ6hJAaJbdgKY-pC1WdAnb6WagQV~A"></img>
-                <div className="material-card-title">
-                    <p>Coca Cola</p>
-                </div>
-                <div className="material-card-group">
-                    <p>Material group: </p><a>TV</a>
-                    <p>Material size: </p><a>16:9</a>
-                </div>
-                <div className="material-card-btn">
-                    <div className="material-card-operate-btn">
-                        <p>Operate</p>
-                    </div>
-                    <div className="material-card-delete-btn">
-                        <img src={trash}></img>
-                    </div>
-                </div>
-            </div>
-            <div className="material-card">
-                <img src="https://s3-alpha-sig.figma.com/img/ee23/d584/acf93a85cb33e8bf45f30510876a8621?Expires=1715558400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=XcDBx4t6K~VpFaKLGbbO1UTVf~GfKI-ZyBSZ-zpZtuQ-JkRJ-bgR2PEDlYddnBoklVSr6Ycm5JvCT61IPKfJ2dPXIvul~lkJFvIo6R1NARDB9khroXzEE0uTHH10vJsbhW2APdPbotyPAqO7KJXJ4E-9vJBzE-VS6w22k66usfDAvu3ZJvyb0MQe5Osxa6QeSHMUBiD0qWXPqRsctBB1SDWcNYNt7J0RWFxdGt1hIkq0yRF4cDZojsdwsDcpAAOypEZPCukrcm8~Zb-EEKWXQbthLDyscwmC5TsFDC16D00gb2A89vsGr~HFaZ6hJAaJbdgKY-pC1WdAnb6WagQV~A"></img>
-                <div className="material-card-title">
-                    <p>Coca Cola</p>
-                </div>
-                <div className="material-card-group">
-                    <p>Material group: </p><a>TV</a>
-                    <p>Material size: </p><a>16:9</a>
-                </div>
-                <div className="material-card-btn">
-                    <div className="material-card-operate-btn">
-                        <p>Operate</p>
-                    </div>
-                    <div className="material-card-delete-btn">
-                        <img src={trash}></img>
-                    </div>
-                </div>
-            </div>
+              </div>
+            ))}
         </div>
       </div>
     </div>

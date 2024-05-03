@@ -1,19 +1,63 @@
 import React, { useState } from 'react'
+import { useCookies } from 'react-cookie';
 import "./PopUp.css"
 
 const PopUp = ({togglePopup}) => {
     const [image, setImage] = useState("");
+    const [files, setFiles] = useState({})
+    const [cookies, setCookie, removeCookie] = useCookies(["user", "userdata"]);
 
     const handleUploadButtonClick = () => {
-        const filebtn = document.getElementById("fileInput");
-        filebtn.click();
-      };
+      const filebtn = document.getElementById("fileInput");
+      filebtn.click();
+    };
     
-      const handleFileUpload = (e) => {
-        const file = e.target.files[0];
-        setImage(URL.createObjectURL(file));
-      };
+    const handleFileUpload = (e) => {
+      const file = e.target.files[0];
+      setImage(URL.createObjectURL(file));
+    };
 
+    const handleChange = (e) => {
+        setFiles((prev) => ({ ...prev, [e.target.id]: e.target.value }));
+    };
+  
+    const handleSubmit = async(e) => {
+
+      e.preventDefault();
+      // console.log(cookies.user)
+      const fileObj = {
+        name: files.Name,
+        type: files.Type,
+        size: files.Size,
+        // date: files.Date,
+        url: image, // Changed 'file' to 'Image' to match the object key
+        group: files.Group,}
+
+        console.log(fileObj)
+        try {
+          const response = await fetch("https://truad-dashboard-backend.onrender.com/api/uploadMaterial", {
+            method: "POST",
+            body: JSON.stringify({
+              material : fileObj
+            }),
+            headers: {
+              "Authorization": `Bearer ${cookies.user}`,
+              "Content-Type" : "application/json"
+            }
+          })
+    
+          if(response.status == 200){
+            return console.log("Success")
+          }
+    
+          if(response.status == 500){
+            return console.log("unsuccessful")
+          }
+        } catch (error) {
+          console.log(error)
+        }
+    };
+  
   return (
     <div className="popup">
     <div className="popup-header">
@@ -44,34 +88,34 @@ const PopUp = ({togglePopup}) => {
     </div>
     <div className="popup-fields">
       <div className="popup-field-input">
-        <input type="text" placeholder="Material Name" />
+        <input type="text" placeholder="Material Name" id='Name' onChange={(e) => handleChange(e)}/>
       </div>
       <div className="popup-field-input">
-        <select name="cars" id="cars">
-          <option value="volvo" disabled>
+        <select name="cars" id="Group" onChange={(e) => handleChange(e)}>
+          <option value="" disabled>
             Material Group
           </option>
-          <option value="saab">TV</option>
-          <option value="mercedes">Mobile</option>
+          <option value="TV">TV</option>
+          <option value="Mobile">Mobile</option>
         </select>
       </div>
       <div className="popup-field-input">
-        <select name="cars" id="cars">
+        <select name="cars" id="Size" onChange={(e) => handleChange(e)}>
           <option value="volvo" disabled>
             Material Size
           </option>
-          <option value="saab">6:9</option>
-          <option value="mercedes">4:3</option>
-          <option value="mercedes">16:9</option>
+          <option value="6:9">6:9</option>
+          <option value="4:3">4:3</option>
+          <option value="16:9">16:9</option>
         </select>
       </div>
       <div className="popup-field-input">
-        <select name="cars" id="cars">
+        <select name="cars" id="Type" onChange={(e) => handleChange(e)}>
           <option value="volvo" disabled>
             Material Type
           </option>
-          <option value="saab">Image</option>
-          <option value="mercedes">Video</option>
+          <option value="Image">Image</option>
+          <option value="Video">Video</option>
         </select>
       </div>
       <div className="popup-field-input">
@@ -95,7 +139,7 @@ const PopUp = ({togglePopup}) => {
     </div>
     <div className="popup-submit-btn">
       <button className="popup-cancel-btn" onClick={togglePopup}>Cancel</button>
-      <button className="popup-next-btn">Next</button>
+      <button className="popup-next-btn" onClick={handleSubmit}>Next</button>
     </div>
   </div>
   )

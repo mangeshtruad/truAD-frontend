@@ -1,20 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 import SideBar from './Components/SideBar/index';
 import { Outlet } from "react-router-dom";
-// import { CookiesProvider, useCookies } from "react-cookie";
+import { CookiesProvider, useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
 
 function DashBoardContainer() {
-//   const [cookies, setCookie, removeCookie] = useCookies(["user"]);
+  const [cookies, setCookie, removeCookie] = useCookies(["user"]);
 
-//   useEffect(() => {
-//     if (!cookies.user) {
-//       navigate("/");
-//     }
-//     // removeCookie("user", {path:'/'})
-//   }, [cookies]);
+  useEffect(() => {
+    if (!cookies.user) {
+      navigate("/");
+    }
+    // removeCookie("user", {path:'/'})
+  }, [cookies]);
 
-//   const navigate = useNavigate();
+  const navigate = useNavigate();
 
   return (
  <div style={{
