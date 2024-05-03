@@ -10,6 +10,7 @@ const list = [
   {
     name: "Dashboard",
     targetLink: "/dashboard/",
+
     icon: <HomeIcon/>,
     isActive: true,
   },
@@ -27,7 +28,7 @@ const list = [
   },
   {
     name: "Material Management",
-    targetLink: "/dashboard/material/",
+    targetLink: "/dashboard/material",
     icon: <DashboardIcon />,
     isActive: false,
   },
@@ -45,7 +46,7 @@ const list = [
   },
   {
     name: "Data Report",
-    targetLink: "/dashboard/analytic",
+    targetLink: "/dashboard/analytics",
     icon: <LockIcon />,
     isActive: false,
   },

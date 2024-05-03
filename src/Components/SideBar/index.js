@@ -17,9 +17,10 @@ export default function SideBar() {
         el.isActive=true
       }else{
         el.isActive=false
+
       }
       return el;
-    })
+    });
     setlist(newlist);
     navigate(el.targetLink)
   }
@@ -38,14 +39,18 @@ export default function SideBar() {
                   <div className="listItem_text">{el.name}</div>
                 </div>
               </li>
+              // </Link>
             );
           })}
         </ul>
         <div className="signout_div">
-          <button className="signout_button btn rounded-4 p-1.5"  onClick={() => {
-            removeCookie('user',  {path:'/'});
-            navigate("/")
-          }}>
+          <button
+            className="signout_button btn rounded-4 p-1.5"
+            onClick={() => {
+              removeCookie("user", { path: "/" });
+              navigate("/");
+            }}
+          >
             Sign Out
           </button>
         </div>
