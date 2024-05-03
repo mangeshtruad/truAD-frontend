@@ -5,13 +5,12 @@ import SignUp from "./Components/SignUp/SignUp";
 import DashBoardContainer from "./Page";
 import Resource from "./Components/Resource Management";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Dialog from "./Components/Resource Management/Dialog";
 
 import Analytics from "./Components/Analytics/Analytics";
 
 import MaterialLibrary from "./Components/MaterialManagement/MaterialLibrary";
 import RaiseTicket from "./Components/RaiseTicket";
-import TablePaginationDemo from "./Components/RaiseTicket/Pagination";
+import TablePagination from "./Components/RaiseTicket/Pagination";
 
 function App() {
   const router = createBrowserRouter([
@@ -25,7 +24,7 @@ function App() {
     },
     {
       path: "/page",
-      element: <TablePaginationDemo />,
+      element: <TablePagination />,
     },
     {
       path: "/dashboard",
