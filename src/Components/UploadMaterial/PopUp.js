@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { useCookies } from 'react-cookie';
 import "./PopUp.css"
 
@@ -6,6 +6,7 @@ const PopUp = ({togglePopup}) => {
     const [image, setImage] = useState("");
     const [files, setFiles] = useState({})
     const [cookies, setCookie, removeCookie] = useCookies(["user", "userdata"]);
+    const popupRef = useRef(null);
 
     const handleUploadButtonClick = () => {
       const filebtn = document.getElementById("fileInput");
@@ -57,9 +58,26 @@ const PopUp = ({togglePopup}) => {
           console.log(error)
         }
     };
+
+    useEffect(() => {
+      function handleClickOutside(event) {
+        if (popupRef.current && !popupRef.current.contains(event.target)) {
+          togglePopup()
+        }
+      }
+  
+      // Bind the event listener
+      document.addEventListener("mousedown", handleClickOutside);
+      return () => {
+        // Unbind the event listener on clean up
+        document.removeEventListener("mousedown", handleClickOutside);
+      };
+    }, []);
+  
+  
   
   return (
-    <div className="popup">
+    <div className="popup" ref={popupRef}>
     <div className="popup-header">
       <svg
         width="24"
@@ -74,14 +92,14 @@ const PopUp = ({togglePopup}) => {
           stroke="#B8BABC"
           stroke-width="1.5"
           stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeLinejoin="round"
         />
         <path
           d="M6 6L18 18"
           stroke="#B8BABC"
           stroke-width="1.5"
           stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeLinejoin="round"
         />
       </svg>
       <p>Add Material</p>

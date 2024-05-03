@@ -266,6 +266,7 @@
     z-index: 2;
     color: white;
     padding-bottom: 5px;
+    background-color: black;
 }
 
 .homepage-container .homepage-clips .clips-container .clips-row .clip-container .content > h1{

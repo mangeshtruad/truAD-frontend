@@ -16,17 +16,50 @@ import { CookiesProvider, useCookies } from "react-cookie";
 const HomePage = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [cookies, setCookie, removeCookie] = useCookies(["user", "userdata"]);
-  
+  const [items, setItems] = useState([]);
+  const [ongoing, setOngoing] = useState([]);
+  const [processedClips, setProcessedClips] = useState([]);
+
   const togglePopup = () => {
     setIsOpen(!isOpen);
   };
 
+  useEffect(() => {
+    const fetchVideos = async () => {
+      try {
+        const response = await fetch(
+          "https://truad-dashboard-backend.onrender.com/allItems",
+          {
+            method: "GET",
+          }
+        );
+
+        const data = await response.json();
+        // const data2 = data.items.map((item) => item.location.split("?AWS")[0]);
+        const data2 = data.items.map((elem) => ({
+          ...elem,
+          location: elem.location.split("?AWS")[0],
+          name: elem.name.split("upload/")[1],
+        }));
+        setItems(data2.slice(0, 4));
+        const processed = data2.filter((elem) => elem.blendFile);
+        const ongoingClips = data2.filter(
+          (elem) => elem.blend && !elem.blendFile
+        );
+        setOngoing(ongoingClips.slice(0, 2));
+        setProcessedClips(processed.slice(0, 2));
+        console.log("processed", processedClips);
+      } catch (error) {
+        console.error("Error fetching videos:", error);
+      }
+    };
+
+    fetchVideos();
+  }, []);
 
   return (
     <div className="homepage-container">
-      {isOpen && (
-        <PopUp togglePopup={togglePopup}/>
-      )}
+      {isOpen && <PopUp togglePopup={togglePopup} />}
       <div className="homepage-header">
         <div className="homepage-user-info">
           <p>{cookies.userdata.email}</p>
@@ -94,59 +127,34 @@ const HomePage = () => {
         <div className="clips-container">
           <p>Processed clips (2)</p>
           <div className="clips-row">
-            <div className="clip-container">
-              <video autoPlay muted loop playsInline>
-                <source
-                  src="https://videotruad.s3.ap-south-1.amazonaws.com/split_video_3.mp4"
-                  type="video/mp4"
-                />
-                Your browser does not support the video tag.
-              </video>
-              <div className="content">
-                <p>Colorful Heaven</p>
+            {processedClips.map((item) => (
+              <div className="clip-container" key={item._id}>
+                <video autoPlay muted loop playsInline>
+                  <source src={item.location} type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+                <div className="content">
+                  <p>{item.name}</p>
+                </div>
               </div>
-            </div>
-            <div className="clip-container">
-              <video autoPlay muted loop playsInline>
-                <source
-                  src="https://videotruad.s3.ap-south-1.amazonaws.com/split_video_3.mp4"
-                  type="video/mp4"
-                />
-                Your browser does not support the video tag.
-              </video>
-              <div className="content">
-                <p>Colorful Heaven</p>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
+
         <div className="clips-container">
           <p>AI detection ongoing (5)</p>
           <div className="clips-row">
-            <div className="clip-container">
-              <video autoPlay muted loop playsInline>
-                <source
-                  src="https://videotruad.s3.ap-south-1.amazonaws.com/split_video_3.mp4"
-                  type="video/mp4"
-                />
-                Your browser does not support the video tag.
-              </video>
-              <div className="content">
-                <p>Colorful Heaven</p>
+            {ongoing.map((item) => (
+              <div className="clip-container">
+                <video autoPlay muted loop playsInline>
+                  <source src={item.location} type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+                <div className="content">
+                  <p>{item.name}</p>
+                </div>
               </div>
-            </div>
-            <div className="clip-container">
-              <video autoPlay muted loop playsInline>
-                <source
-                  src="https://videotruad.s3.ap-south-1.amazonaws.com/split_video_3.mp4"
-                  type="video/mp4"
-                />
-                Your browser does not support the video tag.
-              </video>
-              <div className="content">
-                <p>Colorful Heaven</p>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </div>
@@ -154,54 +162,17 @@ const HomePage = () => {
         <div className="available-clips-container">
           <p>Available content clips (5)</p>
           <div className="available-clips-row">
-            <div className="available-clip-container">
-              <video autoPlay muted loop playsInline>
-                <source
-                  src="https://videotruad.s3.ap-south-1.amazonaws.com/split_video_3.mp4"
-                  type="video/mp4"
-                />
-                Your browser does not support the video tag.
-              </video>
-              <div className="available-content">
-                <p>Colorful Heaven</p>
+            {items.map((item) => (
+              <div className="available-clip-container">
+                <video autoPlay muted loop playsInline>
+                  <source src={item.location} type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+                <div className="available-content">
+                  <p>{item.name}</p>
+                </div>
               </div>
-            </div>
-            <div className="available-clip-container">
-              <video autoPlay muted loop playsInline>
-                <source
-                  src="https://videotruad.s3.ap-south-1.amazonaws.com/split_video_3.mp4"
-                  type="video/mp4"
-                />
-                Your browser does not support the video tag.
-              </video>
-              <div className="available-content">
-                <p>Colorful Heaven</p>
-              </div>
-            </div>
-            <div className="available-clip-container">
-              <video autoPlay muted loop playsInline>
-                <source
-                  src="https://videotruad.s3.ap-south-1.amazonaws.com/split_video_3.mp4"
-                  type="video/mp4"
-                />
-                Your browser does not support the video tag.
-              </video>
-              <div className="available-content">
-                <p>Colorful Heaven</p>
-              </div>
-            </div>
-            <div className="available-clip-container">
-              <video autoPlay muted loop playsInline>
-                <source
-                  src="https://videotruad.s3.ap-south-1.amazonaws.com/split_video_3.mp4"
-                  type="video/mp4"
-                />
-                Your browser does not support the video tag.
-              </video>
-              <div className="available-content">
-                <p>Colorful Heaven</p>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </div>
@@ -216,62 +187,62 @@ const HomePage = () => {
           <div className="homepage-tickets-table">
             <table>
               <thead>
-              <tr>
-                <th>Name</th>
-                <th>Status</th>
-                <th>Date</th>
-                <th>Progress</th>
-              </tr>
+                <tr>
+                  <th>Name</th>
+                  <th>Status</th>
+                  <th>Date</th>
+                  <th>Progress</th>
+                </tr>
               </thead>
               <tbody>
-              <tr>
-                <td>Ticket 1</td>
-                <td>
-                  <img src={pending} />
-                  Pending
-                </td>
-                <td>18 Apr 2023</td>
-                <progress id="file" value="42" max="100">
-                  {" "}
-                  42%{" "}
-                </progress>
-              </tr>
-              <tr>
-                <td>Ticket 2</td>
-                <td>
-                  <img src={pending} />
-                  Pending
-                </td>
-                <td>22 April 2023</td>
-                <progress id="file" value="27" max="100">
-                  {" "}
-                  27%{" "}
-                </progress>
-              </tr>
-              <tr>
-                <td>Ticket 3</td>
-                <td>
-                  <img src={pending} />
-                  Pending
-                </td>
-                <td>12 Feb 2023</td>
-                <progress id="file" value="78" max="100">
-                  {" "}
-                  78%{" "}
-                </progress>
-              </tr>
-              <tr>
-                <td>Ticket 4</td>
-                <td>
-                  <img src={done} />
-                  Resolved
-                </td>
-                <td>15 Mar 2023</td>
-                <progress id="file" value="91" max="100">
-                  {" "}
-                  91%{" "}
-                </progress>
-              </tr>
+                <tr>
+                  <td>Ticket 1</td>
+                  <td>
+                    <img src={pending} />
+                    Pending
+                  </td>
+                  <td>18 Apr 2023</td>
+                  <progress id="file" value="42" max="100">
+                    {" "}
+                    42%{" "}
+                  </progress>
+                </tr>
+                <tr>
+                  <td>Ticket 2</td>
+                  <td>
+                    <img src={pending} />
+                    Pending
+                  </td>
+                  <td>22 April 2023</td>
+                  <progress id="file" value="27" max="100">
+                    {" "}
+                    27%{" "}
+                  </progress>
+                </tr>
+                <tr>
+                  <td>Ticket 3</td>
+                  <td>
+                    <img src={pending} />
+                    Pending
+                  </td>
+                  <td>12 Feb 2023</td>
+                  <progress id="file" value="78" max="100">
+                    {" "}
+                    78%{" "}
+                  </progress>
+                </tr>
+                <tr>
+                  <td>Ticket 4</td>
+                  <td>
+                    <img src={done} />
+                    Resolved
+                  </td>
+                  <td>15 Mar 2023</td>
+                  <progress id="file" value="91" max="100">
+                    {" "}
+                    91%{" "}
+                  </progress>
+                </tr>
               </tbody>
             </table>
           </div>
@@ -286,38 +257,38 @@ const HomePage = () => {
           <div className="homepage-tickets-table">
             <table>
               <thead>
-              <tr>
-                <th>Name</th>
-                <th>Status</th>
-                <th>Date</th>
-                <th>Progress</th>
-              </tr>
+                <tr>
+                  <th>Name</th>
+                  <th>Status</th>
+                  <th>Date</th>
+                  <th>Progress</th>
+                </tr>
               </thead>
               <tbody>
-              <tr>
-                <td>Clip 1</td>
-                <td>
-                  <img src={pending} />
-                  Pending
-                </td>
-                <td>18 Apr 2023</td>
-                <progress id="file" value="42" max="100">
-                  {" "}
-                  42%{" "}
-                </progress>
-              </tr>
-              <tr>
-                <td>Clip 2</td>
-                <td>
-                  <img src={pending} />
-                  Pending
-                </td>
-                <td>22 April 2023</td>
-                <progress id="file" value="27" max="100">
-                  {" "}
-                  27%{" "}
-                </progress>
-              </tr>
+                <tr>
+                  <td>Clip 1</td>
+                  <td>
+                    <img src={pending} />
+                    Pending
+                  </td>
+                  <td>18 Apr 2023</td>
+                  <progress id="file" value="42" max="100">
+                    {" "}
+                    42%{" "}
+                  </progress>
+                </tr>
+                <tr>
+                  <td>Clip 2</td>
+                  <td>
+                    <img src={pending} />
+                    Pending
+                  </td>
+                  <td>22 April 2023</td>
+                  <progress id="file" value="27" max="100">
+                    {" "}
+                    27%{" "}
+                  </progress>
+                </tr>
               </tbody>
             </table>
           </div>
