@@ -10,10 +10,10 @@ import Typography from "@mui/material/Typography";
 import { bgcolors as bg, textcolors as tx } from "../../color";
 import "./Dialog.css";
 
-export default function Uploadvideo({ handleClose, open, id }) {
+export default function Uploadvideo({ handleClose, open, setClips }) {
   const [video, setVideo] = useState('');
   const [file, setFile] = useState(null)
-  const [clips, setClips] = useState([])
+  // const [clips, setClips] = useState([])
 
   const handleFileChange = (e) => {
     setFile(e.target.files[0])
@@ -106,7 +106,7 @@ export default function Uploadvideo({ handleClose, open, id }) {
         >
           Generate Clips
         </Button>
-        {clips.length > 0 && (
+        {/* {clips.length > 0 && (
           <div style={{overflow: "scroll"}}>
             {clips.map((clip) => (
               <video autoPlay muted loop playsInline style={{width: "100px", height: "50px"}}>
@@ -115,7 +115,7 @@ export default function Uploadvideo({ handleClose, open, id }) {
             </video>
             ))}
           </div>
-        )}
+        )} */}
           </div>
         )}
       </DialogContent>

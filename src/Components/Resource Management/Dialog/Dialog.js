@@ -22,13 +22,12 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   },
 }));
 
-export default function CustomizedDialogs({ handleClose, open}) {
+export default function CustomizedDialogs({ handleClose, open, clips }) {
   return (
     <BootstrapDialog
       onClose={handleClose}
       aria-labelledby="customized-dialog-title"
       open={open}
-
       sx={{
         "& .MuiDialog-container": {
           justifyContent: "flex-end", // Flex end aligns the dialog content to the end of the flex container
@@ -66,15 +65,12 @@ export default function CustomizedDialogs({ handleClose, open}) {
       >
         <Typography gutterBottom>Available Clips</Typography>
         <Stack direction={"column"} spacing={2} pt={3}>
-          {[1, 2, 3, 4, 5].map((el, index) => {
+          {clips.map((clip, index) => {
             return (
               <Stack direction={"row"} alignItems={"end"} spacing={1}>
                 <div className="clip-container rounded-2 rounded-bottom-4">
                   <video autoplay muted loop playsinline>
-                    <source
-                      src="https://videotruad.s3.ap-south-1.amazonaws.com/popat.mp4"
-                      type="video/mp4"
-                    />
+                    <source src={clip.location} type="video/mp4" />
                     Your browser does not support the video tag.
                   </video>
                   <div class="content">
@@ -82,38 +78,36 @@ export default function CustomizedDialogs({ handleClose, open}) {
                   </div>
                 </div>
                 <Box sx={{ width: "50%" }}>
-                  
                   <Button
-      endIcon={<KeyboardArrowRightIcon />}
-      variant="contained"
-      className="ai-detection-btn"
-    >
-      Send for AI detection
-    </Button>
-  
+                    endIcon={<KeyboardArrowRightIcon />}
+                    variant="contained"
+                    className="ai-detection-btn"
+                  >
+                    Send for AI detection
+                  </Button>
                 </Box>
               </Stack>
             );
           })}
         </Stack>
       </DialogContent>
-      
+
       <DialogActions className="dialog-actions">
-      <Button
-        variant="outlined"
-        onClick={handleClose}
-        className="button-outlined rounded-3"
-      >
-        Cancel
-      </Button>
-      <Button
-        variant="contained"
-        onClick={handleClose}
-        className="button-contained rounded-3"
-      >
-        Done
-      </Button>
-    </DialogActions>
+        <Button
+          variant="outlined"
+          onClick={handleClose}
+          className="button-outlined rounded-3"
+        >
+          Cancel
+        </Button>
+        <Button
+          variant="contained"
+          onClick={handleClose}
+          className="button-contained rounded-3"
+        >
+          Done
+        </Button>
+      </DialogActions>
     </BootstrapDialog>
   );
 }

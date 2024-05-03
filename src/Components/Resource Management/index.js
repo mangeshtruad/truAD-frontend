@@ -8,14 +8,16 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
-import Dialog from "./Dialog/Uploadvideo";
+import Dialog from "./Dialog/Dialog";
 import Uploadvideo from "./Dialog/Uploadvideo";
 import "./resource.css";
 import MediaCard from "./MediaCard/MediaCard";
 
 export default function ResourceManagement() {
   const [open, setOpen] = useState(false);
-  const [media, setMedia] = useState([])
+  const [media, setMedia] = useState([]);
+
+  const [clips, setClips] = useState([]);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -28,13 +30,12 @@ export default function ResourceManagement() {
     const apiKey = "37f889dd"; // Replace with your OMDb API key
     try {
       const response = await fetch(
-        `https://www.omdbapi.com/?s=${"Comedy"
-        }&apikey=${apiKey}`
+        `https://www.omdbapi.com/?s=${"Comedy"}&apikey=${apiKey}`
       );
 
-      const data = await response.json()
+      const data = await response.json();
       console.log(data.Search);
-      setMedia(data.Search)
+      setMedia(data.Search);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -125,7 +126,7 @@ export default function ResourceManagement() {
               <nav>
                 <ul className="nav_list p-0">
                   <li className="list-item dm-sans">
-                    <FormControl variant="standard" sx={{ width: "100%", }}>
+                    <FormControl variant="standard" sx={{ width: "100%" }}>
                       <InputLabel
                         id="demo-simple-select-standard-label"
                         sx={{
@@ -271,7 +272,11 @@ export default function ResourceManagement() {
             <div className="card_container">
               {media.map((el) => {
                 return (
-                  <MediaCard el={el} handleClickOpen={handleClickOpen} image={image}/>
+                  <MediaCard
+                    el={el}
+                    handleClickOpen={handleClickOpen}
+                    image={image}
+                  />
                 );
               })}
             </div>
@@ -279,7 +284,16 @@ export default function ResourceManagement() {
         </main>
       </div>
       {/* <Dialog handleClose={handleClose} open={open} /> */}
-      <Uploadvideo handleClose={handleClose} open={open} />
+
+      {clips.length === 0 ? (
+        <Uploadvideo
+          handleClose={handleClose}
+          open={open}
+          setClips={setClips}
+        />
+      ) : (
+        <Dialog handleClose={handleClose} open={open} clips={clips}/>
+      )}
     </React.Fragment>
   );
 }
