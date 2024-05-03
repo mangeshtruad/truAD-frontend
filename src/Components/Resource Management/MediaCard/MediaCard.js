@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 
-const MediaCard = ({ el, handleClickOpen }) => {
+const MediaCard = ({ el, handleClickOpen,  setClips}) => {
   const [media, setMedia] = useState({});
-  const [clips, setClips] = useState([]);
+  // const [clips, setClips] = useState([]);
 
   const searchMovies = async () => {
     const apiKey = "37f889dd"; // Replace with your OMDb API key

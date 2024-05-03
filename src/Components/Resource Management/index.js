@@ -276,6 +276,7 @@ export default function ResourceManagement() {
                     el={el}
                     handleClickOpen={handleClickOpen}
                     image={image}
+                    setClips={setClips}
                   />
                 );
               })}
