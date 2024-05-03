@@ -52,6 +52,7 @@ const MediaCard = ({ el,}) => {
       const data2 = data.locations.map((elem) => ({
         ...elem,
         location: elem.location.split("?AWS")[0],
+        name: elem.name.split('upload/')[1]
       }));
 
       console.log("data", data2);
@@ -82,7 +83,7 @@ const MediaCard = ({ el,}) => {
         setClips={setClips}
       />
     ) : (
-      <Dialog handleClose={handleClose} open={open} clips={clips}/>
+      <Dialog handleClose={handleClose} open={open} clips={clips} name={el.Title}/>
     )}
     </>
   );

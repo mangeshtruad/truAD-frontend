@@ -22,7 +22,33 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   },
 }));
 
-export default function CustomizedDialogs({ handleClose, open, clips }) {
+export default function CustomizedDialogs({ handleClose, open, clips, name }) {
+
+  const aiDetection = async(id) => {
+    try {
+      const response = await fetch("https://truad-dashboard-backend.onrender.com/blend-clip", {
+          method: "POST",
+          body: JSON.stringify({
+              id,
+          }),
+          headers: {
+              "Content-Type" : "application/json"
+          }
+      })
+
+      if(response.status == 500){
+          console.log("Internal Server Error")
+          return
+      }
+
+      if(response.status == 200){
+          console.log("Success")
+          return
+      }
+  } catch (error) {
+      console.log(error)
+  }
+  }
   return (
     <BootstrapDialog
       onClose={handleClose}
@@ -43,7 +69,7 @@ export default function CustomizedDialogs({ handleClose, open, clips }) {
       }}
     >
       <DialogTitle sx={{ m: 0, p: 2 }} id="customized-dialog-title">
-        The King of Comedy
+        {name}
       </DialogTitle>
       <IconButton
         aria-label="close"
@@ -74,7 +100,7 @@ export default function CustomizedDialogs({ handleClose, open, clips }) {
                     Your browser does not support the video tag.
                   </video>
                   <div class="content">
-                    <p>Colorful Heaven</p>
+                    <p>{clip.name}</p>
                   </div>
                 </div>
                 <Box sx={{ width: "50%" }}>
@@ -82,6 +108,7 @@ export default function CustomizedDialogs({ handleClose, open, clips }) {
                     endIcon={<KeyboardArrowRightIcon />}
                     variant="contained"
                     className="ai-detection-btn"
+                    onClick={(e) => aiDetection(clip._id)}
                   >
                     Send for AI detection
                   </Button>

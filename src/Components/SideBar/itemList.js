@@ -9,9 +9,9 @@ import WhatshotOutlinedIcon from '@mui/icons-material/WhatshotOutlined';
 const list = [
   {
     name: "Dashboard",
-    targetLink: "/dashboard/homepage",
+    targetLink: "/dashboard/",
     icon: <HomeIcon/>,
-    isActive: false,
+    isActive: true,
   },
   {
     name: "Popular Picks",
@@ -21,9 +21,9 @@ const list = [
   },
   {
     name: "Resource Management",
-    targetLink: "/dashboard/",
+    targetLink: "/dashboard/resource",
     icon: <BarChartIcon />,
-    isActive: true,
+    isActive: false,
   },
   {
     name: "Material Management",
@@ -45,7 +45,7 @@ const list = [
   },
   {
     name: "Data Report",
-    targetLink: "/dashboard/analyticals",
+    targetLink: "/dashboard/analytic",
     icon: <LockIcon />,
     isActive: false,
   },

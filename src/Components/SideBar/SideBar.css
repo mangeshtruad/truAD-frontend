@@ -10,11 +10,11 @@ main {
     margin-left: 2rem;
     text-align: center;
     padding-block: 1.4rem;
+    margin-bottom: 3rem;
 }
 .logo>img{
-  width: 100%;
+  width: 50%;
   object-fit: fill;
-  margin-top: 0.6rem;
 }
 .list-sidebar{
   list-style: none;
@@ -37,6 +37,7 @@ main {
   display: flex;
   gap: 0.7rem;
   align-items: center;
+  font-size: 15px;
 }
 ul.list-sidebar>li.active{
   color: #2FBDA3;
