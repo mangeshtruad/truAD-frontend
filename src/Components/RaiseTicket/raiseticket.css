@@ -25,7 +25,8 @@
   display: flex;
   align-items: center;
   height: 50px; /* Fixed height for visibility */
-  max-width: 200px;
+  max-width: 280px;
+  min-width: 270px;
   overflow: hidden;
 
 }

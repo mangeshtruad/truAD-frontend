@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import ErrorOutlineOutlinedIcon from "@mui/icons-material/ErrorOutlineOutlined";
 import Avatar from "@mui/material/Avatar";
@@ -8,11 +8,14 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
-import Dialog from "./Dialog";
+import Dialog from "./Dialog/Uploadvideo";
+import Uploadvideo from "./Dialog/Uploadvideo";
 import "./resource.css";
+import MediaCard from "./MediaCard/MediaCard";
 
 export default function ResourceManagement() {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
+  const [media, setMedia] = useState([])
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -21,6 +24,25 @@ export default function ResourceManagement() {
     setOpen(false);
   };
 
+  const searchMovies = async () => {
+    const apiKey = "37f889dd"; // Replace with your OMDb API key
+    try {
+      const response = await fetch(
+        `https://www.omdbapi.com/?s=${"Comedy"
+        }&apikey=${apiKey}`
+      );
+
+      const data = await response.json()
+      console.log(data.Search);
+      setMedia(data.Search)
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
+  useEffect(() => {
+    searchMovies();
+  }, []);
   return (
     <React.Fragment>
       <div style={{ height: "100%" }}>
@@ -103,7 +125,7 @@ export default function ResourceManagement() {
               <nav>
                 <ul className="nav_list p-0">
                   <li className="list-item dm-sans">
-                    <FormControl variant="standard" sx={{ width: "100%" }}>
+                    <FormControl variant="standard" sx={{ width: "100%", }}>
                       <InputLabel
                         id="demo-simple-select-standard-label"
                         sx={{
@@ -247,30 +269,17 @@ export default function ResourceManagement() {
               </nav>
             </div>
             <div className="card_container">
-              {[1, 2, 3, 4, 5, 6, 7].map((el) => {
+              {media.map((el) => {
                 return (
-                  <div key={el} className="card" onClick={handleClickOpen}>
-                    <div className="card-text dm-sans">card_container</div>
-                    <div className="card-image">
-                      <img src={image} alt="" />
-                      <div className="hover-data rounded-bottom-3">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Quas, maxime! Ipsam, ut exercitationem blanditiis
-                        maiores consequuntur ab dolorum at impedit doloremque
-                        quisquam illo tempore alias molestiae dolorem iste autem
-                        non ad aliquam soluta et voluptate molestias earum
-                        inventore excepturi. Eveniet debitis ratione veniam
-                        consectetur natus harum consequatur nobis minima quidem!
-                      </div>
-                    </div>
-                  </div>
+                  <MediaCard el={el} handleClickOpen={handleClickOpen} image={image}/>
                 );
               })}
             </div>
           </div>
         </main>
       </div>
-      <Dialog handleClose={handleClose} open={open} />
+      {/* <Dialog handleClose={handleClose} open={open} /> */}
+      <Uploadvideo handleClose={handleClose} open={open} />
     </React.Fragment>
   );
 }
