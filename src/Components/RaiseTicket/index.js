@@ -28,6 +28,7 @@ export default function RaiseTicket() {
             <div className="align-self-center" style={{ width: "50%" }}>
               <p className="p-2 pt-3 dm-sans">
                 <Box
+                component={"h6"}
                   className="mainHelp_text"
                   sx={{
                     "& svg": {
@@ -105,7 +106,7 @@ export default function RaiseTicket() {
               variant="contained"
               className="add_resource dm-sans"
             >
-              Send for AI detection
+              Raise a new Ticket
             </Button>
           </div>
         </div>
