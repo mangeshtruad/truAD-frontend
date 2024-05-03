@@ -182,7 +182,7 @@
 
 .material-container .materials-container .material-cards{
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     gap: 20px;
     flex-wrap: wrap;
     width: 100%;
@@ -193,14 +193,16 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: max-content;
+    width: 23%;
+    /* max-width: 33%;
+    flex-grow: 1; */
     padding: 10px;
     background-color: black;
     border-radius: 8px;
 }
 
 .material-container .materials-container .material-cards .material-card > img{
-    width: 15rem;
+    width: 98%;
     height: 10rem;
     border-radius: 8px;
 }
@@ -273,3 +275,21 @@
     width: 30px;
     height: 30px;
 }
+
+@media only screen and (max-width: 993px) {
+    .material-container .materials-container .material-cards .material-card {
+      width: 31%;
+    }
+  }
+
+  @media only screen and (max-width: 778px) {
+    .material-container .materials-container .material-cards .material-card {
+      width: 48%;
+    }
+  }
+
+  @media only screen and (max-width: 692px) {
+    .material-container .materials-container .material-cards .material-card {
+      width: 97%;
+    }
+  }

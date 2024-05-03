@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./HomePage.css";
 import dark_mode from "../../Assets/dark_mode.png";
 import bell from "../../Assets/bell.png";
@@ -11,13 +11,16 @@ import pending from "../../Assets/pending.png";
 import BarChartIcon from "@mui/icons-material/BarChart";
 import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
 import PopUp from "../UploadMaterial/PopUp";
+import { CookiesProvider, useCookies } from "react-cookie";
 
 const HomePage = () => {
   const [isOpen, setIsOpen] = useState(false);
-
+  const [cookies, setCookie, removeCookie] = useCookies(["user", "userdata"]);
+  
   const togglePopup = () => {
     setIsOpen(!isOpen);
   };
+
 
   return (
     <div className="homepage-container">
@@ -26,8 +29,8 @@ const HomePage = () => {
       )}
       <div className="homepage-header">
         <div className="homepage-user-info">
-          <p>aniketm@truad.co</p>
-          <h4>Hi Aniket</h4>
+          <p>{cookies.userdata.email}</p>
+          <h4>Hi {cookies.userdata.username}</h4>
         </div>
         <div className="homepage-searchbar">
           <div className="homepage-searchbar-container">
@@ -92,26 +95,26 @@ const HomePage = () => {
           <p>Processed clips (2)</p>
           <div className="clips-row">
             <div className="clip-container">
-              <video autoplay muted loop playsinline>
+              <video autoPlay muted loop playsInline>
                 <source
                   src="https://videotruad.s3.ap-south-1.amazonaws.com/split_video_3.mp4"
                   type="video/mp4"
                 />
                 Your browser does not support the video tag.
               </video>
-              <div class="content">
+              <div className="content">
                 <p>Colorful Heaven</p>
               </div>
             </div>
             <div className="clip-container">
-              <video autoplay muted loop playsinline>
+              <video autoPlay muted loop playsInline>
                 <source
                   src="https://videotruad.s3.ap-south-1.amazonaws.com/split_video_3.mp4"
                   type="video/mp4"
                 />
                 Your browser does not support the video tag.
               </video>
-              <div class="content">
+              <div className="content">
                 <p>Colorful Heaven</p>
               </div>
             </div>
@@ -121,26 +124,26 @@ const HomePage = () => {
           <p>AI detection ongoing (5)</p>
           <div className="clips-row">
             <div className="clip-container">
-              <video autoplay muted loop playsinline>
+              <video autoPlay muted loop playsInline>
                 <source
                   src="https://videotruad.s3.ap-south-1.amazonaws.com/split_video_3.mp4"
                   type="video/mp4"
                 />
                 Your browser does not support the video tag.
               </video>
-              <div class="content">
+              <div className="content">
                 <p>Colorful Heaven</p>
               </div>
             </div>
             <div className="clip-container">
-              <video autoplay muted loop playsinline>
+              <video autoPlay muted loop playsInline>
                 <source
                   src="https://videotruad.s3.ap-south-1.amazonaws.com/split_video_3.mp4"
                   type="video/mp4"
                 />
                 Your browser does not support the video tag.
               </video>
-              <div class="content">
+              <div className="content">
                 <p>Colorful Heaven</p>
               </div>
             </div>
@@ -152,50 +155,50 @@ const HomePage = () => {
           <p>Available content clips (5)</p>
           <div className="available-clips-row">
             <div className="available-clip-container">
-              <video autoplay muted loop playsinline>
+              <video autoPlay muted loop playsInline>
                 <source
                   src="https://videotruad.s3.ap-south-1.amazonaws.com/split_video_3.mp4"
                   type="video/mp4"
                 />
                 Your browser does not support the video tag.
               </video>
-              <div class="available-content">
+              <div className="available-content">
                 <p>Colorful Heaven</p>
               </div>
             </div>
             <div className="available-clip-container">
-              <video autoplay muted loop playsinline>
+              <video autoPlay muted loop playsInline>
                 <source
                   src="https://videotruad.s3.ap-south-1.amazonaws.com/split_video_3.mp4"
                   type="video/mp4"
                 />
                 Your browser does not support the video tag.
               </video>
-              <div class="available-content">
+              <div className="available-content">
                 <p>Colorful Heaven</p>
               </div>
             </div>
             <div className="available-clip-container">
-              <video autoplay muted loop playsinline>
+              <video autoPlay muted loop playsInline>
                 <source
                   src="https://videotruad.s3.ap-south-1.amazonaws.com/split_video_3.mp4"
                   type="video/mp4"
                 />
                 Your browser does not support the video tag.
               </video>
-              <div class="available-content">
+              <div className="available-content">
                 <p>Colorful Heaven</p>
               </div>
             </div>
             <div className="available-clip-container">
-              <video autoplay muted loop playsinline>
+              <video autoPlay muted loop playsInline>
                 <source
                   src="https://videotruad.s3.ap-south-1.amazonaws.com/split_video_3.mp4"
                   type="video/mp4"
                 />
                 Your browser does not support the video tag.
               </video>
-              <div class="available-content">
+              <div className="available-content">
                 <p>Colorful Heaven</p>
               </div>
             </div>
@@ -212,12 +215,15 @@ const HomePage = () => {
           </div>
           <div className="homepage-tickets-table">
             <table>
+              <thead>
               <tr>
                 <th>Name</th>
                 <th>Status</th>
                 <th>Date</th>
                 <th>Progress</th>
               </tr>
+              </thead>
+              <tbody>
               <tr>
                 <td>Ticket 1</td>
                 <td>
@@ -266,6 +272,7 @@ const HomePage = () => {
                   91%{" "}
                 </progress>
               </tr>
+              </tbody>
             </table>
           </div>
         </div>
@@ -278,12 +285,15 @@ const HomePage = () => {
           </div>
           <div className="homepage-tickets-table">
             <table>
+              <thead>
               <tr>
                 <th>Name</th>
                 <th>Status</th>
                 <th>Date</th>
                 <th>Progress</th>
               </tr>
+              </thead>
+              <tbody>
               <tr>
                 <td>Clip 1</td>
                 <td>
@@ -308,6 +318,7 @@ const HomePage = () => {
                   27%{" "}
                 </progress>
               </tr>
+              </tbody>
             </table>
           </div>
         </div>

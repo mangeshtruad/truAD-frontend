@@ -41,6 +41,7 @@
     padding: 5px;
     width: 100%;
     border: none;
+    color: white;
 }
 
 .popup .popup-fields .popup-field-input > input::placeholder{
