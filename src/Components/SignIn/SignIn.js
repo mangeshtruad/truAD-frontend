@@ -12,6 +12,7 @@ const SignIn = () => {
   const [showPassword, setShowPassword] = useState(false)
   const [user, setUser] = useState({})
   const [error, setError] = useState("");
+  const [loader, setloader]=useState(false);
   const navigate = useNavigate()
   
   const handleUserChange = (e) => {
@@ -85,7 +86,15 @@ const SignIn = () => {
                 </div>
                 <span><a href={{}}>Forgot Password</a></span>
               </div>
-              <button type="button" onClick={handleSignIn}>Sign In</button>
+              {/* <button type="button" onClick={handleSignIn}>Sign In</button> */}
+              {
+          loader? <CircularProgress color='inherit' sx={{margin:"auto"}}/> :   <button type="button" onClick={()=>{
+            handleSignIn()
+            setloader(true)
+            }} style={{ marginTop: "20px", borderRadius: "5px" }}>
+          Login
+        </button>
+        }
 
               <div className="login-form-end">
                 <span>
