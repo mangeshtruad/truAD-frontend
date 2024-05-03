@@ -117,15 +117,8 @@ const SignIn = () => {
               {loader ? (
                 <CircularProgress color="inherit" sx={{ margin: "auto" }} />
               ) : (
-                <button
-                  type="button"
-                  onClick={() => {
-                    handleSignIn();
-                  }}
-                  // style={{ marginTop: "20px", borderRadius: "5px" }}
-                >
-                  Sign In
-                </button>
+                <button type="button" onClick={handleSignIn}>Sign In</button>
+                
               )}
 
               <div className="login-form-end">

@@ -24,9 +24,8 @@ const SignUp = () => {
   };
 
   const handleSubmit = async () => {
-    setloader(true);
     const valid = isValidEmail(user.email);
-
+    setloader(true);
     if (valid) {
       try {
         const response = await fetch(
@@ -112,22 +111,15 @@ const SignUp = () => {
                 </div>
                 <span><a>Forgot Password</a></span>
               </div> */}
-              <button type="button" onClick={handleSubmit}>
+              {/* <button type="button" onClick={handleSubmit}>
                 Sign Up
-              </button>
+              </button> */}
               {loader ? (
                 <CircularProgress color="inherit" sx={{ margin: "auto" }} />
               ) : (
-                <button
-                  type="button"
-                  onClick={() => {
-                    handleSubmit();
-                    // setloader(true);
-                  }}
-                  // style={{ marginTop: "20px", borderRadius: "5px" }}
-                >
-                  Sign Up
-                </button>
+                <button type="button" onClick={handleSubmit}>
+                Sign Up
+              </button>
               )}
 
               <div className="signup-form-end">
