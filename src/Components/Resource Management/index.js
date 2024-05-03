@@ -8,7 +8,7 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
-import Dialog from "./Dialog";
+import Dialog from "./Dialog/Uploadvideo";
 import "./resource.css";
 
 export default function ResourceManagement() {
@@ -103,7 +103,7 @@ export default function ResourceManagement() {
               <nav>
                 <ul className="nav_list p-0">
                   <li className="list-item dm-sans">
-                    <FormControl variant="standard" sx={{ width: "100%" }}>
+                    <FormControl variant="standard" sx={{ width: "100%", }}>
                       <InputLabel
                         id="demo-simple-select-standard-label"
                         sx={{

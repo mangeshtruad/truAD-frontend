@@ -10,7 +10,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import Typography from "@mui/material/Typography";
 import { Stack, Box } from "@mui/material";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
-import { bgcolors as bg, textcolors as tx } from "../color";
+import { bgcolors as bg, textcolors as tx } from "../../color";
 
 import "./Dialog.css";
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
