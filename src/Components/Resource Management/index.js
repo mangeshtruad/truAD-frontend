@@ -8,33 +8,39 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
-import Dialog from "./Dialog/Dialog";
-import Uploadvideo from "./Dialog/Uploadvideo";
 import "./resource.css";
 import MediaCard from "./MediaCard/MediaCard";
 
 export default function ResourceManagement() {
-  const [open, setOpen] = useState(false);
+  const [option, setoption] = useState("");
+  const [o1, seto1] = useState("");
+  const [o2, seto2] = useState("");
   const [media, setMedia] = useState([]);
-
-  const [clips, setClips] = useState([]);
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-  const handleClose = () => {
-    setOpen(false);
-  };
-
-  const searchMovies = async () => {
+  const typeOptions = ["All", "TV Show", "Movie"];
+  const categories = [
+    "Comedy",
+    "Romance",
+    "Romantic Comedy",
+    "Drama",
+    "Fantasy",
+    "Horror",
+    "Action",
+    "Adventure",
+    "Sci-Fi",
+    "Biography",
+    "History",
+    "Crime",
+    "Thriller",
+  ];
+  const certifications = ["SA", "PG-13", "S+", "TV-MA", "TV-14", "R"];
+  const searchMovies = async (text) => {
     const apiKey = "37f889dd"; // Replace with your OMDb API key
     try {
       const response = await fetch(
-        `https://www.omdbapi.com/?s=${"Comedy"}&apikey=${apiKey}`
+        `https://www.omdbapi.com/?s=${text}&apikey=${apiKey}`
       );
 
       const data = await response.json();
-      console.log(data.Search);
       setMedia(data.Search);
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -42,8 +48,17 @@ export default function ResourceManagement() {
   };
 
   useEffect(() => {
-    searchMovies();
+    searchMovies("Comedy");
   }, []);
+  const handleChange = (event) => {
+    const text = event.target.value;
+    setoption(text);
+    if (text === "") {
+      searchMovies("Comedy");
+    } else {
+      searchMovies(text);
+    }
+  };
   return (
     <React.Fragment>
       <div style={{ height: "100%" }}>
@@ -56,7 +71,9 @@ export default function ResourceManagement() {
             </div>
             <div className="mainHelp_icon">
               <div className="align-self-center" style={{ width: "50%" }}>
-                <p className="p-2 pt-3 dm-sans">Help</p>
+                <p className="p-2 pt-3 dm-sans" style={{ textAlign: "end" }}>
+                  Help
+                </p>
               </div>
               <div className="icon">
                 <div>
@@ -143,10 +160,11 @@ export default function ResourceManagement() {
                       <Select
                         labelId="demo-simple-select-standard-label"
                         id="demo-simple-select-standard"
-                        // value={age}
-                        // onChange={handleChange}
-                        label="Age"
+                        value={o1}
+                        onChange={el=>seto1(el.target.value)}
+                        label="Type"
                         sx={{
+                          color: "white",
                           "&:hover:not(.Mui-disabled, .Mui-error):before": {
                             borderBottom: "2px solid #2fbda3",
                           },
@@ -165,9 +183,13 @@ export default function ResourceManagement() {
                         <MenuItem value="">
                           <em>None</em>
                         </MenuItem>
-                        <MenuItem value={10}>Ten</MenuItem>
-                        <MenuItem value={20}>Twenty</MenuItem>
-                        <MenuItem value={30}>Thirty</MenuItem>
+                        {typeOptions?.map((type, i) => {
+                          return (
+                            <MenuItem key={i} value={type}>
+                              {type}
+                            </MenuItem>
+                          );
+                        })}
                       </Select>
                     </FormControl>
                   </li>
@@ -189,10 +211,11 @@ export default function ResourceManagement() {
                       <Select
                         labelId="demo-simple-select-standard-label"
                         id="demo-simple-select-standard"
-                        // value={age}
-                        // onChange={handleChange}
-                        label="Age"
+                        value={option}
+                        onChange={handleChange}
+                        label="Category"
                         sx={{
+                          color: "white",
                           "&:hover:not(.Mui-disabled, .Mui-error):before": {
                             borderBottom: "2px solid #2fbda3",
                           },
@@ -211,9 +234,13 @@ export default function ResourceManagement() {
                         <MenuItem value="">
                           <em>None</em>
                         </MenuItem>
-                        <MenuItem value={10}>Ten</MenuItem>
-                        <MenuItem value={20}>Twenty</MenuItem>
-                        <MenuItem value={30}>Thirty</MenuItem>
+                        {categories?.map((category, i) => {
+                          return (
+                            <MenuItem key={i} value={category}>
+                              {category}
+                            </MenuItem>
+                          );
+                        })}
                       </Select>
                     </FormControl>
                   </li>
@@ -235,10 +262,11 @@ export default function ResourceManagement() {
                       <Select
                         labelId="demo-simple-select-standard-label"
                         id="demo-simple-select-standard"
-                        // value={age}
-                        // onChange={handleChange}
-                        label="Age"
+                        value={o2}
+                        onChange={el=>seto2(el.target.value)}
+                        label="Certification"
                         sx={{
+                          color: "white",
                           "&:hover:not(.Mui-disabled, .Mui-error):before": {
                             borderBottom: "2px solid #2fbda3",
                           },
@@ -252,14 +280,19 @@ export default function ResourceManagement() {
                           "&:after": {
                             borderBottomColor: "#2fbda3",
                           },
+                          
                         }}
                       >
                         <MenuItem value="">
                           <em>None</em>
                         </MenuItem>
-                        <MenuItem value={10}>Ten</MenuItem>
-                        <MenuItem value={20}>Twenty</MenuItem>
-                        <MenuItem value={30}>Thirty</MenuItem>
+                        {certifications?.map((certification, i) => {
+                          return (
+                            <MenuItem key={i} value={certification}>
+                              {certification}
+                            </MenuItem>
+                          );
+                        })}
                       </Select>
                     </FormControl>
                   </li>
@@ -270,23 +303,14 @@ export default function ResourceManagement() {
               </nav>
             </div>
             <div className="card_container">
-              {media.map((el) => {
-                return (
-                  <MediaCard
-                    el={el}
-                    handleClickOpen={handleClickOpen}
-                    image={image}
-                    setClips={setClips}
-                  />
-                );
+              {media.map((el, i) => {
+                return <MediaCard key={i} el={el} image={image} />;
               })}
             </div>
           </div>
         </main>
       </div>
       {/* <Dialog handleClose={handleClose} open={open} /> */}
-
-      
     </React.Fragment>
   );
 }

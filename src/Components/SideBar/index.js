@@ -9,18 +9,18 @@ export default function SideBar() {
   const [cookies, setCookie, removeCookie] = useCookies(["user"]);
   const navigate = useNavigate();
 
-  const[list, setlist]=useState(ItemList)
-  const hendleClick=(index)=>{
-    const newlist=list.map((el,ind)=>{
-      if(ind===index){
-        el.isActive=true
-      }else{
-        el.isActive=false
+  const [list, setlist] = useState(ItemList);
+  const hendleClick = (index) => {
+    const newlist = list.map((el, ind) => {
+      if (ind === index) {
+        el.isActive = true;
+      } else {
+        el.isActive = false;
       }
       return el;
-    })
+    });
     setlist(newlist);
-  }
+  };
   return (
     <div style={{ height: "100%" }}>
       <main>
@@ -30,20 +30,32 @@ export default function SideBar() {
         <ul className="list-sidebar">
           {list.map((el, index) => {
             return (
-              <li key={index} className={(el.isActive)?"active":""} onClick={()=>hendleClick(index)}>
+              // <Link>
+              <li
+                key={index}
+                className={el.isActive ? "active" : ""}
+                onClick={() => {
+                  hendleClick(index);
+                  navigate(el.targetLink);
+                }}
+              >
                 <div className="listItem">
                   <div className="listItem_icon">{el.icon}</div>
                   <div className="listItem_text">{el.name}</div>
                 </div>
               </li>
+              // </Link>
             );
           })}
         </ul>
         <div className="signout_div">
-          <button className="signout_button btn rounded-4 p-1.5"  onClick={() => {
-            removeCookie('user',  {path:'/'});
-            navigate("/")
-          }}>
+          <button
+            className="signout_button btn rounded-4 p-1.5"
+            onClick={() => {
+              removeCookie("user", { path: "/" });
+              navigate("/");
+            }}
+          >
             Sign Out
           </button>
         </div>

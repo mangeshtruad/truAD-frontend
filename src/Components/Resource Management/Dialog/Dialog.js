@@ -8,7 +8,7 @@ import DialogActions from "@mui/material/DialogActions";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 import Typography from "@mui/material/Typography";
-import { Stack, Box } from "@mui/material";
+import { Stack } from "@mui/material";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import { bgcolors as bg, textcolors as tx } from "../../color";
 
@@ -67,7 +67,7 @@ export default function CustomizedDialogs({ handleClose, open, clips }) {
         <Stack direction={"column"} spacing={2} pt={3}>
           {clips.map((clip, index) => {
             return (
-              <Stack direction={"row"} alignItems={"end"} spacing={1}>
+              <Stack key={index} direction={"row"} alignItems={"end"} spacing={1}>
                 <div className="clip-container rounded-2 rounded-bottom-4">
                   <video autoplay muted loop playsinline>
                     <source src={clip.location} type="video/mp4" />
@@ -77,7 +77,7 @@ export default function CustomizedDialogs({ handleClose, open, clips }) {
                     <p>Colorful Heaven</p>
                   </div>
                 </div>
-                <Box sx={{ width: "50%" }}>
+                <div>
                   <Button
                     endIcon={<KeyboardArrowRightIcon />}
                     variant="contained"
@@ -85,7 +85,7 @@ export default function CustomizedDialogs({ handleClose, open, clips }) {
                   >
                     Send for AI detection
                   </Button>
-                </Box>
+                </div>
               </Stack>
             );
           })}
