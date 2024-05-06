@@ -2,119 +2,32 @@ import React, { useEffect, useState } from "react";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import SearchIcon from "@mui/icons-material/Search";
 import ErrorOutlineOutlinedIcon from "@mui/icons-material/ErrorOutlineOutlined";
-import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import TuneIcon from "@mui/icons-material/Tune";
 import Avatar from "@mui/material/Avatar";
-import { Divider, Box, Button } from "@mui/material";
+import { Button } from "@mui/material";
 import TablePagination from "./Pagination";
 import image from "../../Assets/TruAd_White _Logo.png";
 import IconButton from "@mui/material/IconButton";
 import Checkbox from "@mui/material/Checkbox";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
-import Dialog from "./Dialog/Dialog";
-import { useCookies } from "react-cookie";
-import "./raiseticket.css";
+import "./invoice.css";
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
 export default function RaiseTicket() {
-  const [open, setOpen] = React.useState(false);
-  const [cookies, setCookie] = useCookies(["user"]);
-  const [user, setuser] = useState({});
-  const [ticket, setticket] = useState([]);
 
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-  const handleClose = () => {
-    setOpen(false);
-  };
-  useEffect(() => {
-    const getTicket = async () => {
-      try {
-        const data = await fetch(
-          "https://truad-dashboard-backend.onrender.com/api/user",
-          {
-            method: "GET", // Added method for clarity, assuming it's a GET request
-            headers: {
-              Authorization: `Bearer ${cookies.user}`,
-              "Content-Type": "application/json",
-            },
-          }
-        );
-        const ticketData = await data.json();
-     
-        const formatter = new Intl.DateTimeFormat("en-US", {
-          day: "2-digit",
-          month: "2-digit",
-          year: "numeric",
-          hour: "2-digit",
-          minute: "2-digit",
-        });
-        const ticketdata = ticketData.user.raiseTicket.map((el, ind) => {
-          const createddate = new Date(el.createdAt);
-          const updateddate = new Date(el.updatedAt);
-          const formattedcreateddate = formatter
-            .format(createddate)
-            .replace(", ", " | ");
-          const formattedupdateddate = formatter
-            .format(updateddate)
-            .split(",")[0];
-          return {
-            id: el._id,
-            subject: el.subject,
-            status: el.status,
-            createdAt: formattedcreateddate,
-            updatedAt: formattedupdateddate,
-            viewImage: el.viewImage,
-          };
-        });
-        setuser(ticketData.user);
-        setticket(ticketdata);
-      } catch (error) {
-        console.log("error=>", error);
-      }
-    };
-    getTicket();
-  }, [cookies]);
+ 
 
   return (
-    <React.Fragment>
+    
       <div style={{ height: "100%" }}>
-        <main className="main_container">
-          <div className="main_div">
-            <div className="main-heading">
+        <main className="main">
+          <div className="main_div" style={{display:"flex", justifyContent:"space-between", alignItems: "center", padding:"1rem 2rem"}}>
+            <div className="main_heading">
               <h3 className="dm-sans" style={{ fontWeight: "bold" }}>
                 Help
               </h3>
             </div>
             <div className="mainHelp_icon">
-              <div className="align-self-center" style={{ width: "50%" }}>
-                <p className="p-2 pt-3 dm-sans">
-                  <Box
-                    component={"h6"}
-                    className="mainHelp_text"
-                    sx={{
-                      "& svg": {
-                        m: 1,
-                      },
-                    }}
-                  >
-                    Knowledgebase
-                    <Divider
-                      orientation="vertical"
-                      variant="middle"
-                      flexItem
-                      sx={{
-                        borderColor: "white",
-                        borderWidth: "1px",
-                        opacity: "0.7",
-                        marginInline: 1,
-                      }}
-                    />{" "}
-                    Announcment
-                  </Box>
-                </p>
-              </div>
               <div className="icon">
                 <div>
                   <NotificationsIcon />
@@ -163,48 +76,51 @@ export default function RaiseTicket() {
                 </div>
               </div>
             </div>
-            <div class="col-8 text-end">
-              <Button
-                endIcon={<KeyboardArrowRightIcon />}
-                variant="contained"
-                className="add_resource dm-sans"
-                onClick={handleClickOpen}
-              >
-                Raise a new Ticket
-              </Button>
-            </div>
+           
           </div>
           <div className="table_div">
-            {/* <ul className="row table_navbar" style={{ flexWrap: "nowrap" }}>
+            {/* <ul className="row table_navbar" style={{ flexWrap: "nowrap", margin:0}}>
               <li className="col navigationItem">All(10)</li>
-              <li className="col navigationItem">Resoved(5)</li>
+              <li className="col navigationItem">Paid(5)</li>
               <li className="col navigationItem">Pending(4)</li>
-              <li className="col-7"></li>
+              <li className="col navigationItem">Refunded(5)</li>
+              <li className="col-6"></li>
             </ul> */}
             <table id="table">
               <thead>
                 <tr>
-                  <th scope="col"></th>
                   <th scope="col">
-                    Ticket ID <ArrowDownwardIcon />
+                  <Checkbox
+                          {...label}
+                          sx={{
+                            color: "#B8BABC", // Default color
+                            "&.Mui-checked": {
+                              // This targets the checkbox when it is checked
+                              color: "#2FBDA3", // Change this value to whatever color you want for the checked state
+                            },
+                          }}
+                        />
                   </th>
                   <th scope="col">
-                    Subject <ArrowDownwardIcon />
-                  </th>
-                  <th scope="col">Ticket Status</th>
-                  <th scope="col">
-                    Support <ArrowDownwardIcon />
+                   Invoice ID <ArrowDownwardIcon />
                   </th>
                   <th scope="col">
-                    Ticket raise Date & Time <ArrowDownwardIcon />
+                  Customer Name <ArrowDownwardIcon />
                   </th>
-                  <th scope="col">Last Updated</th>
+                  <th scope="col">Invoice Status</th>
+                  <th scope="col">
+                  Amount <ArrowDownwardIcon />
+                  </th>
+                  <th scope="col">
+                  Date & Time <ArrowDownwardIcon />
+                  </th>
+                  <th scope="col">Open Status</th>
                   <th scope="col">Action</th>
                   <th scope="col"></th>
                 </tr>
               </thead>
               <tbody>
-                {ticket.map((el, ind) => {
+                {[1,2,3,4,5,6,7,8,9].map((el, ind) => {
                   return (
                     <tr key={ind}>
                       <th scope="row">
@@ -219,7 +135,7 @@ export default function RaiseTicket() {
                           }}
                         />
                       </th>
-                      <td>{el.id}</td>
+                      <td>#25653</td>
                       <td>
                         <div className="flex-center-end">
                           <div className="image-container">
@@ -234,25 +150,34 @@ export default function RaiseTicket() {
                             />
                           </div>
                           <div className="email-details">
-                            {user.email}
+                            yashj@truad.co
                             <br />
                             Truad Pvt Ltd
                           </div>
                         </div>
                       </td>
                       <td>
-                        <p className="status-label rounded-pill">{el.status}</p>
+                        <p className="status-label rounded-pill" style={{background:"none"}}>paid</p>
                       </td>
-                      <td>{el.supportTeam}</td>
-                      <td>{el.createdAt}</td>
-                      <td>{el.updatedAt}</td>
+                      <td>Rs 1,28,000</td>
+                      <td>12 Feb 2024 | 13.30</td>
+                      <td>5 days ago</td>
                       <td>
                         <Button
                           className="button-outlined-small rounded-3"
-                          variant="outlined"
+                          variant="contained"
                           size="small"
+                          sx={{marginRight:"3px"}}
                         >
-                          View File
+                          Pay
+                        </Button>
+                        <Button
+                          className="button-outlined-small rounded-3"
+                          variant="contained"
+                          size="small"
+                          sx={{marginLeft:"3px"}}
+                        >
+                          Send for review
                         </Button>
                       </td>
                       <td>
@@ -275,7 +200,7 @@ export default function RaiseTicket() {
           </div>
         </main>
       </div>
-      <Dialog handleClose={handleClose} open={open} user_email={user.email}/>
-    </React.Fragment>
+   
+    
   );
 }

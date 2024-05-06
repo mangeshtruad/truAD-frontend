@@ -5,7 +5,7 @@ import SignUp from "./Components/SignUp/SignUp";
 import DashBoardContainer from "./Page";
 import Resource from "./Components/Resource Management";
 import PopularPicks from "./Components/PopularPicks/";
-import Invoices from "./Components/Invoices/Invoices";
+import Invoices from "./Components/Invoices";
 import PlacePromotions from "./Components/PlacePromotions/PlacePromotions";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Analytics from "./Components/Analytics/Analytics";

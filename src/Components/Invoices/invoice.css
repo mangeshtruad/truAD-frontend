@@ -1,0 +1,161 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  /* gap: 1rem; */
+  height: 100%;
+  background-color: #414141;
+}
+
+div.main>div.main_div {
+  padding: 1rem 2rem;
+
+  align-items: center;
+}
+
+div.main>div.main_div>div.main_heading {
+  
+  color: #2fbda3;
+}
+div.main>div.main_div>div.main_heading > h3 {
+  height: 30px;
+}
+div.main>div.main_div .mainHelp_icon {
+  
+  display: flex;
+  justify-content: end;
+  color: #ffffff;
+  align-items: center;
+  flex-wrap: wrap;
+}
+div.main>div.main_div .mainHelp_icon p {
+  font-weight: 500;
+  font-size: large;
+  letter-spacing: 1px;
+}
+.mainHelp_icon .icon {
+  display: flex;
+  background-color: #ffffff;
+  color: #a3aed0;
+  width: 40%;
+  border-radius: 5rem;
+  justify-content: space-around;
+  align-items: center;
+  height: 45px;
+  max-width: 200px; 
+  min-width:160px; 
+}
+main.main .table_div {
+  background-color: #242121;
+  color: #e6e7e8;
+  margin: 1rem;
+  border-radius: 0.7rem;
+  height: 500px;
+  text-align: center;
+  overflow-y: auto;
+}
+main.main div.table_div ul.table_navbar {
+  width: calc(100%);
+  list-style: none;
+  padding: 0;
+  padding-top: 5px;
+  align-items: end;
+  margin-bottom: 0;
+  background-color: #66696E;
+}
+ul.table_navbar li {
+  border-bottom: 1px solid #e6e7e89f; /* Corrected border property */
+  text-align: center;
+  padding-inline: 30px;
+  padding-bottom: 5px;
+}
+div.table_div #table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: inherit;
+  background-color: #242121;
+}
+
+div.table_div #table thead{
+  background-color: #66696E;
+}
+div.table_div #table th {
+  font-size: small;
+  padding-bottom: 10px;
+}
+div.table_div #table th svg {
+  font-size: medium;
+}
+div.table_div #table th,
+div.table_div #table td {
+  text-align: center;
+  border-bottom: 1px solid #e6e7e8;
+  vertical-align: middle;
+}
+
+div.table_div #table th {
+  /* background-color: #555; */
+  color: #f3f3f3;
+}
+div.table_div #table thead th {
+  vertical-align: bottom; /* Aligns the header text vertically */
+  border-bottom: 1px solid #f3f3f3; /* Thicker bottom border for header */
+}
+.flex-center-end {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  align-items: end;
+}
+
+.image-container {
+  border-radius: 50%;
+  overflow: hidden;
+  max-width: 40px;
+  max-height: 40px;
+}
+
+.email-details {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.status-label {
+  padding: 0.2rem;
+  color: #2fbda3;
+  margin-inline: 1rem;
+  margin-top: 1rem;
+  border-radius: 50px; /* assuming rounded-pill is approximately this */
+}
+
+button.button-outlined-small {
+  color: #aef2e6;
+  border-color: #D0D5DD;
+  background-image: linear-gradient(#0EC7A5 20%, #06264A);
+}
+
+button.icon-button-small {
+  color: #2FBDA3;
+}
+
+.navigationItem:hover {
+  border-color: #2fbda3;
+  color: #2fbda3;
+}
+/* #table tbody td:hover {
+    background-color: #ddd;
+  } */
+
+@media (max-width: 768px) {
+  .header div {
+    width: 100%;
+  }
+
+  .header .row {
+    justify-content: flex-start;
+  }
+
+  .icon {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
