@@ -8,12 +8,11 @@ import PopularPicks from "./Components/PopularPicks/PopularPicks";
 import Invoices from "./Components/Invoices/Invoices";
 import PlacePromotions from "./Components/PlacePromotions/PlacePromotions";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-
 import Analytics from "./Components/Analytics/Analytics";
-
 import MaterialLibrary from "./Components/MaterialManagement/MaterialLibrary";
 import RaiseTicket from "./Components/RaiseTicket";
 import TablePagination from "./Components/RaiseTicket/Pagination";
+import ActionPage from "./Components/ActionPage/ActionPage";
 
 function App() {
   const router = createBrowserRouter([
@@ -65,6 +64,10 @@ function App() {
         {
           path: "/dashboard/placepromotion",
           element: <PlacePromotions />,
+        },
+        {
+          path: "/dashboard/actionpage",
+          element: <ActionPage />,
         },
       ],
     },

@@ -6,10 +6,13 @@ import info from "../../Assets/info.png";
 import search from "../../Assets/search.png";
 import trash from "../../Assets/trash.png";
 import PopUp from "../UploadMaterial/PopUp";
+import { useNavigate } from "react-router-dom";
+import OprateDialog from "./OperateDialog";
 
 const MaterialLibrary = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [data, setData] = useState([]);
+  const navigate = useNavigate()
 
   const togglePopup = () => {
     setIsOpen(!isOpen);
@@ -116,7 +119,7 @@ const MaterialLibrary = () => {
                 </div>
                 <div className="material-card-btn">
                   <div className="material-card-operate-btn">
-                    <p>Operate</p>
+                     <OprateDialog item={item}></OprateDialog>
                   </div>
                   <div className="material-card-delete-btn">
                     <img src={trash} onClick={() => handleDelete(item._id)}></img>
