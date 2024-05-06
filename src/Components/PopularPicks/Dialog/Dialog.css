@@ -1,0 +1,82 @@
+input.file-input{
+  display: block; /* Make the file input block level to occupy the full width */
+  margin-top: 20px; /* Provide some top and bottom margin for spacing */
+  cursor: pointer; /* Makes it clear it's clickable */
+}
+.clip-container {
+  position: relative;
+  height: 20%; /* Set the height of your div */
+  overflow: hidden; /* Ensures the video is cut off outside the div */
+  width: 50%;
+  height: 10rem;
+}
+
+.clip-container > video {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  min-width: 100%;
+  /* min-height: 75%; */
+  width: 100%;
+  height: 80%;
+  transform: translate(-50%); /* Center the video */
+  z-index: 1; /* Keep the video behind other content */
+  object-fit: cover;
+}
+
+.clip-container .content {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: end;
+  z-index: 2;
+  padding-bottom: 7px;
+  background-color: #414141;
+}
+
+.clip-container .content > p {
+  font-size: 12px;
+  margin: 0;
+}
+button.ai-detection-btn {
+  background-color: #2fbda3; /* Default background color */
+  color: white; /* Text color */
+  text-transform: none; /* No text transformation */
+  font-size: 0.875rem; /* 'small' typically equates to 0.875rem */
+  border-radius: 8px; /* Rounded corners */
+}
+
+button.ai-detection-btn:hover {
+  background-color: rgb(60, 212, 184); /* Hover state background color */
+}
+
+.dialog-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px; /* MUI's spacing system typically uses increments of 8px, so '2' would be 16px */
+}
+
+button.button-outlined {
+  text-align: center;
+  width: 100%;
+  border-color: #2fbda3;
+  color: #2fbda3;
+}
+
+button.button-outlined:hover {
+  border-color: rgb(60, 212, 184);
+  color: rgb(60, 212, 184);
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+button.button-contained {
+  text-align: center;
+  width: 100%;
+  background-color: #2fbda3;
+  color: white;
+}
+
+button.button-contained:hover {
+  background-color: rgb(60, 212, 184);
+}

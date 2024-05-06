@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import SearchIcon from "@mui/icons-material/Search";
 import ErrorOutlineOutlinedIcon from "@mui/icons-material/ErrorOutlineOutlined";
@@ -13,10 +13,14 @@ import Checkbox from "@mui/material/Checkbox";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import Dialog from "./Dialog/Dialog";
+import { useCookies } from "react-cookie";
 import "./raiseticket.css";
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
 export default function RaiseTicket() {
   const [open, setOpen] = React.useState(false);
+  const [cookies, setCookie] = useCookies(["user"]);
+  const [user, setuser] = useState({});
+  const [ticket, setticket] = useState([]);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -24,6 +28,55 @@ export default function RaiseTicket() {
   const handleClose = () => {
     setOpen(false);
   };
+  useEffect(() => {
+    const getTicket = async () => {
+      try {
+        const data = await fetch(
+          "https://truad-dashboard-backend.onrender.com/api/user",
+          {
+            method: "GET", // Added method for clarity, assuming it's a GET request
+            headers: {
+              Authorization: `Bearer ${cookies.user}`,
+              "Content-Type": "application/json",
+            },
+          }
+        );
+        const ticketData = await data.json();
+     
+        const formatter = new Intl.DateTimeFormat("en-US", {
+          day: "2-digit",
+          month: "2-digit",
+          year: "numeric",
+          hour: "2-digit",
+          minute: "2-digit",
+        });
+        const ticketdata = ticketData.user.raiseTicket.map((el, ind) => {
+          const createddate = new Date(el.createdAt);
+          const updateddate = new Date(el.updatedAt);
+          const formattedcreateddate = formatter
+            .format(createddate)
+            .replace(", ", " | ");
+          const formattedupdateddate = formatter
+            .format(updateddate)
+            .split(",")[0];
+          return {
+            id: el._id,
+            subject: el.subject,
+            status: el.status,
+            createdAt: formattedcreateddate,
+            updatedAt: formattedupdateddate,
+            viewImage: el.viewImage,
+          };
+        });
+        setuser(ticketData.user);
+        setticket(ticketdata);
+      } catch (error) {
+        console.log("error=>", error);
+      }
+    };
+    getTicket();
+  }, [cookies]);
+
   return (
     <React.Fragment>
       <div style={{ height: "100%" }}>
@@ -151,9 +204,9 @@ export default function RaiseTicket() {
                 </tr>
               </thead>
               <tbody>
-                {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((el) => {
+                {ticket.map((el, ind) => {
                   return (
-                    <tr>
+                    <tr key={ind}>
                       <th scope="row">
                         <Checkbox
                           {...label}
@@ -166,7 +219,7 @@ export default function RaiseTicket() {
                           }}
                         />
                       </th>
-                      <td>EN001</td>
+                      <td>{el.id}</td>
                       <td>
                         <div className="flex-center-end">
                           <div className="image-container">
@@ -181,18 +234,18 @@ export default function RaiseTicket() {
                             />
                           </div>
                           <div className="email-details">
-                            Qayyum@gmail.com
+                            {user.email}
                             <br />
                             Truad Pvt Ltd
                           </div>
                         </div>
                       </td>
                       <td>
-                        <p className="status-label rounded-pill">Resolved</p>
+                        <p className="status-label rounded-pill">{el.status}</p>
                       </td>
-                      <td>ABC</td>
-                      <td>12 Feb 2024 | 13:30</td>
-                      <td>5 days ago</td>
+                      <td>{el.supportTeam}</td>
+                      <td>{el.createdAt}</td>
+                      <td>{el.updatedAt}</td>
                       <td>
                         <Button
                           className="button-outlined-small rounded-3"
@@ -222,7 +275,7 @@ export default function RaiseTicket() {
           </div>
         </main>
       </div>
-      <Dialog handleClose={handleClose} open={open} />
+      <Dialog handleClose={handleClose} open={open} user_email={user.email}/>
     </React.Fragment>
   );
 }

@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState } from "react";
 import Button from "@mui/material/Button";
 import { styled } from "@mui/material/styles";
 import Dialog from "@mui/material/Dialog";
@@ -34,15 +34,54 @@ const VisuallyHiddenInput = styled("input")({
   width: 1,
 });
 
-export default function CustomizedDialogs({ handleClose, open }) {
+export default function CustomizedDialogs({ handleClose, open, user_email }) {
   const [image, setimage] = React.useState("");
+  const [text, setText] = useState("");
+  const [selectedOption, setSelectOption] = useState("option");
+  const [file, setFile] = React.useState("");
   const handleFile = (event) => {
     const file = event.target.files[0];
     if (file) {
       const url = URL.createObjectURL(file);
       setimage(url);
+      setFile(file)
     }
   };
+  const handleText = (e) => {
+    setText(e.target.value);
+  };
+  const handleSelectChange = (e) => {
+    setSelectOption(e.target.value);
+  };
+  const addTicke = async () => {
+    try {
+      const formData = new FormData();
+      formData.append("subject", text); // Assuming 'text' is defined elsewhere in your code
+      formData.append("supportTeam", selectedOption); // Assuming 'selectedOption' is defined elsewhere in your code
+      formData.append("viewImage", file); // Assuming 'file' is defined elsewhere in your code
+      console.log(formData);
+      const response = await fetch(
+        `https://truad-dashboard-backend.onrender.com/api/user/${user_email}`,
+        {
+          method: "POST", // It's good practice to use uppercase HTTP methods
+          // headers: {
+          //   "Content-Type": "multipart/form-data"
+          // },
+          body: formData,
+          // Don't set Content-Type for FormData; the browser will handle it
+        }
+      );
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      console.log("Ticket Created Successfully:", data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <BootstrapDialog
       onClose={handleClose}
@@ -87,6 +126,7 @@ export default function CustomizedDialogs({ handleClose, open }) {
           className="rounded textarea-feedback"
           placeholder="Enter Your Feedback here..."
           rows="4"
+          onChange={handleText}
         ></textarea>
         <FormControl sx={{ width: "90%" }}>
           <InputLabel
@@ -103,13 +143,14 @@ export default function CustomizedDialogs({ handleClose, open }) {
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
-            // value={age}
+            value={selectedOption}
+            onChange={handleSelectChange}
             label="Select Support Team"
             sx={{
               width: "100%", // Make the select width consistent with FormControl
               color: "white", // Text color for the items
               ".MuiOutlinedInput-notchedOutline": {
-                 borderColor: "#B8BABC", // Ensures the border is visible
+                borderColor: "#B8BABC", // Ensures the border is visible
               },
               "&:hover .MuiOutlinedInput-notchedOutline": {
                 borderColor: "white", // Border color on hover
@@ -123,9 +164,12 @@ export default function CustomizedDialogs({ handleClose, open }) {
               },
             }}
           >
-            <MenuItem value={10}>Ten</MenuItem>
-            <MenuItem value={20}>Twenty</MenuItem>
-            <MenuItem value={30}>Thirty</MenuItem>
+            <MenuItem value={"IT Department"}>IT Department</MenuItem>
+            <MenuItem value={"Sales And Marketing Department"}>
+              Sales And Marketing Department
+            </MenuItem>
+            <MenuItem value={"Account Department"}>Account Department</MenuItem>
+            <MenuItem value={"HR Department"}>HR Department</MenuItem>
           </Select>
         </FormControl>
         <div className="upload-section">
@@ -149,9 +193,11 @@ export default function CustomizedDialogs({ handleClose, open }) {
             </Button>
           </div>
         </div>
-        { image && <div className="image-preview">
-          <img src={image} alt="" />
-        </div>}
+        {image && (
+          <div className="image-preview">
+            <img src={image} alt="" />
+          </div>
+        )}
       </DialogContent>
 
       <DialogActions className="dialog-actions">
@@ -164,7 +210,10 @@ export default function CustomizedDialogs({ handleClose, open }) {
         </Button>
         <Button
           variant="contained"
-          onClick={handleClose}
+          onClick={() => {
+            addTicke();
+            handleClose();
+          }}
           className="button-contained rounded-3"
         >
           Done
