@@ -36,16 +36,20 @@ export default function CustomizedDialogs({ handleClose, open, clips, name }) {
           }
       })
 
-      if(response.status == 500){
+      if(response.status === 500){
           console.log("Internal Server Error")
+          handleClose()
           return
       }
 
-      if(response.status == 200){
+      if(response.status === 200){
           console.log("Success")
+          handleClose()
           return
       }
+      handleClose()
   } catch (error) {
+    handleClose()
       console.log(error)
   }
   }

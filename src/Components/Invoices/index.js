@@ -94,6 +94,7 @@ export default function RaiseTicket() {
                           {...label}
                           sx={{
                             color: "#B8BABC", // Default color
+                            paddingBlock:0,
                             "&.Mui-checked": {
                               // This targets the checkbox when it is checked
                               color: "#2FBDA3", // Change this value to whatever color you want for the checked state
