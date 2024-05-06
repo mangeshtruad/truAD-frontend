@@ -12,14 +12,17 @@ import WidgetsIcon from '@mui/icons-material/Widgets';
 import "./Analytics.css";
 import BarGraph from "./Charts/BarGraph";
 import Piechart from "./Charts/PieChart";
+import { useCookies } from "react-cookie";
 
 const Analytics = () => {
+  const [cookies, setCookie] = useCookies(["user", 'userdata'])
+  console.log(cookies.userdata)
   return (
     <div className="analytics-container">
       <div className="analytics-header">
         <div className="analytics-user-info">
-          <p>aniketm@truad.co</p>
-          <h4>Hi Aniket</h4>
+          <p>{cookies.userdata.email}</p>
+          <h4>Hi {cookies.userdata.username}</h4>
         </div>
         <div className="analytics-searchbar">
           <div className="analytics-searchbar-container">

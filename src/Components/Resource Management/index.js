@@ -10,12 +10,15 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import "./resource.css";
 import MediaCard from "./MediaCard/MediaCard";
+import { useMyContext } from "../../MyContext";
 
 export default function ResourceManagement() {
   const [option, setoption] = useState("");
   const [o1, seto1] = useState("");
   const [o2, seto2] = useState("");
   const [media, setMedia] = useState([]);
+  const { value, setValue } = useMyContext();
+
   const typeOptions = ["All", "TV Show", "Movie"];
   const categories = [
     "Comedy",
@@ -42,6 +45,7 @@ export default function ResourceManagement() {
 
       const data = await response.json();
       setMedia(data.Search);
+      setValue(data.Search);
     } catch (error) {
       console.error("Error fetching data:", error);
     }

@@ -21,6 +21,7 @@ const HomePage = () => {
   const [ongoing, setOngoing] = useState([]);
   const [processedClips, setProcessedClips] = useState([]);
   const navigate = useNavigate();
+  
   const togglePopup = () => {
     setIsOpen(!isOpen);
   };
