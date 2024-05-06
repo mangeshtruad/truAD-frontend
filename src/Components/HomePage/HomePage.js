@@ -12,6 +12,7 @@ import BarChartIcon from "@mui/icons-material/BarChart";
 import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
 import PopUp from "../UploadMaterial/PopUp";
 import { CookiesProvider, useCookies } from "react-cookie";
+import { useNavigate } from "react-router-dom";
 
 const HomePage = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -19,7 +20,7 @@ const HomePage = () => {
   const [items, setItems] = useState([]);
   const [ongoing, setOngoing] = useState([]);
   const [processedClips, setProcessedClips] = useState([]);
-
+  const navigate = useNavigate();
   const togglePopup = () => {
     setIsOpen(!isOpen);
   };
@@ -116,7 +117,7 @@ const HomePage = () => {
             </div>
           </div>
         </div>
-        <div className="homepage-ticket-btn">
+        <div className="homepage-ticket-btn" onClick={()=>navigate("/dashboard/raise")}>
           <p>Have an Issue? Raise a ticket</p>
         </div>
         <div className="homepage-upload-btn" onClick={togglePopup}>

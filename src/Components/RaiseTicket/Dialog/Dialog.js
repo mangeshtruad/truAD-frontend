@@ -1,4 +1,4 @@
-import * as React from "react";
+import React ,{useState} from "react";
 import Button from "@mui/material/Button";
 import { styled } from "@mui/material/styles";
 import Dialog from "@mui/material/Dialog";
@@ -34,8 +34,10 @@ const VisuallyHiddenInput = styled("input")({
   width: 1,
 });
 
-export default function CustomizedDialogs({ handleClose, open }) {
+export default function CustomizedDialogs({ handleClose, open, user_email }) {
   const [image, setimage] = React.useState("");
+  const [text,setText]=useState("")
+  const[selectedOption,setSelectOption]=useState("option")
   const handleFile = (event) => {
     const file = event.target.files[0];
     if (file) {
@@ -43,6 +45,36 @@ export default function CustomizedDialogs({ handleClose, open }) {
       setimage(url);
     }
   };
+  const handleText=(e)=>{
+    setText(e.target.value)
+  }
+  const handleSelectChange=(e)=>{
+    setSelectOption(e.target.value)
+  }
+  const addTicke=async()=>{
+    try {
+      const formData = new FormData();
+      formData.append('subject', text); // Assuming 'text' is defined elsewhere in your code
+      formData.append('supportTeam', selectedOption); // Assuming 'selectedOption' is defined elsewhere in your code
+      formData.append('viewImage', image); // Assuming 'file' is defined elsewhere in your code
+  
+      const response= await fetch(`https://truad-dashboard-backend.onrender.com/api/user/${user_email}`, {
+        method: 'POST', // It's good practice to use uppercase HTTP methods
+        body: formData,
+        // Don't set Content-Type for FormData; the browser will handle it
+      });
+      console.log(response)
+      // if(!response.ok){
+      //   throw new Error(`HTTP error! status: ${response.status}`);
+      // }
+       
+      const data = await response.json();
+      console.log('Ticket Created Successfully:', data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   return (
     <BootstrapDialog
       onClose={handleClose}
@@ -87,6 +119,7 @@ export default function CustomizedDialogs({ handleClose, open }) {
           className="rounded textarea-feedback"
           placeholder="Enter Your Feedback here..."
           rows="4"
+          onChange={handleText}
         ></textarea>
         <FormControl sx={{ width: "90%" }}>
           <InputLabel
@@ -103,7 +136,8 @@ export default function CustomizedDialogs({ handleClose, open }) {
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
-            // value={age}
+            value={selectedOption}
+            onChange={handleSelectChange}
             label="Select Support Team"
             sx={{
               width: "100%", // Make the select width consistent with FormControl
@@ -123,9 +157,10 @@ export default function CustomizedDialogs({ handleClose, open }) {
               },
             }}
           >
-            <MenuItem value={10}>Ten</MenuItem>
-            <MenuItem value={20}>Twenty</MenuItem>
-            <MenuItem value={30}>Thirty</MenuItem>
+            <MenuItem value={10}>IT Department</MenuItem>
+            <MenuItem value={20}>Sales And Marketing Department</MenuItem>
+            <MenuItem value={30}>Account Department</MenuItem>
+            <MenuItem value={30}>HR Department</MenuItem>
           </Select>
         </FormControl>
         <div className="upload-section">
