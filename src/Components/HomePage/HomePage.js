@@ -20,8 +20,9 @@ const HomePage = () => {
   const [items, setItems] = useState([]);
   const [ongoing, setOngoing] = useState([]);
   const [processedClips, setProcessedClips] = useState([]);
+  const [index, setIndex] = useState(0);
   const navigate = useNavigate();
-  
+
   const togglePopup = () => {
     setIsOpen(!isOpen);
   };
@@ -48,7 +49,8 @@ const HomePage = () => {
         const ongoingClips = data2.filter(
           (elem) => elem.blend && !elem.blendFile
         );
-        setOngoing(ongoingClips.slice(0, 2));
+        setOngoing(ongoingClips);
+        console.log("ongoing", ongoing);
         setProcessedClips(processed.slice(0, 2));
         console.log("processed", processedClips);
       } catch (error) {
@@ -118,7 +120,10 @@ const HomePage = () => {
             </div>
           </div>
         </div>
-        <div className="homepage-ticket-btn" onClick={()=>navigate("/dashboard/raise")}>
+        <div
+          className="homepage-ticket-btn"
+          onClick={() => navigate("/dashboard/raise")}
+        >
           <p>Have an Issue? Raise a ticket</p>
         </div>
         <div className="homepage-upload-btn" onClick={togglePopup}>
@@ -145,7 +150,7 @@ const HomePage = () => {
 
         <div className="clips-container">
           <p>AI detection ongoing (5)</p>
-          <div className="clips-row">
+          {/* <div className="clips-row">
             {ongoing.map((item) => (
               <div className="clip-container">
                 <video autoPlay muted loop playsInline>
@@ -157,6 +162,30 @@ const HomePage = () => {
                 </div>
               </div>
             ))}
+            <button onClick={() => setIndex((prev)=> prev + 1)}>Next</button>
+          </div> */}
+          <div className="clips-row">
+            <div className="clip-container">
+              <video autoPlay muted loop playsInline>
+                <source src={ongoing[index]?.location} type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+              <div className="content">
+                <p>{ongoing[index]?.name}</p>
+              </div>
+            </div>
+            {index < ongoing.length ? (
+              <div className="clip-container">
+                <video autoPlay muted loop playsInline>
+                  <source src={ongoing[index + 1]?.location} type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+                <div className="content">
+                  <p>{ongoing[index + 1]?.name}</p>
+                </div>
+              </div>
+            ) : null}
+            <button onClick={() => setIndex((prev) => prev + 1)}>Next</button>
           </div>
         </div>
       </div>
