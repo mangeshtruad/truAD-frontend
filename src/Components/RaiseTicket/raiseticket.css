@@ -67,7 +67,7 @@ button.add_resource:hover {
   background-color: rgb(60, 212, 184);
 }
 .table_div {
-  background-color: #656261;
+  /* background-color: #656261; */
   color: #e6e7e8;
   margin: 1rem;
   border-radius: 0.7rem;
@@ -75,19 +75,7 @@ button.add_resource:hover {
   text-align: center;
   overflow-y: auto;
 }
-.table_navbar {
-  width: calc(100%);
-  list-style: none;
-  padding: 0;
-  padding-top: 5px;
-  align-items: end;
-}
-.table_navbar li {
-  border-bottom: 1px solid #e6e7e89f; /* Corrected border property */
-  text-align: center;
-  padding-inline: 30px;
-  padding-bottom: 5px;
-}
+
 #table {
   width: 100%;
   border-collapse: collapse;
@@ -96,7 +84,7 @@ button.add_resource:hover {
 }
 #table th {
   font-size: medium;
-  padding-bottom: 10px;
+  padding-block: 10px;
 }
 #table th svg {
   font-size: medium;
