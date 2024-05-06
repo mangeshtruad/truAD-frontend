@@ -4,7 +4,7 @@ import SignIn from "./Components/SignIn/SignIn";
 import SignUp from "./Components/SignUp/SignUp";
 import DashBoardContainer from "./Page";
 import Resource from "./Components/Resource Management";
-import PopularPicks from "./Components/PopularPicks/PopularPicks";
+import PopularPicks from "./Components/PopularPicks/";
 import Invoices from "./Components/Invoices/Invoices";
 import PlacePromotions from "./Components/PlacePromotions/PlacePromotions";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";

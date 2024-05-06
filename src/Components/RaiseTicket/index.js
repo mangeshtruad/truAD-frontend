@@ -42,7 +42,7 @@ export default function RaiseTicket() {
           }
         );
         const ticketData = await data.json();
-        console.log(ticketData);
+     
         const formatter = new Intl.DateTimeFormat("en-US", {
           day: "2-digit",
           month: "2-digit",
