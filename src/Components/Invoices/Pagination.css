@@ -1,0 +1,45 @@
+/* Pagination.css */
+.pagination-container {
+    display: flex;
+    align-items: center;
+    padding: 0 1rem;
+    gap: 5px;
+    /* background-color: black; */
+    color: white;
+}
+
+.row {
+    display: flex;
+    align-items: center;
+    min-width: 320px;
+}
+
+.col {
+    flex: 1;
+}
+
+.zero-margin {
+    margin: 0;
+}
+/* styles.css */
+.formControl {
+    width: 100%; /* full width - you may also use the fullWidth prop in the component */
+    /* background-color: white; */
+    color: black;
+  }
+  
+  .selectInput {
+    background-color: #f3f3f3;
+    color: black;
+  }
+  .selectInput .css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input{
+    padding: 0.8rem;
+  }
+  .selectInput .MuiOutlinedInput-notchedOutline {
+    border-color: #f3f3f3; /* Ensures the border is visible */
+  }
+  
+  .selectInput .MuiSvgIcon-root {
+    color: black; /* Ensures the dropdown arrow icon is black */
+  }
+  
