@@ -11,7 +11,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Analytics from "./Components/Analytics/Analytics";
 import MaterialLibrary from "./Components/MaterialManagement/MaterialLibrary";
 import RaiseTicket from "./Components/RaiseTicket";
-import TablePagination from "./Components/RaiseTicket/Pagination";
+import Btn from "./Components/MaterialManagement/DeleteDialog";
 import ActionPage from "./Components/ActionPage/ActionPage";
 
 function App() {
@@ -25,8 +25,8 @@ function App() {
       element: <SignUp />,
     },
     {
-      path: "/page",
-      element: <TablePagination />,
+      path: "/btn",
+      element: <Btn />,
     },
     {
       path: "/dashboard",
