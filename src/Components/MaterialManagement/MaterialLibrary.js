@@ -12,7 +12,7 @@ import OprateDialog from "./OperateDialog";
 const MaterialLibrary = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [data, setData] = useState([]);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const togglePopup = () => {
     setIsOpen(!isOpen);
@@ -25,15 +25,12 @@ const MaterialLibrary = () => {
           "https://truad-dashboard-backend.onrender.com/api/getMaterial"
         );
         const datar = await response.json();
-  
+
         const materials = datar.materials;
-  
-        console.log(datar);
+
         setData(materials);
-  
-        console.log("updated", data);
       } catch (error) {
-        console.log(error)
+        console.log(error);
       }
     };
 
@@ -41,23 +38,26 @@ const MaterialLibrary = () => {
   }, []);
 
   async function handleDelete(key) {
-    const response = await fetch("https://truad-dashboard-backend.onrender.com/api/deleteMaterial", {
-      method: "POST",
-      body: JSON.stringify( {
-        materialID : key
-      }),
-      headers: {
-        "Content-Type" : "application/json"
+    const response = await fetch(
+      "https://truad-dashboard-backend.onrender.com/api/deleteMaterial",
+      {
+        method: "POST",
+        body: JSON.stringify({
+          materialID: key,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
       }
-    })
+    );
 
-    if(response.status == 404){
-      console.log("Material not found")
-      return 
-    };
+    if (response.status == 404) {
+      console.log("Material not found");
+      return;
+    }
 
-    if(response.status == 200){
-      const filtered = data.filter((elem) => elem._id !== key)
+    if (response.status == 200) {
+      const filtered = data.filter((elem) => elem._id !== key);
       setData(filtered);
     }
   }
@@ -122,9 +122,12 @@ const MaterialLibrary = () => {
                   <a>{item.size}</a>
                 </div>
                 <div className="material-card-btn">
-                     <OprateDialog item={item}></OprateDialog>
+                  <OprateDialog item={item}></OprateDialog>
                   <div className="material-card-delete-btn">
-                    <img src={trash} onClick={() => handleDelete(item._id)}></img>
+                    <img
+                      src={trash}
+                      onClick={() => handleDelete(item._id)}
+                    ></img>
                   </div>
                 </div>
               </div>

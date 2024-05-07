@@ -13,6 +13,7 @@ import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
 import PopUp from "../UploadMaterial/PopUp";
 import { CookiesProvider, useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
+import { responsive, responsive1, Carousel } from "../videosider";
 
 const HomePage = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -50,9 +51,9 @@ const HomePage = () => {
           (elem) => elem.blend && !elem.blendFile
         );
         setOngoing(ongoingClips);
-        console.log("ongoing", ongoing);
+        // console.log("ongoing", ongoing);
         setProcessedClips(processed.slice(0, 2));
-        console.log("processed", processedClips);
+        // console.log("processed", processedClips);
       } catch (error) {
         console.error("Error fetching videos:", error);
       }
@@ -133,11 +134,12 @@ const HomePage = () => {
       <div className="homepage-clips">
         <div className="clips-container">
           <p>Processed clips (2)</p>
-          <div className="clips-row">
-            {processedClips.map((item) => (
+          <Carousel showDots={true} responsive={responsive}>
+            {
+            processedClips.map((item) => (
               <div className="clip-container" key={item._id}>
                 <video autoPlay muted loop playsInline>
-                  <source src={item.location} type="video/mp4" />
+                  <source src={"https://videotruad.s3.ap-south-1.amazonaws.com/split_video_3.mp4"} type="video/mp4" />
                   Your browser does not support the video tag.
                 </video>
                 <div className="content">
@@ -145,14 +147,14 @@ const HomePage = () => {
                 </div>
               </div>
             ))}
-          </div>
+          </Carousel>
         </div>
 
         <div className="clips-container">
           <p>AI detection ongoing (5)</p>
-          {/* <div className="clips-row">
-            {ongoing.map((item) => (
-              <div className="clip-container">
+          <Carousel showDots={true} responsive={responsive}>
+            {processedClips.map((item) => (
+              <div className="clip-container" key={item._id} style={{}}>
                 <video autoPlay muted loop playsInline>
                   <source src={item.location} type="video/mp4" />
                   Your browser does not support the video tag.
@@ -162,9 +164,8 @@ const HomePage = () => {
                 </div>
               </div>
             ))}
-            <button onClick={() => setIndex((prev)=> prev + 1)}>Next</button>
-          </div> */}
-          <div className="clips-row">
+          </Carousel>
+          {/* <div className="clips-row">
             <div className="clip-container">
               <video autoPlay muted loop playsInline>
                 <source src={ongoing[index]?.location} type="video/mp4" />
@@ -186,13 +187,13 @@ const HomePage = () => {
               </div>
             ) : null}
             <button onClick={() => setIndex((prev) => prev + 1)}>Next</button>
-          </div>
+          </div> */}
         </div>
       </div>
       <div className="homepage-available-clips">
         <div className="available-clips-container">
           <p>Available content clips (5)</p>
-          <div className="available-clips-row">
+          {/* <div className="available-clips-row">
             {items.map((item) => (
               <div className="available-clip-container">
                 <video autoPlay muted loop playsInline>
@@ -204,7 +205,21 @@ const HomePage = () => {
                 </div>
               </div>
             ))}
-          </div>
+          </div> */}
+          <Carousel showDots={true} responsive={responsive1} style={{ '&.react-multi-carousel-track':{gap:"1rem"}
+          }}>
+            {items.map((item) => (
+              <div className="clip-container" key={item._id} style={{width:"100%"}}>
+                <video autoPlay muted loop playsInline>
+                  <source src={item.location} type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+                <div className="content">
+                  <p>{item.name}</p>
+                </div>
+              </div>
+            ))}
+          </Carousel>
         </div>
       </div>
       <div className="homepage-tickets-advertisements">

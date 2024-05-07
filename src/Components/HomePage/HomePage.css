@@ -228,15 +228,14 @@
     background-color: #656261;
     border-radius: 1rem;
     padding: 12px 10px;
-    display: flex;
+    /* display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: center; */
 }
 
 .homepage-container .homepage-clips .clips-container > p {
     color: white;
     font-weight: bold;
-    margin: 0;
 }
 
 .homepage-container .homepage-clips .clips-container .clips-row {
@@ -246,14 +245,15 @@
     margin-top: 8px;
 }
 
-.homepage-container .homepage-clips .clips-container .clips-row .clip-container{
+.homepage-container .homepage-clips .clips-container .clip-container{
     position: relative;
     height: 500px; /* Set the height of your div */
     overflow: hidden; /* Ensures the video is cut off outside the div */
     background-color: white;
-    width: 48.5%;
+    width: 100%;
     height: 11rem;
     border-radius: 1rem;
+    margin-inline: 5px;
 }
 .homepage-container .homepage-clips .clips-container .clips-row .clip-container > video{
     position: absolute;
@@ -461,4 +461,52 @@
 .homepage-container .homepage-tickets-advertisements .homepage-tickets .homepage-tickets-table table  img{
     width: 15px;
     height: 15px;
+}
+
+.clip-container{
+    position: relative;
+    height: 500px; /* Set the height of your div */
+    overflow: hidden; /* Ensures the video is cut off outside the div */
+    background-color: white;
+    width: 100%;
+    height: 11rem;
+    border-radius: 1rem;
+    margin-inline: 5px;
+}
+.clip-container > video{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 75%;
+    width: 100%;
+    height: 75%;
+    transform: translate(-50%, -50%); /* Center the video */
+    z-index: 1; /* Keep the video behind other content */
+    object-fit: cover;
+}
+
+.clip-container .content{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: end;
+    z-index: 2;
+    color: white;
+    padding-bottom: 5px;
+    background-color: black;
+}
+
+.clip-container .content > h1{
+    font-size: 14px;
+}
+
+.clip-container .content > p{
+    font-size: 12px;
+    margin: 0;
+}
+
+ul.react-multi-carousel-track{
+    gap:10px
 }

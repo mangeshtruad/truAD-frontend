@@ -56,7 +56,7 @@ export default function CustomizedDialogs({ handleClose, open, clips, name }) {
       console.log(error);
     }
   };
-  console.log(clips);
+ 
   return (
     <BootstrapDialog
       onClose={handleClose}
@@ -112,8 +112,8 @@ export default function CustomizedDialogs({ handleClose, open, clips, name }) {
             <li style={{borderBottom:"1px solid #B8BABC", width:"100%"}}></li>
             <li style={{borderBottom:"1px solid #B8BABC", width:"100%"}}></li>
           </ul>
-        </div> */}
-        {/* <Stack direction={"column"} spacing={2} pt={3}>
+        </div>
+        <Stack direction={"column"} spacing={2} pt={3}>
           {clips.map((clip, index) => {
             return (
               <Stack
