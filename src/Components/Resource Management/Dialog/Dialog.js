@@ -13,6 +13,7 @@ import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import { bgcolors as bg, textcolors as tx } from "../../color";
 
 import "./Dialog.css";
+import { useNavigate } from "react-router-dom";
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiDialogContent-root": {
     padding: theme.spacing(2),
@@ -23,36 +24,40 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
 }));
 
 export default function CustomizedDialogs({ handleClose, open, clips, name }) {
-
-  const aiDetection = async(id) => {
+  const [navigation, setnavigation] = React.useState("detection");
+  const aiDetection = async (id) => {
     try {
-      const response = await fetch("https://truad-dashboard-backend.onrender.com/blend-clip", {
+      const response = await fetch(
+        "https://truad-dashboard-backend.onrender.com/blend-clip",
+        {
           method: "POST",
           body: JSON.stringify({
-              id,
+            id,
           }),
           headers: {
-              "Content-Type" : "application/json"
-          }
-      })
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
-      if(response.status === 500){
-          console.log("Internal Server Error")
-          handleClose()
-          return
+      if (response.status === 500) {
+        console.log("Internal Server Error");
+        handleClose();
+        return;
       }
 
-      if(response.status === 200){
-          console.log("Success")
-          handleClose()
-          return
+      if (response.status === 200) {
+        console.log("Success");
+        handleClose();
+        return;
       }
-      handleClose()
-  } catch (error) {
-    handleClose()
-      console.log(error)
-  }
-  }
+      handleClose();
+    } catch (error) {
+      handleClose();
+      console.log(error);
+    }
+  };
+  console.log(clips);
   return (
     <BootstrapDialog
       onClose={handleClose}
@@ -94,31 +99,87 @@ export default function CustomizedDialogs({ handleClose, open, clips, name }) {
         }}
       >
         <Typography gutterBottom>Available Clips</Typography>
+        <ul className="clip_navbar">
+          <li
+            className={navigation === "detection" ? "active" : ""}
+            onClick={() => setnavigation("detection")}
+          >
+            AI Detection
+          </li>
+          <li
+            className={navigation === "tracking" ? "active" : ""}
+            onClick={() => setnavigation("tracking")}
+          >
+            Track VideoClip
+          </li>
+        </ul>
         <Stack direction={"column"} spacing={2} pt={3}>
           {clips.map((clip, index) => {
-            return (
-              <Stack key={index} direction={"row"} alignItems={"end"} spacing={1}>
-                <div className="clip-container rounded-2 rounded-bottom-4">
-                  <video autoplay muted loop playsinline>
-                    <source src={clip.location} type="video/mp4" />
-                    Your browser does not support the video tag.
-                  </video>
-                  <div class="content">
-                    <p>{clip.name}</p>
-                  </div>
-                </div>
-                <div>
-                  <Button
-                    endIcon={<KeyboardArrowRightIcon />}
-                    variant="contained"
-                    className="ai-detection-btn"
-                    onClick={(e) => aiDetection(clip._id)}
+            if (navigation === "tracking") {
+              if (clip.blend === true) {
+                return (
+                  <Stack
+                    key={index}
+                    direction={"row"}
+                    alignItems={"end"}
+                    spacing={1}
                   >
-                    Send for AI detection
-                  </Button>
-                </div>
-              </Stack>
-            );
+                    <div className="clip-container rounded-2 rounded-bottom-4">
+                      <video autoplay muted loop playsinline>
+                        <source src={clip.location} type="video/mp4" />
+                        Your browser does not support the video tag.
+                      </video>
+                      <div class="content">
+                        <p>{clip.name}</p>
+                      </div>
+                    </div>
+                    <div>
+                      <Button
+                        endIcon={<KeyboardArrowRightIcon />}
+                        variant="contained"
+                        className="ai-detection-btn"
+                        onClick={(e) => aiDetection(clip._id)}
+                        sx={{
+                          paddingInline: "2rem",
+                        }}
+                      >
+                        Track VideoClip
+                      </Button>
+                    </div>
+                  </Stack>
+                );
+              }
+            } else {
+              if (clip.blend === false)
+                return (
+                  <Stack
+                    key={index}
+                    direction={"row"}
+                    alignItems={"end"}
+                    spacing={1}
+                  >
+                    <div className="clip-container rounded-2 rounded-bottom-4">
+                      <video autoplay muted loop playsinline>
+                        <source src={clip.location} type="video/mp4" />
+                        Your browser does not support the video tag.
+                      </video>
+                      <div class="content">
+                        <p>{clip.name}</p>
+                      </div>
+                    </div>
+                    <div>
+                      <Button
+                        endIcon={<KeyboardArrowRightIcon />}
+                        variant="contained"
+                        className="ai-detection-btn"
+                        onClick={(e) => aiDetection(clip._id)}
+                      >
+                        Send for AI detection
+                      </Button>
+                    </div>
+                  </Stack>
+                );
+            }
           })}
         </Stack>
       </DialogContent>

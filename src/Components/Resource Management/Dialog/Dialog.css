@@ -39,6 +39,25 @@ input.file-input{
   font-size: 12px;
   margin: 0;
 }
+
+ul.clip_navbar{
+  display: flex;
+  list-style: none;
+  align-items: center;
+  padding: 0.7rem;
+  gap: 1rem;
+  text-align: center;
+}
+ul.clip_navbar>li{
+  padding-inline: 1rem;
+}
+ul.clip_navbar>li:hover{
+  color: rgb(60, 212, 184);
+}
+ul.clip_navbar>li.active{
+  border-bottom: 1px solid #2fbda3;
+  color: #2fbda3;
+}
 button.ai-detection-btn {
   background-color: #2fbda3; /* Default background color */
   color: white; /* Text color */
