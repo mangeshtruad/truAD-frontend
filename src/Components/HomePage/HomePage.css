@@ -161,6 +161,41 @@
     font-size: 20px;
 }
 
+.homepage-container .homepage-info .homepage-infobox .homepage-infobox-info > h6{
+    color: white;
+    margin: 0;
+    font-size: 14px;
+}
+
+.homepage-container .homepage-info-container .homepage-call-btn{
+    width: 13rem;
+    height: 4rem;
+    border: 1px solid #66ffb3;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.5s ease;
+}
+
+.homepage-container .homepage-info-container .homepage-call-btn:hover{
+    background-color: #2FBDA3;
+}
+
+.homepage-container .homepage-info-container .homepage-call-btn .hompage-call-btnn-icon{
+    background-color: #66ffb3;
+    border-radius: 50%;
+    padding: 3px;
+}
+
+.homepage-container .homepage-info-container .homepage-call-btn > P{
+    color: white;
+    margin: 0;
+    font-size: 14px;
+}
+
 .homepage-container .homepage-info-container .homepage-ticket-btn{
     width: 13rem;
     height: 3rem;
@@ -344,9 +379,9 @@
     top: 50%;
     left: 50%;
     min-width: 100%;
-    min-height: 75%;
+    min-height: 55%;
     width: 100%;
-    height: 75%;
+    height: 55%;
     transform: translate(-50%, -50%); /* Center the video */
     z-index: 1; /* Keep the video behind other content */
     object-fit: cover;
@@ -462,3 +497,4 @@
     width: 15px;
     height: 15px;
 }
+

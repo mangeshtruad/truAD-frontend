@@ -6,15 +6,29 @@ import info from "../../Assets/info.png";
 import search from "../../Assets/search.png";
 import more from "../../Assets/more.png";
 import done from "../../Assets/done.png";
-import chart from "../../Assets/chart.png";
 import pending from "../../Assets/pending.png";
+import SupportAgentIcon from "@mui/icons-material/SupportAgent";
 import BarChartIcon from "@mui/icons-material/BarChart";
 import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
 import PopUp from "../UploadMaterial/PopUp";
 import AIPopUp from "../AIDetection/AIPopUp";
+import CallPopUp from "../CallPopUp/CallPopUp";
 import ProcessedPopUp from "../ProcessedPopUp/ProcessedPopUp";
 import { CookiesProvider, useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
+const sliderSettings = {
+  // dots: true,
+  infinite: true,
+  speed: 500,
+  slidesToShow: 2,
+  slidesToScroll: 1,
+  arrows: true,
+  centerPadding: '100px',
+};
 
 const HomePage = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -23,10 +37,11 @@ const HomePage = () => {
   const [ongoing, setOngoing] = useState([]);
   const [processedClips, setProcessedClips] = useState([]);
   const [index, setIndex] = useState(0);
-  const [availOpen, setAvailOpen] = useState(false)
+  const [availOpen, setAvailOpen] = useState(false);
   const [selectedOngoingClip, setSelectedOngoingClip] = useState(null);
-const [selectedProcessedClip, setSelectedProcessedClip] = useState(null)
-  const [processedOpen, setProcessedOpen] = useState(false)
+  const [selectedProcessedClip, setSelectedProcessedClip] = useState(null);
+  const [processedOpen, setProcessedOpen] = useState(false);
+  const [callOpen, setCallOpen] = useState(false)
   const navigate = useNavigate();
 
   const togglePopup = () => {
@@ -34,22 +49,26 @@ const [selectedProcessedClip, setSelectedProcessedClip] = useState(null)
   };
 
   const aiToggle = () => {
-    setAvailOpen(!availOpen)
-  }
+    setAvailOpen(!availOpen);
+  };
 
   const processedToggle = () => {
-    setProcessedOpen(!processedOpen)
+    setProcessedOpen(!processedOpen);
+  };
+
+  const callToggle = () => {
+    setCallOpen(!callOpen)
   }
 
   const ongoingClipSelect = (clip) => {
     setSelectedOngoingClip(clip);
-    aiToggle()
-  }
+    aiToggle();
+  };
 
   const processedClipSelect = (clip) => {
     setSelectedProcessedClip(clip);
-    processedToggle()
-  }
+    processedToggle();
+  };
 
   useEffect(() => {
     const fetchVideos = async () => {
@@ -88,8 +107,16 @@ const [selectedProcessedClip, setSelectedProcessedClip] = useState(null)
   return (
     <div className="homepage-container">
       {isOpen && <PopUp togglePopup={togglePopup} />}
-      {availOpen && <AIPopUp togglePopup={aiToggle} selectedClipId={selectedOngoingClip}/>}
-      {processedOpen && <ProcessedPopUp togglePopup={processedToggle} selectedClipId={selectedProcessedClip}/>}
+      {availOpen && (
+        <AIPopUp togglePopup={aiToggle} selectedClipId={selectedOngoingClip} />
+      )}
+      {processedOpen && (
+        <ProcessedPopUp
+          togglePopup={processedToggle}
+          selectedClipId={selectedProcessedClip}
+        />
+      )}
+      {callOpen && <CallPopUp togglePopup={callToggle}/>}
       <div className="homepage-header">
         <div className="homepage-user-info">
           <p>{cookies.userdata.email}</p>
@@ -116,17 +143,6 @@ const [selectedProcessedClip, setSelectedProcessedClip] = useState(null)
         <div className="homepage-info">
           <div className="homepage-infobox">
             <div className="homepage-infobox-icon">
-              <BarChartIcon />
-            </div>
-            <div className="homepage-infobox-info">
-              <p>Total Invoices</p>
-              <h4>121</h4>
-            </div>
-          </div>
-        </div>
-        <div className="homepage-info">
-          <div className="homepage-infobox">
-            <div className="homepage-infobox-icon">
               <CurrencyRupeeIcon />
             </div>
             <div className="homepage-infobox-info">
@@ -146,6 +162,12 @@ const [selectedProcessedClip, setSelectedProcessedClip] = useState(null)
             </div>
           </div>
         </div>
+        <div className="homepage-call-btn" onClick={callToggle}>
+          <div className="hompage-call-btnn-icon">
+            <SupportAgentIcon />
+          </div>
+          <p>Call for Instant Support</p>
+        </div>
         <div
           className="homepage-ticket-btn"
           onClick={() => navigate("/dashboard/raiseticket")}
@@ -159,9 +181,14 @@ const [selectedProcessedClip, setSelectedProcessedClip] = useState(null)
       <div className="homepage-clips">
         <div className="clips-container">
           <p>Processed clips (2)</p>
-          <div className="clips-row">
+          {/* <div className="clips-row"> */}
+          <Slider {...sliderSettings}>
             {processedClips.map((item) => (
-              <div className="clip-container" key={item._id} onClick={() => processedClipSelect(item)}>
+              <div
+                className="clip-container"
+                key={item._id}
+                onClick={() => processedClipSelect(item)}
+              >
                 <video autoPlay muted loop playsInline>
                   <source src={item.location} type="video/mp4" />
                   Your browser does not support the video tag.
@@ -171,14 +198,15 @@ const [selectedProcessedClip, setSelectedProcessedClip] = useState(null)
                 </div>
               </div>
             ))}
-          </div>
+            </Slider>
+          {/* </div> */}
         </div>
 
         <div className="clips-container">
           <p>AI detection ongoing (5)</p>
-          {/* <div className="clips-row">
-            {ongoing.map((item) => (
-              <div className="clip-container">
+          <Slider {...sliderSettings}>
+            {ongoing.map((item, idx) => (
+              <div className="clip-container" key={item._id}>
                 <video autoPlay muted loop playsInline>
                   <source src={item.location} type="video/mp4" />
                   Your browser does not support the video tag.
@@ -188,31 +216,7 @@ const [selectedProcessedClip, setSelectedProcessedClip] = useState(null)
                 </div>
               </div>
             ))}
-            <button onClick={() => setIndex((prev)=> prev + 1)}>Next</button>
-          </div> */}
-          <div className="clips-row">
-            <div className="clip-container">
-              <video autoPlay muted loop playsInline>
-                <source src={ongoing[index]?.location} type="video/mp4" />
-                Your browser does not support the video tag.
-              </video>
-              <div className="content">
-                <p>{ongoing[index]?.name}</p>
-              </div>
-            </div>
-            {index < ongoing.length ? (
-              <div className="clip-container">
-                <video autoPlay muted loop playsInline>
-                  <source src={ongoing[index + 1]?.location} type="video/mp4" />
-                  Your browser does not support the video tag.
-                </video>
-                <div className="content">
-                  <p>{ongoing[index + 1]?.name}</p>
-                </div>
-              </div>
-            ) : null}
-            <button onClick={() => setIndex((prev) => prev + 1)}>Next</button>
-          </div>
+          </Slider>
         </div>
       </div>
       <div className="homepage-available-clips">
@@ -220,7 +224,12 @@ const [selectedProcessedClip, setSelectedProcessedClip] = useState(null)
           <p>Available content clips (5)</p>
           <div className="available-clips-row">
             {items.map((item) => (
-              <div className="available-clip-container" onClick={() => {ongoingClipSelect(item)}}>
+              <div
+                className="available-clip-container"
+                onClick={() => {
+                  ongoingClipSelect(item);
+                }}
+              >
                 <video autoPlay muted loop playsInline>
                   <source src={item.location} type="video/mp4" />
                   Your browser does not support the video tag.
