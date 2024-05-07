@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from "react";
-import NotificationsIcon from "@mui/icons-material/Notifications";
-import ErrorOutlineOutlinedIcon from "@mui/icons-material/ErrorOutlineOutlined";
-import Avatar from "@mui/material/Avatar";
 import SearchIcon from "@mui/icons-material/Search";
 import image from "../../Assets/TruAd_White _Logo.png";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
-import "./resource.css";
+// import "./resource.css";
 import MediaCard from "./MediaCard/MediaCard";
 import { useMyContext } from "../../MyContext";
 import { sortByRating, sortByScore, sortByVotes } from "../../utils";
+import dark_mode from "../../Assets/dark_mode.png";
+import bell from "../../Assets/bell.png";
+import info from "../../Assets/info.png";
 
 export default function ResourceManagement() {
   const [media, setMedia] = useState([]);
@@ -68,7 +68,7 @@ export default function ResourceManagement() {
   };
 
   return (
-    <React.Fragment>
+    
       <div style={{ height: "100%" }}>
         <main className="main">
           <div className="main_div">
@@ -77,46 +77,28 @@ export default function ResourceManagement() {
                 Popular Picks
               </h3>
             </div>
-            <div className="mainHelp_icon">
-              <div className="align-self-center" style={{ width: "50%" }}>
-                <p className="p-2 pt-3 dm-sans" style={{ textAlign: "end" }}>
-                  Help
-                </p>
-              </div>
-              <div className="icon">
-                <div>
-                  <NotificationsIcon />
-                </div>
-                <div>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
-                    fill="currentColor"
-                    class="bi bi-moon-fill"
-                    viewBox="0 0 16 16"
-                  >
-                    <path d="M6 .278a.77.77 0 0 1 .08.858 7.2 7.2 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277q.792-.001 1.533-.16a.79.79 0 0 1 .81.316.73.73 0 0 1-.031.893A8.35 8.35 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.75.75 0 0 1 6 .278" />
-                  </svg>
-                </div>
-                <div>
-                  <ErrorOutlineOutlinedIcon />
-                </div>
-                <div>
-                  <Avatar alt="Remy Sharp" src="#" />
+            <div className="material-searchbar">
+              <div className="material-searchbar-container">
+                <div className="material-searchbar-icons">
+                  <img src={bell}></img>
+                  <img src={dark_mode}></img>
+                  <img src={info}></img>
+                  <div className="material-profile">
+                    <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8dXNlciUyMHByb2ZpbGV8ZW58MHx8MHx8fDA%3D"></img>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
           <div class="row px-4">
-            <div class="col-4">
+            <div class="col-5">
               <div class="row align-items-center">
                 <div class="col-4">
                   <h5 className="dm-sans" style={{ fontWeight: "bold" }}>
                     Popular Picks
                   </h5>
                 </div>
-                <div class="col-8 resource-searchbar">
+                <div class="col-8 resource-searchbar" style={{maxWidth:"250px"}}>
                   <div class="input-group flex-nowrap overflow-hidden rounded-pill">
                     <span class="input-group-text" id="addon-wrapping">
                       <SearchIcon />
@@ -150,7 +132,7 @@ export default function ResourceManagement() {
             <div className="pt-3">
               <nav>
                 <ul className="nav_list p-0">
-                  <li className="list-item dm-sans">
+                  <li className="list-item dm-sans" style={{width:"15%"}}>
                     <FormControl variant="standard" sx={{ width: "100%" }}>
                       <InputLabel
                         id="demo-simple-select-standard-label"
@@ -203,6 +185,9 @@ export default function ResourceManagement() {
                       </Select>
                     </FormControl>
                   </li>
+                  <li
+                  style={{ width: "85%", borderBottom: "1px solid #e6e7e8" }}
+                  ></li>
                 </ul>
               </nav>
             </div>
@@ -214,7 +199,5 @@ export default function ResourceManagement() {
           </div>
         </main>
       </div>
-      {/* <Dialog handleClose={handleClose} open={open} /> */}
-    </React.Fragment>
   );
 }

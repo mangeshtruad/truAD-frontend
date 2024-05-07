@@ -11,7 +11,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Analytics from "./Components/Analytics/Analytics";
 import MaterialLibrary from "./Components/MaterialManagement/MaterialLibrary";
 import RaiseTicket from "./Components/RaiseTicket";
-import TablePagination from "./Components/RaiseTicket/Pagination";
+import Btn from "./Components/MaterialManagement/DeleteDialog";
 import ActionPage from "./Components/ActionPage/ActionPage";
 import { MyContextProvider } from "./MyContext";
 
@@ -24,10 +24,6 @@ function App() {
     {
       path: "/signup",
       element: <SignUp />,
-    },
-    {
-      path: "/page",
-      element: <TablePagination />,
     },
     {
       path: "/dashboard",
@@ -51,7 +47,7 @@ function App() {
           element: <MaterialLibrary />,
         },
         {
-          path: "/dashboard/raise",
+          path: "/dashboard/raiseticket",
           element: <RaiseTicket />,
         },
         {

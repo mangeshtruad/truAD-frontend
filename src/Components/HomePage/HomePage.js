@@ -148,7 +148,7 @@ const [selectedProcessedClip, setSelectedProcessedClip] = useState(null)
         </div>
         <div
           className="homepage-ticket-btn"
-          onClick={() => navigate("/dashboard/raise")}
+          onClick={() => navigate("/dashboard/raiseticket")}
         >
           <p>Have an Issue? Raise a ticket</p>
         </div>
