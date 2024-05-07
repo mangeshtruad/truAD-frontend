@@ -58,14 +58,14 @@ export default function ResourceManagement() {
             </div>
           </div>
           <div class="row px-4">
-            <div class="col-6">
+            <div class="col-5">
               <div class="row align-items-center">
-                <div class="col">
-                  <h5 className="dm-sans" style={{ fontWeight: "bold", minWidth:"200px" }}>
-                    Place Promotions
+                <div class="col-5">
+                  <h5 className="dm-sans" style={{ fontWeight: "bold" }}>
+                    Place Promotion
                   </h5>
                 </div>
-                <div class="col resource-searchbar">
+                <div class="col-7 resource-searchbar" style={{maxWidth:"250px"}}>
                   <div class="input-group flex-nowrap overflow-hidden rounded-pill">
                     <span class="input-group-text" id="addon-wrapping">
                       <SearchIcon />
@@ -82,7 +82,7 @@ export default function ResourceManagement() {
                 </div>
               </div>
             </div>
-            <div class="col-6 text-end">
+            <div class="col-8 text-end">
               {/* <button
                 type="button"
                 class="add_resource dm-sans"

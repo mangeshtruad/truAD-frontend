@@ -91,14 +91,14 @@ export default function ResourceManagement() {
             </div>
           </div>
           <div class="row px-4">
-            <div class="col-4">
+            <div class="col-5">
               <div class="row align-items-center">
                 <div class="col-4">
                   <h5 className="dm-sans" style={{ fontWeight: "bold" }}>
                     Popular Picks
                   </h5>
                 </div>
-                <div class="col-8 resource-searchbar">
+                <div class="col-8 resource-searchbar" style={{maxWidth:"250px"}}>
                   <div class="input-group flex-nowrap overflow-hidden rounded-pill">
                     <span class="input-group-text" id="addon-wrapping">
                       <SearchIcon />
