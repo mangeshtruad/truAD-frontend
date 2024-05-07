@@ -29,7 +29,7 @@ export default function Uploadvideo({ handleClose, open, setClips }) {
       form.append("filename", file.name);
       form.append("id", "tt0085794");
 
-      const response = await fetch("http://10.10.10.11:5000/stitch", {
+      const response = await fetch("http://10.10.10.2:5000/stitch", {
         method: "POST",
         body: form,
       });

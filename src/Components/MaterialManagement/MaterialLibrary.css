@@ -135,6 +135,12 @@
     justify-content: center;
     align-items: center;
     border-radius: 1rem;
+    transition: all 0.5s ease;
+}
+
+.material-container .material-info .homepage-upload-btn:hover{
+    background-color: #205072;
+    cursor: pointer;
 }
 
 .material-container .material-info .homepage-upload-btn > P{
@@ -254,6 +260,16 @@
     justify-content: center;
     align-items: center;
     border-radius: 8px;
+    transition: all 0.5s ease;
+}
+
+.material-container .materials-container .material-cards .material-card .material-card-btn .material-card-operate-btn:hover{
+    background-color: #205072;
+    cursor: pointer;
+}
+
+.material-container .materials-container .material-cards .material-card .material-card-btn .material-card-operate-btn:hover > p{
+    color: white;
 }
 
 .material-container .materials-container .material-cards .material-card .material-card-btn .material-card-operate-btn > p{

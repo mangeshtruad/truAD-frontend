@@ -5,14 +5,15 @@ import SignUp from "./Components/SignUp/SignUp";
 import DashBoardContainer from "./Page";
 import Resource from "./Components/Resource Management";
 import PopularPicks from "./Components/PopularPicks/";
+import PlacePromotions from "./Components/PlacePromotions";
 import Invoices from "./Components/Invoices";
-import PlacePromotions from "./Components/PlacePromotions/PlacePromotions";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Analytics from "./Components/Analytics/Analytics";
 import MaterialLibrary from "./Components/MaterialManagement/MaterialLibrary";
 import RaiseTicket from "./Components/RaiseTicket";
 import Btn from "./Components/MaterialManagement/DeleteDialog";
 import ActionPage from "./Components/ActionPage/ActionPage";
+import { MyContextProvider } from "./MyContext";
 
 function App() {
   const router = createBrowserRouter([
@@ -73,7 +74,9 @@ function App() {
     },
   ]);
 
-  return <RouterProvider router={router}></RouterProvider>;
+  return     <MyContextProvider>
+  <RouterProvider router={router}></RouterProvider>
+</MyContextProvider>
 }
 
 export default App;

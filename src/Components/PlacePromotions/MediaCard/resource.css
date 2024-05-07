@@ -15,79 +15,18 @@
 .main_div {
   padding: 1rem 2rem;
   padding-top: 0;
-  /* display: grid; */
-  /* grid-template-columns: repeat(12, 1fr); */
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
   align-items: center;
 }
 
 .main-heading {
-  /* grid-column: span 8;
-  color: #2fbda3; */
+  grid-column: span 8;
+  color: #2fbda3;
 }
 .main-heading > h3 {
   height: 30px;
 }
-
-
-.main .main_div.material-container .material-header .material-user-info{
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 80%;
-}
-
-.material-container .material-header .material-user-info > p{
-  font-family: "DM Sans", sans-serif;
-  margin: 0;
-  font-size: 14px;
-  color: white;
-}
-
-.material-container .material-header .material-user-info > h4{
-  color: #2FBDA3;
-  font-family: "DM Sans", sans-serif;
-}
-
-.material-container .material-header .material-searchbar{
-  background-color: white;
-  border-radius: 2rem;
-  display: flex;
-  align-items: center;
-  width: 12%;
-
-}
-
-.material-container .material-header .material-searchbar .material-searchbar-container{
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-}
-
-.material-container .material-header .material-searchbar .material-searchbar-container .material-searchbar-icons{
-  display: flex;
-  width: 100%;
-  padding: 10px 8px 10px 22px;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.material-container .material-header .material-searchbar .material-searchbar-container .material-searchbar-icons > img{
-  height: 15px;
-  width: 15px
-}
-
-.material-container .material-header .material-searchbar .material-searchbar-container .material-searchbar-icons .material-profile{
-  display: flex;
-  align-items: center;
-}
-
-.material-container .material-header .material-searchbar .material-searchbar-container .material-searchbar-icons .material-profile > img{
-  width: 25px;
-  height: 25px;
-  border-radius: 50%;
-}
-
 .mainHelp_icon {
   grid-column: span 4;
   display: flex;
