@@ -20,17 +20,21 @@ const MaterialLibrary = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch(
-        "https://truad-dashboard-backend.onrender.com/api/getMaterial"
-      );
-      const datar = await response.json();
-
-      const materials = datar.materials;
-
-      console.log(datar);
-      setData(materials);
-
-      console.log("updated", data);
+      try {
+        const response = await fetch(
+          "https://truad-dashboard-backend.onrender.com/api/getMaterial"
+        );
+        const datar = await response.json();
+  
+        const materials = datar.materials;
+  
+        console.log(datar);
+        setData(materials);
+  
+        console.log("updated", data);
+      } catch (error) {
+        console.log(error)
+      }
     };
 
     fetchData();
@@ -118,9 +122,7 @@ const MaterialLibrary = () => {
                   <a>{item.size}</a>
                 </div>
                 <div className="material-card-btn">
-                  <div className="material-card-operate-btn">
                      <OprateDialog item={item}></OprateDialog>
-                  </div>
                   <div className="material-card-delete-btn">
                     <img src={trash} onClick={() => handleDelete(item._id)}></img>
                   </div>
