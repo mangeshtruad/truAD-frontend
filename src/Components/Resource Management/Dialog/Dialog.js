@@ -13,7 +13,6 @@ import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import { bgcolors as bg, textcolors as tx } from "../../color";
 
 import "./Dialog.css";
-import { useNavigate } from "react-router-dom";
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiDialogContent-root": {
     padding: theme.spacing(2),
@@ -24,7 +23,6 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
 }));
 
 export default function CustomizedDialogs({ handleClose, open, clips, name }) {
-  const [navigation, setnavigation] = React.useState("detection");
   const aiDetection = async (id) => {
     try {
       const response = await fetch(
@@ -99,87 +97,43 @@ export default function CustomizedDialogs({ handleClose, open, clips, name }) {
         }}
       >
         <Typography gutterBottom>Available Clips</Typography>
-        <ul className="clip_navbar">
-          <li
-            className={navigation === "detection" ? "active" : ""}
-            onClick={() => setnavigation("detection")}
-          >
-            AI Detection
-          </li>
-          <li
-            className={navigation === "tracking" ? "active" : ""}
-            onClick={() => setnavigation("tracking")}
-          >
-            Track VideoClip
-          </li>
-        </ul>
+        {/* <ul className="clip_navbar">
+          <li>AI Detection</li>
+          <li>Track VideoClip</li>
+        </ul> */}
         <Stack direction={"column"} spacing={2} pt={3}>
           {clips.map((clip, index) => {
-            if (navigation === "tracking") {
-              if (clip.blend === true) {
-                return (
-                  <Stack
-                    key={index}
-                    direction={"row"}
-                    alignItems={"end"}
-                    spacing={1}
+            return (
+              <Stack
+                key={index}
+                direction={"row"}
+                alignItems={"end"}
+                spacing={1}
+              >
+                <div className="clip-container rounded-2 rounded-bottom-4">
+                  <video autoplay muted loop playsinline>
+                    <source src={clip.location} type="video/mp4" />
+                    Your browser does not support the video tag.
+                  </video>
+                  <div class="content">
+                    <p>{clip.name}</p>
+                  </div>
+                </div>
+                <div>
+                  <Button
+                    endIcon={<KeyboardArrowRightIcon />}
+                    variant="contained"
+                    className="ai-detection-btn"
+                    onClick={(e) => aiDetection(clip._id)}
+                    sx={{
+                      paddingInline: "2rem",
+                    }}
                   >
-                    <div className="clip-container rounded-2 rounded-bottom-4">
-                      <video autoplay muted loop playsinline>
-                        <source src={clip.location} type="video/mp4" />
-                        Your browser does not support the video tag.
-                      </video>
-                      <div class="content">
-                        <p>{clip.name}</p>
-                      </div>
-                    </div>
-                    <div>
-                      <Button
-                        endIcon={<KeyboardArrowRightIcon />}
-                        variant="contained"
-                        className="ai-detection-btn"
-                        onClick={(e) => aiDetection(clip._id)}
-                        sx={{
-                          paddingInline: "2rem",
-                        }}
-                      >
-                        Track VideoClip
-                      </Button>
-                    </div>
-                  </Stack>
-                );
-              }
-            } else {
-              if (clip.blend === false)
-                return (
-                  <Stack
-                    key={index}
-                    direction={"row"}
-                    alignItems={"end"}
-                    spacing={1}
-                  >
-                    <div className="clip-container rounded-2 rounded-bottom-4">
-                      <video autoplay muted loop playsinline>
-                        <source src={clip.location} type="video/mp4" />
-                        Your browser does not support the video tag.
-                      </video>
-                      <div class="content">
-                        <p>{clip.name}</p>
-                      </div>
-                    </div>
-                    <div>
-                      <Button
-                        endIcon={<KeyboardArrowRightIcon />}
-                        variant="contained"
-                        className="ai-detection-btn"
-                        onClick={(e) => aiDetection(clip._id)}
-                      >
-                        Send for AI detection
-                      </Button>
-                    </div>
-                  </Stack>
-                );
-            }
+                    Track VideoClip
+                  </Button>
+                </div>
+              </Stack>
+            );
           })}
         </Stack>
       </DialogContent>

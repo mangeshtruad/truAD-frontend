@@ -51,7 +51,7 @@ function App() {
           element: <MaterialLibrary />,
         },
         {
-          path: "/dashboard/raise",
+          path: "/dashboard/raiseticket",
           element: <RaiseTicket />,
         },
         {

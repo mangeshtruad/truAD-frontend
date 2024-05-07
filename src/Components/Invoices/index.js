@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from "react";
-import NotificationsIcon from "@mui/icons-material/Notifications";
 import SearchIcon from "@mui/icons-material/Search";
-import ErrorOutlineOutlinedIcon from "@mui/icons-material/ErrorOutlineOutlined";
 import TuneIcon from "@mui/icons-material/Tune";
-import Avatar from "@mui/material/Avatar";
 import { Button } from "@mui/material";
 import TablePagination from "./Pagination";
 import image from "../../Assets/TruAd_White _Logo.png";
@@ -14,6 +11,7 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 import dark_mode from "../../Assets/dark_mode.png";
 import bell from "../../Assets/bell.png";
 import info from "../../Assets/info.png";
+import "./invoice.css"
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
 export default function RaiseTicket() {
   return (
@@ -28,11 +26,11 @@ export default function RaiseTicket() {
             padding: "1rem 2rem",
           }}
         >
-           <div className="main-heading">
-              <h3 className="dm-sans" style={{ fontWeight: "bold" }}>
-                Invoice
-              </h3>
-            </div>
+          <div className="main-heading">
+            <h3 className="dm-sans" style={{ fontWeight: "bold" }}>
+              Invoice
+            </h3>
+          </div>
           <div className="material-searchbar">
             <div className="material-searchbar-container">
               <div className="material-searchbar-icons">
