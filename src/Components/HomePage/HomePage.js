@@ -165,47 +165,13 @@ const HomePage = () => {
               </div>
             ))}
           </Carousel>
-          {/* <div className="clips-row">
-            <div className="clip-container">
-              <video autoPlay muted loop playsInline>
-                <source src={ongoing[index]?.location} type="video/mp4" />
-                Your browser does not support the video tag.
-              </video>
-              <div className="content">
-                <p>{ongoing[index]?.name}</p>
-              </div>
-            </div>
-            {index < ongoing.length ? (
-              <div className="clip-container">
-                <video autoPlay muted loop playsInline>
-                  <source src={ongoing[index + 1]?.location} type="video/mp4" />
-                  Your browser does not support the video tag.
-                </video>
-                <div className="content">
-                  <p>{ongoing[index + 1]?.name}</p>
-                </div>
-              </div>
-            ) : null}
-            <button onClick={() => setIndex((prev) => prev + 1)}>Next</button>
-          </div> */}
+          
         </div>
       </div>
       <div className="homepage-available-clips">
         <div className="available-clips-container">
           <p>Available content clips (5)</p>
-          {/* <div className="available-clips-row">
-            {items.map((item) => (
-              <div className="available-clip-container">
-                <video autoPlay muted loop playsInline>
-                  <source src={item.location} type="video/mp4" />
-                  Your browser does not support the video tag.
-                </video>
-                <div className="available-content">
-                  <p>{item.name}</p>
-                </div>
-              </div>
-            ))}
-          </div> */}
+         
           <Carousel showDots={true} responsive={responsive1} style={{ '&.react-multi-carousel-track':{gap:"1rem"}
           }}>
             {items.map((item) => (
