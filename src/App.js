@@ -26,10 +26,6 @@ function App() {
       element: <SignUp />,
     },
     {
-      path: "/btn",
-      element: <Btn />,
-    },
-    {
       path: "/dashboard",
       element: <DashBoardContainer />,
       children: [

@@ -132,7 +132,7 @@ export default function ResourceManagement() {
             <div className="pt-3">
               <nav>
                 <ul className="nav_list p-0">
-                  <li className="list-item dm-sans">
+                  <li className="list-item dm-sans" style={{width:"15%"}}>
                     <FormControl variant="standard" sx={{ width: "100%" }}>
                       <InputLabel
                         id="demo-simple-select-standard-label"
@@ -185,6 +185,9 @@ export default function ResourceManagement() {
                       </Select>
                     </FormControl>
                   </li>
+                  <li
+                  style={{ width: "85%", borderBottom: "1px solid #e6e7e8" }}
+                  ></li>
                 </ul>
               </nav>
             </div>
