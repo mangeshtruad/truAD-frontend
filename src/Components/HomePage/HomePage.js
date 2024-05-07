@@ -11,6 +11,8 @@ import pending from "../../Assets/pending.png";
 import BarChartIcon from "@mui/icons-material/BarChart";
 import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
 import PopUp from "../UploadMaterial/PopUp";
+import AIPopUp from "../AIDetection/AIPopUp";
+import ProcessedPopUp from "../ProcessedPopUp/ProcessedPopUp";
 import { CookiesProvider, useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
 
@@ -21,11 +23,33 @@ const HomePage = () => {
   const [ongoing, setOngoing] = useState([]);
   const [processedClips, setProcessedClips] = useState([]);
   const [index, setIndex] = useState(0);
+  const [availOpen, setAvailOpen] = useState(false)
+  const [selectedOngoingClip, setSelectedOngoingClip] = useState(null);
+const [selectedProcessedClip, setSelectedProcessedClip] = useState(null)
+  const [processedOpen, setProcessedOpen] = useState(false)
   const navigate = useNavigate();
 
   const togglePopup = () => {
     setIsOpen(!isOpen);
   };
+
+  const aiToggle = () => {
+    setAvailOpen(!availOpen)
+  }
+
+  const processedToggle = () => {
+    setProcessedOpen(!processedOpen)
+  }
+
+  const ongoingClipSelect = (clip) => {
+    setSelectedOngoingClip(clip);
+    aiToggle()
+  }
+
+  const processedClipSelect = (clip) => {
+    setSelectedProcessedClip(clip);
+    processedToggle()
+  }
 
   useEffect(() => {
     const fetchVideos = async () => {
@@ -64,6 +88,8 @@ const HomePage = () => {
   return (
     <div className="homepage-container">
       {isOpen && <PopUp togglePopup={togglePopup} />}
+      {availOpen && <AIPopUp togglePopup={aiToggle} selectedClipId={selectedOngoingClip}/>}
+      {processedOpen && <ProcessedPopUp togglePopup={processedToggle} selectedClipId={selectedProcessedClip}/>}
       <div className="homepage-header">
         <div className="homepage-user-info">
           <p>{cookies.userdata.email}</p>
@@ -135,7 +161,7 @@ const HomePage = () => {
           <p>Processed clips (2)</p>
           <div className="clips-row">
             {processedClips.map((item) => (
-              <div className="clip-container" key={item._id}>
+              <div className="clip-container" key={item._id} onClick={() => processedClipSelect(item)}>
                 <video autoPlay muted loop playsInline>
                   <source src={item.location} type="video/mp4" />
                   Your browser does not support the video tag.
@@ -194,7 +220,7 @@ const HomePage = () => {
           <p>Available content clips (5)</p>
           <div className="available-clips-row">
             {items.map((item) => (
-              <div className="available-clip-container">
+              <div className="available-clip-container" onClick={() => {ongoingClipSelect(item)}}>
                 <video autoPlay muted loop playsInline>
                   <source src={item.location} type="video/mp4" />
                   Your browser does not support the video tag.
@@ -202,6 +228,7 @@ const HomePage = () => {
                 <div className="available-content">
                   <p>{item.name}</p>
                 </div>
+                {/* {availOpen && <AIPopUp togglePopup={aiToggle} item={item} selectedClipId={selectedClipId} />} */}
               </div>
             ))}
           </div>
