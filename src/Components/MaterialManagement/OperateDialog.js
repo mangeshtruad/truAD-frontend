@@ -1,5 +1,6 @@
 import * as React from "react";
-import { useEffect } from "react";
+import { useEffect, useState, useRef } from "react";
+import { useCookies } from "react-cookie";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
@@ -9,15 +10,17 @@ import { useNavigate } from "react-router-dom";
 
 export default function OprateDialog(props) {
   const [open, setOpen] = React.useState(false);
-  const navigate = useNavigate();
-  const [video, setVideo] = React.useState([]);
+  const [videos, setVideos] = useState([]);
+  const popupRef = useRef(null);
+  const navigate = useNavigate()
 
-  const handleClickOpen = () => {
-    setOpen(true);
+  const handleUploadButtonClick = () => {
+    const filebtn = document.getElementById("fileInput");
+    filebtn.click();
   };
 
-  const handleClose = () => {
-    setOpen(false);
+  const togglePopup = () => {
+    setOpen(!open);
   };
 
   useEffect(() => {
@@ -27,7 +30,7 @@ export default function OprateDialog(props) {
         console.log("error=", error);
       }
       const response = await fetch(
-        "http://localhost:4000/get-video",
+        "https://truad-dashboard-backend.onrender.com/get-video",
         {
           method: "GET",
         }
@@ -39,12 +42,30 @@ export default function OprateDialog(props) {
         location: el.location.split("?")[0],
       }));
       if (video.length > 0) {
-        setVideo(video);
+        setVideos(video);
       }
     };
 
     fetchData();
   }, []);
+  // useEffect(() => {
+  //   function handleClickOutside(event) {
+  //     if (popupRef.current && !popupRef.current.contains(event.target)) {
+  //       togglePopup()
+  //     }
+  //   }
+
+  //   // Bind the event listener
+  //   document.addEventListener("mousedown", handleClickOutside);
+  //   return () => {
+  //     // Unbind the event listener on clean up
+  //     document.removeEventListener("mousedown", handleClickOutside);
+  //   };
+  // }, []);
+
+  const handleSubmit = () => {
+    console.log('Submit')
+  }
 
   return (
     <React.Fragment>
@@ -56,79 +77,66 @@ export default function OprateDialog(props) {
       >
         Oprate
       </Button> */}
-      <p onClick={handleClickOpen}>
-        Operate
-      </p>
-      <Dialog
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
-      >
-        <DialogTitle id="alert-dialog-title">
-          {"Selected material image"}
-        </DialogTitle>
-        <DialogContent>
-          <div>
-            <img
-              src={props.item.url}
-              style={{ width: "100%", borderRadius: "7px" }}
-              alt="Img Not Found"
-            />
-            <DialogTitle id="alert-dialog-title">
-              {"Available Clips"}
-            </DialogTitle>
-            <div style={{ display: "flex", overflow: "auto" }}>
-             {
-              video?.map((vid) => {
-                return (
-                  <div>
-                    {" "}
-                    <video
-                      style={{
-                        height: "140px",
-                        width: "220px",
-                        margin: "0px 10px",
-                        borderRadius: "7px",
-                      }}
-                      title="Video Player"
-                      controls
-                    >
-                      <source src={vid.location} type="video/mp4" />
+      <div className="material-card-operate-btn" onClick={togglePopup}>
+        <p>Operate</p>
+      </div>
+      {open && (
+        <div className="popup" ref={popupRef}>
+          <div className="popup-header">
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              onClick={togglePopup}
+            >
+              <path
+                d="M18 6L6 18"
+                stroke="#B8BABC"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M6 6L18 18"
+                stroke="#B8BABC"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+            <p>Operate</p>
+          </div>
+          <div className="popup-fields">
+            <div className="popup-file">
+              <img src={props.item.url}></img>
+            </div>
+            <div className="popup-file">
+              <div className="popup-file-videos">
+                <p>Available Clips</p>
+                <div className="popup-videos-container">
+                  {videos.length > 0 && (
+                    videos.map((video) => 
+                      <video autoPlay muted loop playsInline onClick={() => navigate('/dashboard/actionpage', {state: {img: props.item, location: video}})}>
+                    <source src={video.location} type="video/mp4" />
                       Your browser does not support the video tag.
-                    </video>
-                    <button
-                      style={{
-                        height: "40px",
-                        width: "220px",
-                        margin: "0px 10px",
-                        borderRadius: "7px",
-                      }}
-                      onClick={() => {
-                        navigate("/dashboard/actionpage/", {
-                          state: { location: vid, img: props.item},
-                        });
-                      }}
-                    >
-                      Use it
-                    </button>
-                  </div>
-                );
-              })}
+                  </video>)
+                  )}
+                </div>
+              </div>
             </div>
           </div>
-        </DialogContent>
-        <DialogActions>
-          <Button
-            onClick={handleClose}
-            variant="contained"
-            disableElevation
-            style={{ width: "100%" }}
-          >
-            Close
-          </Button>
-        </DialogActions>
-      </Dialog>
+          <div className="popup-submit-btn">
+            <button className="popup-cancel-btn" onClick={togglePopup}>
+              Cancel
+            </button>
+            <button className="popup-next-btn" onClick={handleSubmit}>
+              Next
+            </button>
+          </div>
+        </div>
+      )}
     </React.Fragment>
   );
 }
