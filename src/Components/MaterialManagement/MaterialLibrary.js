@@ -8,15 +8,24 @@ import trash from "../../Assets/trash.png";
 import PopUp from "../UploadMaterial/PopUp";
 import { useNavigate } from "react-router-dom";
 import OprateDialog from "./OperateDialog";
+import DeletePopUp from "../DeletePopUp/DeletePopUp";
 
 const MaterialLibrary = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [data, setData] = useState([]);
-  const navigate = useNavigate();
+  const [delOpen, setDelOpen] = useState(false)
+  const [selectedItem, setSelectedItem] = useState(null)
+
+  const navigate = useNavigate()
+
 
   const togglePopup = () => {
     setIsOpen(!isOpen);
   };
+
+  const toggleDelPopup = () => {
+    setDelOpen(!delOpen)
+  }
 
   useEffect(() => {
     const fetchData = async () => {
@@ -36,6 +45,11 @@ const MaterialLibrary = () => {
 
     fetchData();
   }, []);
+
+  const itemSelect = (item) => {
+    setSelectedItem(item);
+    toggleDelPopup()
+  }
 
   async function handleDelete(key) {
     const response = await fetch(
@@ -65,6 +79,7 @@ const MaterialLibrary = () => {
   return (
     <div className="material-container">
       {isOpen && <PopUp togglePopup={togglePopup} />}
+      {delOpen && <DeletePopUp togglePopup={toggleDelPopup} handleDelete={handleDelete} item={selectedItem}/>}
       <div className="material-header">
         <div className="material-user-info">
           <h4>Material Management</h4>
@@ -124,10 +139,9 @@ const MaterialLibrary = () => {
                 <div className="material-card-btn">
                   <OprateDialog item={item}></OprateDialog>
                   <div className="material-card-delete-btn">
-                    <img
-                      src={trash}
-                      onClick={() => handleDelete(item._id)}
-                    ></img>
+
+                    <img src={trash} onClick={() => itemSelect(item)}></img>
+
                   </div>
                 </div>
               </div>

@@ -1,0 +1,48 @@
+.delpopup{
+    width: 25%;
+    height: 120px;
+    background-color: black;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 3;
+    padding: 12px 12px;
+    text-align: center;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.delpopup > p{
+    font-size: 14px;
+    color: white;
+    font-weight: bold;
+    margin: 0;
+}
+
+
+.delpopup .delpopup-btn{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.delpopup .delpopup-btn .delpopup-cancel-btn{
+    width: 48%;
+    background-color: transparent;
+    border: 1px solid white;
+    border-radius: 5px;
+    padding: 4px 10px;
+    color: white;
+}
+
+.delpopup .delpopup-btn .delpopup-confirm-btn{
+    width: 48%;
+    background-color: #2FBDA3;
+    border: none;
+    border-radius: 5px;
+    padding: 4px 10px;
+    color: white;
+}

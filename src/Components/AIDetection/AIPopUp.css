@@ -1,0 +1,79 @@
+.aipopup{
+    width: 40%;
+    background-color: black;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 3;
+}
+
+.aipopup .aipopup-header{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: white;
+    width: 100%;
+    padding: 5px 10px;
+    border-bottom: 1px solid white;
+}
+
+.aipopup .aipopup-header svg{
+    cursor: pointer;
+}
+
+.aipopup .aipopup-file {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 0px;
+}
+
+.aipopup .aipopup-file > img{
+    height: 200px;
+    width: 200px;
+    object-fit: cover;
+}
+
+.aipopup .aipopup-header > p{
+    margin: 0;
+}
+
+.aipopup .aipopup-video{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    height: max-content;
+    padding: 20px 0px;
+}
+
+.aipopup .aipopup-video > video{
+    height: 200px;
+    width: 400px;
+}
+
+.aipopup .aipopup-submit-btn{
+    height: 3rem;
+    width: 100%;
+    border-top: 1px solid white;
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 12px;
+}
+
+.aipopup .aipopup-submit-btn .aipopup-cancel-btn{
+    width: 48%;
+    border: 1px solid #2FBDA3;
+    background-color: transparent;
+    color: #2FBDA3;
+    border-radius: 8px;
+}
+
+.aipopup .aipopup-submit-btn .aipopup-next-btn{
+    width: 98%;
+    border-radius: 8px;
+    border: none;
+    background-color: #2FBDA3;
+    color: white;
+}

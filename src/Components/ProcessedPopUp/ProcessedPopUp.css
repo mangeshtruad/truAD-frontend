@@ -1,0 +1,79 @@
+.processedpopup{
+    width: 40%;
+    background-color: black;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 3;
+}
+
+.processedpopup .processedpopup-header{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: white;
+    width: 100%;
+    padding: 5px 10px;
+    border-bottom: 1px solid white;
+}
+
+.processedpopup .processedpopup-header svg{
+    cursor: pointer;
+}
+
+.processedpopup .processedpopup-file {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 0px;
+}
+
+.processedpopup .processedpopup-file > img{
+    height: 200px;
+    width: 200px;
+    object-fit: cover;
+}
+
+.processedpopup .processedpopup-header > p{
+    margin: 0;
+}
+
+.processedpopup .processedpopup-video{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    height: max-content;
+    padding: 20px 0px;
+}
+
+.processedpopup .processedpopup-video > video{
+    height: 200px;
+    width: 400px;
+}
+
+.processedpopup .processedpopup-submit-btn{
+    height: 3rem;
+    width: 100%;
+    border-top: 1px solid white;
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 12px;
+}
+
+.processedpopup .processedpopup-submit-btn .processedpopup-cancel-btn{
+    width: 48%;
+    border: 1px solid #2FBDA3;
+    background-color: transparent;
+    color: #2FBDA3;
+    border-radius: 8px;
+}
+
+.processedpopup .processedpopup-submit-btn .processedpopup-next-btn{
+    width: 48%;
+    border-radius: 8px;
+    border: none;
+    background-color: #2FBDA3;
+    color: white;
+}
