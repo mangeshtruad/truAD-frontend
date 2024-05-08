@@ -55,7 +55,7 @@ const MediaCard = ({ el,}) => {
         name: elem.name.split('upload/')[1]
       }));
 
-      console.log("data", data2);
+    
       setClips((prev) => [...prev, ...data2]);
     } catch (error) {
       console.error("Error:", error);

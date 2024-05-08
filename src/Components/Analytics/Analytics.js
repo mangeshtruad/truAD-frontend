@@ -16,7 +16,7 @@ import { useCookies } from "react-cookie";
 
 const Analytics = () => {
   const [cookies, setCookie] = useCookies(["user", 'userdata'])
-  console.log(cookies.userdata)
+ 
   return (
     <div className="analytics-container">
       <div className="analytics-header">
