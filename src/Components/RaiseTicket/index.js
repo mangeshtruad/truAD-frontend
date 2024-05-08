@@ -14,6 +14,9 @@ import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import Dialog from "./Dialog/Dialog";
 import { useCookies } from "react-cookie";
+import dark_mode from "../../Assets/dark_mode.png";
+import bell from "../../Assets/bell.png";
+import info from "../../Assets/info.png";
 import "./raiseticket.css";
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
 export default function RaiseTicket() {
@@ -115,29 +118,18 @@ export default function RaiseTicket() {
                   </Box>
                 </p>
               </div>
-              <div className="icon">
-                <div>
-                  <NotificationsIcon />
-                </div>
-                <div>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
-                    fill="currentColor"
-                    class="bi bi-moon-fill"
-                    viewBox="0 0 16 16"
-                  >
-                    <path d="M6 .278a.77.77 0 0 1 .08.858 7.2 7.2 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277q.792-.001 1.533-.16a.79.79 0 0 1 .81.316.73.73 0 0 1-.031.893A8.35 8.35 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.75.75 0 0 1 6 .278" />
-                  </svg>
-                </div>
-                <div>
-                  <ErrorOutlineOutlinedIcon />
-                </div>
-                <div>
-                  <Avatar alt="Remy Sharp" src="#" />
+              <div className="material-searchbar" style={{width:"none"}}>
+              <div className="material-searchbar-container">
+                <div className="material-searchbar-icons">
+                  <img src={bell}></img>
+                  <img src={dark_mode}></img>
+                  <img src={info}></img>
+                  <div className="material-profile">
+                    <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8dXNlciUyMHByb2ZpbGV8ZW58MHx8MHx8fDA%3D"></img>
+                  </div>
                 </div>
               </div>
+            </div>
             </div>
           </div>
           <div class="row px-4">

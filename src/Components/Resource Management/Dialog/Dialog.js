@@ -147,14 +147,13 @@ export default function CustomizedDialogs({ handleClose, open, clips, name }) {
           })}
         </Stack> */}
         {/* <Stack direction={"row"} spacing={2}> */}
-        <Carousel showDots={true} responsive={responsive}>
+        <Carousel showDots={false} responsive={responsive}>
         {
           clips.map((clip, index) =>{return(
             <Stack
                 key={index}
                 spacing={1}
                 sx={{
-                  margin:1,
                   marginBottom:3
                 }}
               >
@@ -188,14 +187,13 @@ export default function CustomizedDialogs({ handleClose, open, clips, name }) {
         </Carousel>
         <div className="p-2"/>
         <Typography gutterBottom>Process Clips</Typography>
-        <Carousel showDots={true} responsive={responsive}>
+        <Carousel showDots={false} responsive={responsive}>
         {
-          clips.map((clip, index) =>{return(
+          clips.filter((elem) => elem.blendFile).map((clip, index) =>{return(
             <Stack
                 key={index}
                 spacing={1}
                 sx={{
-                  margin:1,
                   marginBottom:3
                 }}
               >
