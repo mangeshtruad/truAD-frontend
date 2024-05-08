@@ -6,11 +6,14 @@ import info from "../../Assets/info.png";
 import search from "../../Assets/search.png";
 import more from "../../Assets/more.png";
 import done from "../../Assets/done.png";
-import chart from "../../Assets/chart.png";
 import pending from "../../Assets/pending.png";
+import SupportAgentIcon from "@mui/icons-material/SupportAgent";
 import BarChartIcon from "@mui/icons-material/BarChart";
 import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
 import PopUp from "../UploadMaterial/PopUp";
+import AIPopUp from "../AIDetection/AIPopUp";
+import CallPopUp from "../CallPopUp/CallPopUp";
+import ProcessedPopUp from "../ProcessedPopUp/ProcessedPopUp";
 import { CookiesProvider, useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
 
@@ -20,10 +23,38 @@ const HomePage = () => {
   const [items, setItems] = useState([]);
   const [ongoing, setOngoing] = useState([]);
   const [processedClips, setProcessedClips] = useState([]);
+  const [index, setIndex] = useState(0);
+  const [availOpen, setAvailOpen] = useState(false);
+  const [selectedOngoingClip, setSelectedOngoingClip] = useState(null);
+  const [selectedProcessedClip, setSelectedProcessedClip] = useState(null);
+  const [processedOpen, setProcessedOpen] = useState(false);
+  const [callOpen, setCallOpen] = useState(false)
   const navigate = useNavigate();
-  
+
   const togglePopup = () => {
     setIsOpen(!isOpen);
+  };
+
+  const aiToggle = () => {
+    setAvailOpen(!availOpen);
+  };
+
+  const processedToggle = () => {
+    setProcessedOpen(!processedOpen);
+  };
+
+  const callToggle = () => {
+    setCallOpen(!callOpen)
+  }
+
+  const ongoingClipSelect = (clip) => {
+    setSelectedOngoingClip(clip);
+    aiToggle();
+  };
+
+  const processedClipSelect = (clip) => {
+    setSelectedProcessedClip(clip);
+    processedToggle();
   };
 
   useEffect(() => {
@@ -48,7 +79,8 @@ const HomePage = () => {
         const ongoingClips = data2.filter(
           (elem) => elem.blend && !elem.blendFile
         );
-        setOngoing(ongoingClips.slice(0, 2));
+        setOngoing(ongoingClips);
+        console.log("ongoing", ongoing);
         setProcessedClips(processed.slice(0, 2));
         console.log("processed", processedClips);
       } catch (error) {
@@ -62,6 +94,16 @@ const HomePage = () => {
   return (
     <div className="homepage-container">
       {isOpen && <PopUp togglePopup={togglePopup} />}
+      {availOpen && (
+        <AIPopUp togglePopup={aiToggle} selectedClipId={selectedOngoingClip} />
+      )}
+      {processedOpen && (
+        <ProcessedPopUp
+          togglePopup={processedToggle}
+          selectedClipId={selectedProcessedClip}
+        />
+      )}
+      {callOpen && <CallPopUp togglePopup={callToggle}/>}
       <div className="homepage-header">
         <div className="homepage-user-info">
           <p>{cookies.userdata.email}</p>
@@ -88,17 +130,6 @@ const HomePage = () => {
         <div className="homepage-info">
           <div className="homepage-infobox">
             <div className="homepage-infobox-icon">
-              <BarChartIcon />
-            </div>
-            <div className="homepage-infobox-info">
-              <p>Total Invoices</p>
-              <h4>121</h4>
-            </div>
-          </div>
-        </div>
-        <div className="homepage-info">
-          <div className="homepage-infobox">
-            <div className="homepage-infobox-icon">
               <CurrencyRupeeIcon />
             </div>
             <div className="homepage-infobox-info">
@@ -118,7 +149,16 @@ const HomePage = () => {
             </div>
           </div>
         </div>
-        <div className="homepage-ticket-btn" onClick={()=>navigate("/dashboard/raise")}>
+        <div className="homepage-call-btn" onClick={callToggle}>
+          <div className="hompage-call-btnn-icon">
+            <SupportAgentIcon />
+          </div>
+          <p>Call for Instant Support</p>
+        </div>
+        <div
+          className="homepage-ticket-btn"
+          onClick={() => navigate("/dashboard/raiseticket")}
+        >
           <p>Have an Issue? Raise a ticket</p>
         </div>
         <div className="homepage-upload-btn" onClick={togglePopup}>
@@ -130,7 +170,11 @@ const HomePage = () => {
           <p>Processed clips (2)</p>
           <div className="clips-row">
             {processedClips.map((item) => (
-              <div className="clip-container" key={item._id}>
+              <div
+                className="clip-container"
+                key={item._id}
+                onClick={() => processedClipSelect(item)}
+              >
                 <video autoPlay muted loop playsInline>
                   <source src={item.location} type="video/mp4" />
                   Your browser does not support the video tag.
@@ -145,7 +189,7 @@ const HomePage = () => {
 
         <div className="clips-container">
           <p>AI detection ongoing (5)</p>
-          <div className="clips-row">
+          {/* <div className="clips-row">
             {ongoing.map((item) => (
               <div className="clip-container">
                 <video autoPlay muted loop playsInline>
@@ -157,6 +201,29 @@ const HomePage = () => {
                 </div>
               </div>
             ))}
+            <button onClick={() => setIndex((prev)=> prev + 1)}>Next</button>
+          </div> */}
+          <div className="clips-row">
+            <div className="clip-container">
+              <video autoPlay muted loop playsInline>
+                <source src={ongoing[index]?.location} type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+              <div className="content">
+                <p>{ongoing[index]?.name}</p>
+              </div>
+            </div>
+            {index < ongoing.length ? (
+              <div className="clip-container">
+                <video autoPlay muted loop playsInline>
+                  <source src={ongoing[index + 1]?.location} type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+                <div className="content">
+                  <p>{ongoing[index + 1]?.name}</p>
+                </div>
+              </div>
+            ) : null}
           </div>
         </div>
       </div>
@@ -165,7 +232,12 @@ const HomePage = () => {
           <p>Available content clips (5)</p>
           <div className="available-clips-row">
             {items.map((item) => (
-              <div className="available-clip-container">
+              <div
+                className="available-clip-container"
+                onClick={() => {
+                  ongoingClipSelect(item);
+                }}
+              >
                 <video autoPlay muted loop playsInline>
                   <source src={item.location} type="video/mp4" />
                   Your browser does not support the video tag.
@@ -173,6 +245,7 @@ const HomePage = () => {
                 <div className="available-content">
                   <p>{item.name}</p>
                 </div>
+                {/* {availOpen && <AIPopUp togglePopup={aiToggle} item={item} selectedClipId={selectedClipId} />} */}
               </div>
             ))}
           </div>
@@ -466,8 +539,43 @@ export default HomePage;
     font-size: 20px;
 }
 
+.homepage-container .homepage-info .homepage-infobox .homepage-infobox-info > h6{
+    color: white;
+    margin: 0;
+    font-size: 14px;
+}
+
+.homepage-container .homepage-info-container .homepage-call-btn{
+    width: 13rem;
+    height: 4rem;
+    border: 1px solid #66ffb3;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.5s ease;
+}
+
+.homepage-container .homepage-info-container .homepage-call-btn:hover{
+    background-color: #2FBDA3;
+}
+
+.homepage-container .homepage-info-container .homepage-call-btn .hompage-call-btnn-icon{
+    background-color: #66ffb3;
+    border-radius: 50%;
+    padding: 3px;
+}
+
+.homepage-container .homepage-info-container .homepage-call-btn > P{
+    color: white;
+    margin: 0;
+    font-size: 14px;
+}
+
 .homepage-container .homepage-info-container .homepage-ticket-btn{
-    width: 12rem;
+    width: 13rem;
     height: 3rem;
     border: 1px solid #3CA59C;
     padding: 3px 2px;
@@ -475,13 +583,27 @@ export default HomePage;
     justify-content: center;
     align-items: center;
     border-radius: 1rem;
+    transition: all 0.5s ease;
 }
+
+.homepage-container .homepage-info-container .homepage-ticket-btn:hover{
+    background-color: #205072;
+    cursor: pointer;
+    border: none;
+}
+
+.homepage-container .homepage-info-container .homepage-ticket-btn:hover > P{
+    color: white
+}
+
+
 
 .homepage-container .homepage-info-container .homepage-ticket-btn > P{
     font-size: 14px;
     color: #3CA59C;
     margin: 0
 }
+
 
 .homepage-container .homepage-info-container .homepage-upload-btn{
     width: 12rem;
@@ -492,6 +614,12 @@ export default HomePage;
     justify-content: center;
     align-items: center;
     border-radius: 1rem;
+    transition: all 0.5s ease;
+}
+
+.homepage-container .homepage-info-container .homepage-upload-btn:hover{
+    background-color: #205072;
+    cursor: pointer;
 }
 
 .homepage-container .homepage-info-container .homepage-upload-btn > P{
@@ -536,7 +664,7 @@ export default HomePage;
     height: 500px; /* Set the height of your div */
     overflow: hidden; /* Ensures the video is cut off outside the div */
     background-color: white;
-    width: 49%;
+    width: 48.5%;
     height: 11rem;
     border-radius: 1rem;
 }

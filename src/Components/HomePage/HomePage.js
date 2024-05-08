@@ -7,12 +7,14 @@ import search from "../../Assets/search.png";
 import more from "../../Assets/more.png";
 import done from "../../Assets/done.png";
 import pending from "../../Assets/pending.png";
+import SupportAgentIcon from "@mui/icons-material/SupportAgent";
 import BarChartIcon from "@mui/icons-material/BarChart";
 import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
 import PopUp from "../UploadMaterial/PopUp";
-import { useCookies } from "react-cookie";
+import { CookiesProvider, useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
 import { responsive, responsive1, Carousel } from "../videosider";
+// >>>>>>> 9d2c4d12fb220a5b93a92f352ff7d2e868adb0f7
 
 const HomePage = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -21,12 +23,45 @@ const HomePage = () => {
   const [ongoing, setOngoing] = useState([]);
   const [processedClips, setProcessedClips] = useState([]);
   const [index, setIndex] = useState(0);
+// <<<<<<< HEAD
+  const [availOpen, setAvailOpen] = useState(false);
+  const [selectedOngoingClip, setSelectedOngoingClip] = useState(null);
+  const [selectedProcessedClip, setSelectedProcessedClip] = useState(null);
+  const [processedOpen, setProcessedOpen] = useState(false);
+  const [callOpen, setCallOpen] = useState(false)
+// =======
+// >>>>>>> 9d2c4d12fb220a5b93a92f352ff7d2e868adb0f7
   const navigate = useNavigate();
 
   const togglePopup = () => {
     setIsOpen(!isOpen);
   };
 
+// <<<<<<< HEAD
+  const aiToggle = () => {
+    setAvailOpen(!availOpen);
+  };
+
+  const processedToggle = () => {
+    setProcessedOpen(!processedOpen);
+  };
+
+  const callToggle = () => {
+    setCallOpen(!callOpen)
+  }
+
+  const ongoingClipSelect = (clip) => {
+    setSelectedOngoingClip(clip);
+    aiToggle();
+  };
+
+  const processedClipSelect = (clip) => {
+    setSelectedProcessedClip(clip);
+    processedToggle();
+  };
+
+// =======
+// >>>>>>> 9d2c4d12fb220a5b93a92f352ff7d2e868adb0f7
   useEffect(() => {
     const fetchVideos = async () => {
       try {
@@ -44,7 +79,7 @@ const HomePage = () => {
           location: elem.location.split("?AWS")[0],
           name: elem.name.split("upload/")[1],
         }));
-        setItems(data2.slice(0, 4));
+        setItems(data2);
         const processed = data2.filter((elem) => elem.blendFile);
         const ongoingClips = data2.filter(
           (elem) => elem.blend && !elem.blendFile
@@ -64,6 +99,19 @@ const HomePage = () => {
   return (
     <div className="homepage-container">
       {isOpen && <PopUp togglePopup={togglePopup} />}
+{/* <<<<<<< HEAD */}
+      {availOpen && (
+        <AIPopUp togglePopup={aiToggle} selectedClipId={selectedOngoingClip} />
+      )}
+      {processedOpen && (
+        <ProcessedPopUp
+          togglePopup={processedToggle}
+          selectedClipId={selectedProcessedClip}
+        />
+      )}
+      {callOpen && <CallPopUp togglePopup={callToggle}/>}
+{/* // ======= */}
+{/* // >>>>>>> 9d2c4d12fb220a5b93a92f352ff7d2e868adb0f7 */}
       <div className="homepage-header">
         <div className="homepage-user-info">
           <p>{cookies.userdata.email}</p>
@@ -90,17 +138,6 @@ const HomePage = () => {
         <div className="homepage-info">
           <div className="homepage-infobox">
             <div className="homepage-infobox-icon">
-              <BarChartIcon />
-            </div>
-            <div className="homepage-infobox-info">
-              <p>Total Invoices</p>
-              <h4>121</h4>
-            </div>
-          </div>
-        </div>
-        <div className="homepage-info">
-          <div className="homepage-infobox">
-            <div className="homepage-infobox-icon">
               <CurrencyRupeeIcon />
             </div>
             <div className="homepage-infobox-info">
@@ -120,6 +157,12 @@ const HomePage = () => {
             </div>
           </div>
         </div>
+        <div className="homepage-call-btn" onClick={callToggle}>
+          <div className="hompage-call-btnn-icon">
+            <SupportAgentIcon />
+          </div>
+          <p>Call for Instant Support</p>
+        </div>
         <div
           className="homepage-ticket-btn"
           onClick={() => navigate("/dashboard/raiseticket")}
@@ -133,10 +176,21 @@ const HomePage = () => {
       <div className="homepage-clips">
         <div className="clips-container">
           <p>Processed clips (2)</p>
-          <Carousel showDots={true} responsive={responsive}>
+{/* <<<<<<< HEAD
+          {/* <div className="clips-row"> */}
+          {/* <Slider {...sliderSettings}>
+            {processedClips.map((item) => (
+              <div
+                className="clip-container"
+                key={item._id}
+                onClick={() => processedClipSelect(item)}
+              >
+======= */} 
+          <Carousel showDots={false} responsive={responsive}>
             {
             processedClips.map((item) => (
-              <div className="clip-container" key={item._id}>
+              <div className="clip-container" key={item._id} onClick={() => processedClipSelect(item)}>
+{/* >>>>>>> 9d2c4d12fb220a5b93a92f352ff7d2e868adb0f7 */}
                 <video autoPlay muted loop playsInline>
                   <source src={item.location} type="video/mp4" />
                   Your browser does not support the video tag.
@@ -146,14 +200,25 @@ const HomePage = () => {
                 </div>
               </div>
             ))}
+{/* <<<<<<< HEAD
+            </Slider>
+          {/* </div> */}
+{/* ======= */} 
           </Carousel>
+{/* >>>>>>> 9d2c4d12fb220a5b93a92f352ff7d2e868adb0f7 */}
         </div>
 
         <div className="clips-container">
           <p>AI detection ongoing (5)</p>
-          <Carousel showDots={true} responsive={responsive}>
-            {processedClips.map((item) => (
+{/* <<<<<<< HEAD
+          <Slider {...sliderSettings}>
+            {ongoing.map((item, idx) => (
+              <div className="clip-container" key={item._id}>
+======= */}
+          <Carousel showDots={false} responsive={responsive}>
+            {ongoing.map((item) => (
               <div className="clip-container" key={item._id} style={{}}>
+{/* >>>>>>> 9d2c4d12fb220a5b93a92f352ff7d2e868adb0f7 */}
                 <video autoPlay muted loop playsInline>
                   <source src={item.location} type="video/mp4" />
                   Your browser does not support the video tag.
@@ -163,18 +228,31 @@ const HomePage = () => {
                 </div>
               </div>
             ))}
+{/* <<<<<<< HEAD
+          </Slider>
+======= */}
           </Carousel>
           
+{/* >>>>>>> 9d2c4d12fb220a5b93a92f352ff7d2e868adb0f7 */}
         </div>
       </div>
       <div className="homepage-available-clips">
         <div className="available-clips-container">
           <p>Available content clips (5)</p>
          
-          <Carousel showDots={true} responsive={responsive1} style={{ '&.react-multi-carousel-track':{gap:"1rem"}
+          <Carousel showDots={false} responsive={responsive1} style={{ '&.react-multi-carousel-track':{gap:"1rem"}
           }}>
             {items.map((item) => (
-              <div className="clip-container" key={item._id} style={{width:"100%"}}>
+// <<<<<<< HEAD
+//               <div
+//                 className="available-clip-container"
+//                 onClick={() => {
+//                   ongoingClipSelect(item);
+//                 }}
+//               >
+// =======
+              <div className="clip-container" key={item._id} style={{width:"100%"}} onClick={() => {ongoingClipSelect(item)}}>
+{/* >>>>>>> 9d2c4d12fb220a5b93a92f352ff7d2e868adb0f7 */}
                 <video autoPlay muted loop playsInline>
                   <source src={item.location} type="video/mp4" />
                   Your browser does not support the video tag.
