@@ -6,6 +6,7 @@ import "./SignIn.css";
 import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router";
 import CircularProgress from "@mui/material/CircularProgress";
+import VerifyOTP from "../VerifyOTP/VerifyOTP";
 
 const SignIn = () => {
   const [cookies, setCookie] = useCookies(["user", "userdata"]);
@@ -63,6 +64,10 @@ const SignIn = () => {
     }
   };
 
+  const handleForget = () => {
+    navigate('/verifyOTP')
+  }
+
   return (
     <div className="login-container">
       <div className="login-left">
@@ -110,7 +115,7 @@ const SignIn = () => {
                   </label>
                 </div>
                 <span>
-                  <a href={{}}>Forgot Password</a>
+                  <a href='#' onClick={handleForget}>Forgot Password</a>
                 </span>
               </div>
               {/* <button type="button" onClick={handleSignIn}>Sign In</button> */}

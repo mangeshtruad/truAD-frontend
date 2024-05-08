@@ -23,7 +23,7 @@ const ProcessedPopUp = ({ togglePopup, selectedClipId }) => {
 
   const deleteBlend = async() => {
     try {
-        const response = await fetch("http://localhost:4000/remove-blend", {
+        const response = await fetch("https://truad-dashboard-backend.onrender.com/remove-blend", {
 
             method:"POST",
             body: JSON.stringify({
@@ -36,6 +36,7 @@ const ProcessedPopUp = ({ togglePopup, selectedClipId }) => {
 
         const data = await response.json()
         console.log(data)
+        togglePopup()
     } catch (error) {
         console.log(error)
     }

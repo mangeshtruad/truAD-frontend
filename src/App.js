@@ -14,6 +14,7 @@ import RaiseTicket from "./Components/RaiseTicket";
 import Btn from "./Components/MaterialManagement/DeleteDialog";
 import ActionPage from "./Components/ActionPage/ActionPage";
 import { MyContextProvider } from "./MyContext";
+import VerifyOTP from "./Components/VerifyOTP/VerifyOTP";
 
 function App() {
   const router = createBrowserRouter([
@@ -24,6 +25,10 @@ function App() {
     {
       path: "/signup",
       element: <SignUp />,
+    },
+    {
+      path: "/verifyOTP",
+      element: <VerifyOTP />,
     },
     {
       path: "/dashboard",
