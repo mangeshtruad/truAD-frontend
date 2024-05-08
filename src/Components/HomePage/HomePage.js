@@ -6,12 +6,11 @@ import info from "../../Assets/info.png";
 import search from "../../Assets/search.png";
 import more from "../../Assets/more.png";
 import done from "../../Assets/done.png";
-import chart from "../../Assets/chart.png";
 import pending from "../../Assets/pending.png";
 import BarChartIcon from "@mui/icons-material/BarChart";
 import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
 import PopUp from "../UploadMaterial/PopUp";
-import { CookiesProvider, useCookies } from "react-cookie";
+import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
 import { responsive, responsive1, Carousel } from "../videosider";
 
@@ -139,7 +138,7 @@ const HomePage = () => {
             processedClips.map((item) => (
               <div className="clip-container" key={item._id}>
                 <video autoPlay muted loop playsInline>
-                  <source src={"https://videotruad.s3.ap-south-1.amazonaws.com/split_video_3.mp4"} type="video/mp4" />
+                  <source src={item.location} type="video/mp4" />
                   Your browser does not support the video tag.
                 </video>
                 <div className="content">
