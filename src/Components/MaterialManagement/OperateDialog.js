@@ -7,12 +7,12 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import { useNavigate } from "react-router-dom";
-
+import { responsive, responsive1, Carousel } from "../videosider";
 export default function OprateDialog(props) {
   const [open, setOpen] = React.useState(false);
   const [videos, setVideos] = useState([]);
   const popupRef = useRef(null);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handleUploadButtonClick = () => {
     const filebtn = document.getElementById("fileInput");
@@ -64,8 +64,8 @@ export default function OprateDialog(props) {
   // }, []);
 
   const handleSubmit = () => {
-    console.log('Submit')
-  }
+    console.log("Submit");
+  };
 
   return (
     <React.Fragment>
@@ -110,18 +110,68 @@ export default function OprateDialog(props) {
           </div>
           <div className="popup-fields">
             <div className="popup-file">
-              <img src={props.item.url}></img>
+              <img src={props.item.url} alt=""></img>
             </div>
             <div className="popup-file">
               <div className="popup-file-videos">
                 <p>Available Clips</p>
+                {/* <div className="popup-videos-container">
+                  {videos.length > 0 &&
+                    videos.map((video) => (
+                      <div
+                        style={{
+                          height: "150px",
+                          width: "250px",
+                          overflow: "hidden",
+                          borderRadius: "5px",
+                        }}
+                      >
+                        <video
+                          autoPlay
+                          muted
+                          loop
+                          playsInline
+                          onClick={() =>
+                            navigate("/dashboard/actionpage", {
+                              state: { img: props.item, location: video },
+                            })
+                          }
+                        >
+                          <source src={video.location} type="video/mp4" />
+                          Your browser does not support the video tag.
+                        </video>
+                      </div>
+                    ))}
+                </div> */}
                 <div className="popup-videos-container">
                   {videos.length > 0 && (
-                    videos.map((video) => 
-                      <video autoPlay muted loop playsInline onClick={() => navigate('/dashboard/actionpage', {state: {img: props.item, location: video}})}>
-                    <source src={video.location} type="video/mp4" />
-                      Your browser does not support the video tag.
-                  </video>)
+                    <Carousel
+                      showDots={false}
+                      responsive={responsive}
+                      key="carousel"
+                    >
+                      {videos.map((video, ind) => (
+                        <div
+                          style={{
+                            height: "150px",
+                            width: "250px",
+                            overflow: "hidden",
+                            borderRadius: "5px",
+                          }}
+                          key={ind}
+                          onClick={() =>
+                            navigate("/dashboard/actionpage", {
+                              state: { img: props.item, location: video },
+                            })
+                          }
+                        >
+                          <video autoPlay muted loop playsInline>
+                            <source src={video.location} type="video/mp4" />
+                            Your browser does not support the video tag.
+                          </video>
+                        </div>
+                      ))}
+                    </Carousel>
                   )}
                 </div>
               </div>

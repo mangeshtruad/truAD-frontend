@@ -24,13 +24,13 @@ const CallPopUp = ({ togglePopup, selectedClipId }) => {
     <div className="callpopup" ref={popupRef}>
         <div className="callpopup-left">
             <div className="callpopup-left-icon">
-                <img src={voice_call}></img>
+                <img src={voice_call} alt=""></img>
             </div>
             <p>Voice Call</p>
         </div>
         <div className="callpopup-right">
         <div className="callpopup-right-icon">
-                <img src={video_call}></img>
+                <img src={video_call} alt=""></img>
             </div>
             <p>Video Call</p>
         </div>
