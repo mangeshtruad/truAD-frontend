@@ -7,7 +7,7 @@ import { useCookies } from 'react-cookie';
 
 const VerifyOTP = () => {
     const [email, setEmail] = useState('')
-    const [emailEntered, setEmailEntered] = useState(true)
+    const [emailEntered, setEmailEntered] = useState(false)
     const [otp, setOtp] = useState('')
     const [error, setError] = useState('')
     const [showPassword, setShowPassword] = useState(false)
