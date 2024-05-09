@@ -15,6 +15,7 @@ import Btn from "./Components/MaterialManagement/DeleteDialog";
 import ActionPage from "./Components/ActionPage/ActionPage";
 import { MyContextProvider } from "./MyContext";
 import VerifyOTP from "./Components/VerifyOTP/VerifyOTP";
+import ConfirmPassword from "./Components/ConfirmPassword/ConfirmPassword";
 
 function App() {
   const router = createBrowserRouter([
@@ -29,6 +30,10 @@ function App() {
     {
       path: "/verifyOTP",
       element: <VerifyOTP />,
+    },
+    {
+      path: "/confirmNew",
+      element: <ConfirmPassword />,
     },
     {
       path: "/dashboard",

@@ -1,0 +1,64 @@
+.verify-container{    
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    background-color: #23303B;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.verify-container .verify-email-input{
+    padding: 10px;
+}
+
+
+.verify-container .verify-email-input form{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    color: white;
+    width: 20rem;
+}
+
+.verify-container .verify-email-input form > input[type=email],.verify-container .verify-email-input form> input[type=password]{
+    background-color: transparent;
+    border: 0.5px solid white;
+    border-radius: 8px;
+    height: 3rem;
+    margin-bottom: 15px;
+    margin-top: 5px;
+    color: white;
+    padding-left: 10px;
+    background-image: url('../../Assets/pass-show.png');
+  /* background-position: 10px 10px; */
+  background-repeat: no-repeat;
+}
+
+.verify-container .verify-email-input form > input[type=email]::placeholder,.verify-container .verify-email-input form > input[type=password]::placeholder{
+    color: white;
+    opacity: 0.5;
+}
+
+.verify-container .verify-email-input form > button{
+    height: 3rem;
+    border-radius: 1rem;
+    background-color: #2FBDA3;
+    color: white;
+    margin-bottom: 1rem;
+    border-color: transparent;
+    transition: all 0.5s ease;
+}
+
+.verify-container .verify-email-input form > button:hover{
+    background-color: #205072;
+}
+
+.verify-container .verify-email-input form > img{
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: 45px;
+    right: 25px;
+    cursor: pointer;
+}
