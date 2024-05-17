@@ -12,8 +12,10 @@ import { useMyContext } from "../../MyContext";
 import dark_mode from "../../Assets/dark_mode.png";
 import bell from "../../Assets/bell.png";
 import info from "../../Assets/info.png";
+import Loader from "../Loader/Loader";
 
 export default function ResourceManagement() {
+  const [isLoading, setIsLoading] = useState(true);
   const [option, setoption] = useState("");
   const [o1, seto1] = useState("");
   const [o2, seto2] = useState("");
@@ -47,6 +49,7 @@ export default function ResourceManagement() {
       const data = await response.json();
       setMedia(data.Search);
       setValue(data.Search);
+      setIsLoading(false);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -66,236 +69,246 @@ export default function ResourceManagement() {
   };
   return (
     <React.Fragment>
-      <div style={{ height: "100%" }}>
-        <main className="main">
-          <div className="main_div">
-            <div className="main-heading">
-              <h3 className="dm-sans" style={{ fontWeight: "bold" }}>
-                Resource Management
-              </h3>
-            </div>
-            <div className="material-searchbar">
-              <div className="material-searchbar-container">
-                <div className="material-searchbar-icons">
-                  <img src={bell}></img>
-                  <img src={dark_mode}></img>
-                  <img src={info}></img>
-                  <div className="material-profile">
-                    <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8dXNlciUyMHByb2ZpbGV8ZW58MHx8MHx8fDA%3D"></img>
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <div style={{ height: "100%" }}>
+          <main className="main">
+            <div className="main_div">
+              <div className="main-heading">
+                <h3 className="dm-sans" style={{ fontWeight: "bold" }}>
+                  Resource Management
+                </h3>
+              </div>
+              <div className="material-searchbar">
+                <div className="material-searchbar-container">
+                  <div className="material-searchbar-icons">
+                    <img src={bell}></img>
+                    <img src={dark_mode}></img>
+                    <img src={info}></img>
+                    <div className="material-profile">
+                      <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8dXNlciUyMHByb2ZpbGV8ZW58MHx8MHx8fDA%3D"></img>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div class="row px-4">
-            <div class="col-4">
-              <div class="row align-items-center">
-                <div class="col-4">
-                  <h5 className="dm-sans" style={{ fontWeight: "bold" }}>
-                    Resource
-                  </h5>
-                </div>
-                <div class="col-8 resource-searchbar">
-                  <div class="input-group flex-nowrap overflow-hidden rounded-pill" style={{height:"30px"}}>
-                    <span class="input-group-text" id="addon-wrapping">
-                      <SearchIcon />
-                    </span>
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="search_bar"
-                      placeholder="Username"
-                      aria-label="Username"
-                      aria-describedby="addon-wrapping"
-                    />
+            <div class="row px-4">
+              <div class="col-4">
+                <div class="row align-items-center">
+                  <div class="col-4">
+                    <h5 className="dm-sans" style={{ fontWeight: "bold" }}>
+                      Resource
+                    </h5>
+                  </div>
+                  <div class="col-8 resource-searchbar">
+                    <div
+                      class="input-group flex-nowrap overflow-hidden rounded-pill"
+                      style={{ height: "30px" }}
+                    >
+                      <span class="input-group-text" id="addon-wrapping">
+                        <SearchIcon />
+                      </span>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="search_bar"
+                        placeholder="Username"
+                        aria-label="Username"
+                        aria-describedby="addon-wrapping"
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
+              <div class="col-8 text-end">
+                <button
+                  type="button"
+                  class="add_resource dm-sans"
+                  style={{ fontSize: "medium" }}
+                >
+                  Add New Resource
+                </button>
+              </div>
             </div>
-            <div class="col-8 text-end">
-              <button
-                type="button"
-                class="add_resource dm-sans"
-                style={{ fontSize: "medium" }}
-              >
-                Add New Resource
-              </button>
-            </div>
-          </div>
-          <div
-            className="m-4 mb-0 rounded-3 overflow-hidden"
-            style={{ background: "#656261" }}
-          >
-            <div className="pt-3">
-              <nav>
-                <ul className="nav_list p-0">
-                  <li className="list-item dm-sans">
-                    <FormControl variant="standard" sx={{ width: "100%" }}>
-                      <InputLabel
-                        id="demo-simple-select-standard-label"
-                        sx={{
-                          color: "white",
-                          // left:"1rem",
-                          width: "80%",
-                          "&.Mui-focused": {
-                            color: "#2fbda3",
-                          },
-                        }}
-                      >
-                        Type
-                      </InputLabel>
-                      <Select
-                        labelId="demo-simple-select-standard-label"
-                        id="demo-simple-select-standard"
-                        value={o1}
-                        onChange={(el) => seto1(el.target.value)}
-                        label="Type"
-                        sx={{
-                          color: "white",
-                          "&:hover:not(.Mui-disabled, .Mui-error):before": {
-                            borderBottom: "2px solid #2fbda3",
-                          },
-                          "& .MuiSelect-icon": {
-                            color: "white", // Default color of the arrow icon
-                            fontSize: "1.5rem", // Default size of the arrow icon
-                          },
-                          "&:before": {
-                            borderBottomColor: "#e6e7e8",
-                          },
-                          "&:after": {
-                            borderBottomColor: "#2fbda3",
-                          },
-                        }}
-                      >
-                        <MenuItem value="">
-                          <em>None</em>
-                        </MenuItem>
-                        {typeOptions?.map((type, i) => {
-                          return (
-                            <MenuItem key={i} value={type}>
-                              {type}
-                            </MenuItem>
-                          );
-                        })}
-                      </Select>
-                    </FormControl>
-                  </li>
+            <div
+              className="m-4 mb-0 rounded-3 overflow-hidden"
+              style={{ background: "#656261" }}
+            >
+              <div className="pt-3">
+                <nav>
+                  <ul className="nav_list p-0">
+                    <li className="list-item dm-sans">
+                      <FormControl variant="standard" sx={{ width: "100%" }}>
+                        <InputLabel
+                          id="demo-simple-select-standard-label"
+                          sx={{
+                            color: "white",
+                            // left:"1rem",
+                            width: "80%",
+                            "&.Mui-focused": {
+                              color: "#2fbda3",
+                            },
+                          }}
+                        >
+                          Type
+                        </InputLabel>
+                        <Select
+                          labelId="demo-simple-select-standard-label"
+                          id="demo-simple-select-standard"
+                          value={o1}
+                          onChange={(el) => seto1(el.target.value)}
+                          label="Type"
+                          sx={{
+                            color: "white",
+                            "&:hover:not(.Mui-disabled, .Mui-error):before": {
+                              borderBottom: "2px solid #2fbda3",
+                            },
+                            "& .MuiSelect-icon": {
+                              color: "white", // Default color of the arrow icon
+                              fontSize: "1.5rem", // Default size of the arrow icon
+                            },
+                            "&:before": {
+                              borderBottomColor: "#e6e7e8",
+                            },
+                            "&:after": {
+                              borderBottomColor: "#2fbda3",
+                            },
+                          }}
+                        >
+                          <MenuItem value="">
+                            <em>None</em>
+                          </MenuItem>
+                          {typeOptions?.map((type, i) => {
+                            return (
+                              <MenuItem key={i} value={type}>
+                                {type}
+                              </MenuItem>
+                            );
+                          })}
+                        </Select>
+                      </FormControl>
+                    </li>
 
-                  <li className="list-item dm-sans">
-                    <FormControl variant="standard" sx={{ width: "100%" }}>
-                      <InputLabel
-                        id="demo-simple-select-standard-label"
-                        sx={{
-                          color: "white",
-                          width: "80%",
-                          "&.Mui-focused": {
-                            color: "#2fbda3",
-                          },
-                        }}
-                      >
-                        Category
-                      </InputLabel>
-                      <Select
-                        labelId="demo-simple-select-standard-label"
-                        id="demo-simple-select-standard"
-                        value={option}
-                        onChange={handleChange}
-                        label="Category"
-                        sx={{
-                          color: "white",
-                          "&:hover:not(.Mui-disabled, .Mui-error):before": {
-                            borderBottom: "2px solid #2fbda3",
-                          },
-                          "& .MuiSelect-icon": {
-                            color: "white", // Default color of the arrow icon
-                            fontSize: "1.5rem", // Default size of the arrow icon
-                          },
-                          "&:before": {
-                            borderBottomColor: "#e6e7e8",
-                          },
-                          "&:after": {
-                            borderBottomColor: "#2fbda3",
-                          },
-                        }}
-                      >
-                        <MenuItem value="">
-                          <em>None</em>
-                        </MenuItem>
-                        {categories?.map((category, i) => {
-                          return (
-                            <MenuItem key={i} value={category}>
-                              {category}
-                            </MenuItem>
-                          );
-                        })}
-                      </Select>
-                    </FormControl>
-                  </li>
+                    <li className="list-item dm-sans">
+                      <FormControl variant="standard" sx={{ width: "100%" }}>
+                        <InputLabel
+                          id="demo-simple-select-standard-label"
+                          sx={{
+                            color: "white",
+                            width: "80%",
+                            "&.Mui-focused": {
+                              color: "#2fbda3",
+                            },
+                          }}
+                        >
+                          Category
+                        </InputLabel>
+                        <Select
+                          labelId="demo-simple-select-standard-label"
+                          id="demo-simple-select-standard"
+                          value={option}
+                          onChange={handleChange}
+                          label="Category"
+                          sx={{
+                            color: "white",
+                            "&:hover:not(.Mui-disabled, .Mui-error):before": {
+                              borderBottom: "2px solid #2fbda3",
+                            },
+                            "& .MuiSelect-icon": {
+                              color: "white", // Default color of the arrow icon
+                              fontSize: "1.5rem", // Default size of the arrow icon
+                            },
+                            "&:before": {
+                              borderBottomColor: "#e6e7e8",
+                            },
+                            "&:after": {
+                              borderBottomColor: "#2fbda3",
+                            },
+                          }}
+                        >
+                          <MenuItem value="">
+                            <em>None</em>
+                          </MenuItem>
+                          {categories?.map((category, i) => {
+                            return (
+                              <MenuItem key={i} value={category}>
+                                {category}
+                              </MenuItem>
+                            );
+                          })}
+                        </Select>
+                      </FormControl>
+                    </li>
 
-                  <li className="list-item dm-sans">
-                    <FormControl variant="standard" sx={{ width: "100%" }}>
-                      <InputLabel
-                        id="demo-simple-select-standard-label"
-                        sx={{
-                          color: "white",
-                          width: "80%",
-                          "&.Mui-focused": {
-                            color: "#2fbda3",
-                          },
-                        }}
-                      >
-                        Certification
-                      </InputLabel>
-                      <Select
-                        labelId="demo-simple-select-standard-label"
-                        id="demo-simple-select-standard"
-                        value={o2}
-                        onChange={(el) => seto2(el.target.value)}
-                        label="Certification"
-                        sx={{
-                          color: "white",
-                          "&:hover:not(.Mui-disabled, .Mui-error):before": {
-                            borderBottom: "2px solid #2fbda3",
-                          },
-                          "& .MuiSelect-icon": {
-                            color: "white", // Default color of the arrow icon
-                            fontSize: "1.5rem", // Default size of the arrow icon
-                          },
-                          "&:before": {
-                            borderBottomColor: "#e6e7e8",
-                          },
-                          "&:after": {
-                            borderBottomColor: "#2fbda3",
-                          },
-                        }}
-                      >
-                        <MenuItem value="">
-                          <em>None</em>
-                        </MenuItem>
-                        {certifications?.map((certification, i) => {
-                          return (
-                            <MenuItem key={i} value={certification}>
-                              {certification}
-                            </MenuItem>
-                          );
-                        })}
-                      </Select>
-                    </FormControl>
-                  </li>
-                  <li
-                    style={{ width: "70%", borderBottom: "1px solid #e6e7e8" }}
-                  ></li>
-                </ul>
-              </nav>
+                    <li className="list-item dm-sans">
+                      <FormControl variant="standard" sx={{ width: "100%" }}>
+                        <InputLabel
+                          id="demo-simple-select-standard-label"
+                          sx={{
+                            color: "white",
+                            width: "80%",
+                            "&.Mui-focused": {
+                              color: "#2fbda3",
+                            },
+                          }}
+                        >
+                          Certification
+                        </InputLabel>
+                        <Select
+                          labelId="demo-simple-select-standard-label"
+                          id="demo-simple-select-standard"
+                          value={o2}
+                          onChange={(el) => seto2(el.target.value)}
+                          label="Certification"
+                          sx={{
+                            color: "white",
+                            "&:hover:not(.Mui-disabled, .Mui-error):before": {
+                              borderBottom: "2px solid #2fbda3",
+                            },
+                            "& .MuiSelect-icon": {
+                              color: "white", // Default color of the arrow icon
+                              fontSize: "1.5rem", // Default size of the arrow icon
+                            },
+                            "&:before": {
+                              borderBottomColor: "#e6e7e8",
+                            },
+                            "&:after": {
+                              borderBottomColor: "#2fbda3",
+                            },
+                          }}
+                        >
+                          <MenuItem value="">
+                            <em>None</em>
+                          </MenuItem>
+                          {certifications?.map((certification, i) => {
+                            return (
+                              <MenuItem key={i} value={certification}>
+                                {certification}
+                              </MenuItem>
+                            );
+                          })}
+                        </Select>
+                      </FormControl>
+                    </li>
+                    <li
+                      style={{
+                        width: "70%",
+                        borderBottom: "1px solid #e6e7e8",
+                      }}
+                    ></li>
+                  </ul>
+                </nav>
+              </div>
+              <div className="card_container">
+                {media.map((el, i) => {
+                  return <MediaCard key={i} el={el} image={image} />;
+                })}
+              </div>
             </div>
-            <div className="card_container">
-              {media.map((el, i) => {
-                return <MediaCard key={i} el={el} image={image} />;
-              })}
-            </div>
-          </div>
-        </main>
-      </div>
+          </main>
+        </div>
+      )}
       {/* <Dialog handleClose={handleClose} open={open} /> */}
     </React.Fragment>
   );

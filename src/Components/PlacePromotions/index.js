@@ -8,10 +8,11 @@ import MediaCard from "./MediaCard/MediaCard";
 import dark_mode from "../../Assets/dark_mode.png";
 import bell from "../../Assets/bell.png";
 import info from "../../Assets/info.png";
+import Loader from "../Loader/Loader";
 
 export default function ResourceManagement() {
   const [media, setMedia] = useState([]);
-
+  const [isLoading, setisLoading] = useState(true)
   useEffect(() => {
     const fetchMedia = async () => {
       try {
@@ -25,7 +26,7 @@ export default function ResourceManagement() {
         const originalArray = data.ids;
         const uniqueArray = [...new Set(originalArray)];
         setMedia(uniqueArray);
-
+        setisLoading(false)
         console.log(data);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -36,7 +37,7 @@ export default function ResourceManagement() {
 
   return (
     <React.Fragment>
-      <div style={{ height: "100%" }}>
+      {isLoading ? <Loader/> : (<div style={{ height: "100%" }}>
         <main className="main">
           <div className="main_div">
             <div className="main-heading">
@@ -106,7 +107,7 @@ export default function ResourceManagement() {
             </div>
           </div>
         </main>
-      </div>
+      </div>)}
       {/* <Dialog handleClose={handleClose} open={open} /> */}
     </React.Fragment>
   );
