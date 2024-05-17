@@ -11,6 +11,7 @@ import Typography from "@mui/material/Typography";
 import { Stack } from "@mui/material";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import { bgcolors as bg, textcolors as tx } from "../../color";
+import { responsive, Carousel } from "../../videosider";
 
 import "./Dialog.css";
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
@@ -55,13 +56,13 @@ export default function CustomizedDialogs({ handleClose, open, clips, name }) {
       aria-labelledby="customized-dialog-title"
       open={open}
       sx={{
-        "& .MuiDialog-container": {
-          justifyContent: "flex-end", // Flex end aligns the dialog content to the end of the flex container
-        },
+        // "& .MuiDialog-container": {
+        //   justifyContent: "flex-end", // Flex end aligns the dialog content to the end of the flex container
+        // },
         "& .css-1t1j96h-MuiPaper-root-MuiDialog-paper": {
           margin: 0,
-          height: "100%",
-          maxHeight: "calc(100% - 40px)",
+          // height: "100%",
+          // maxHeight: "calc(100% - 40px)",
           width: "35%",
           bgcolor: bg.bgDialog,
           color: tx.textDialog,
@@ -90,7 +91,7 @@ export default function CustomizedDialogs({ handleClose, open, clips, name }) {
         }}
       >
         <Typography gutterBottom>Available Clips</Typography>
-        <Stack direction={"column"} spacing={2} pt={3}>
+        {/* <Stack direction={"column"} spacing={2} pt={3}>
           {clips.map((clip, index) => {
             return (
               <Stack key={index} direction={"row"} alignItems={"end"} spacing={1}>
@@ -116,7 +117,45 @@ export default function CustomizedDialogs({ handleClose, open, clips, name }) {
               </Stack>
             );
           })}
-        </Stack>
+        </Stack> */}
+        <Carousel showDots={false} responsive={responsive}>
+        {
+          clips.map((clip, index) =>{return(
+            <Stack
+                key={index}
+                spacing={1}
+                sx={{
+                  marginBottom:3
+                }}
+              >
+                <div className="clip-container rounded-2" style={{width:"100%",
+                  
+                }}>
+                  <video autoplay muted loop playsinline>
+                    <source src={clip.location} type="video/mp4" />
+                    Your browser does not support the video tag.
+                  </video>
+                  <div className="content p-2" > 
+                    <p>{clip.name}</p>
+                  </div>
+                </div>
+                <div style={{textAlign:"center"}}>
+                  <Button
+                    endIcon={<KeyboardArrowRightIcon />}
+                    variant="contained"
+                    className="ai-detection-btn"
+                    onClick={(e) => aiDetection(clip._id)}
+                    sx={{
+                      fontSize:"small"
+                    }}
+                  >
+                     Send for AI detection
+                  </Button>
+                </div>
+              </Stack>
+          )})
+        }
+        </Carousel>
       </DialogContent>
 
       <DialogActions className="dialog-actions">

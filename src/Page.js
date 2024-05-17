@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import SideBar from './Components/SideBar/index';
+import SideBar from "./Components/SideBar/index";
 import { Outlet } from "react-router-dom";
 import { CookiesProvider, useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
@@ -17,14 +17,21 @@ function DashBoardContainer() {
   const navigate = useNavigate();
 
   return (
- <div style={{
-  height:"100vh",
-  display:"grid",
-  gridTemplateColumns: "repeat(12, 1fr)"
- }}>
-  <div style={{ gridColumn: "span 2"}}><SideBar/></div>
-  <div style={{ gridColumn: "span 10" }}> <Outlet /></div>
- </div>
+    <div
+      style={{
+        height: "100vh",
+        display: "grid",
+        gridTemplateColumns: "repeat(12, 1fr)",
+      }}
+    >
+      <div style={{ gridColumn: "span 2" }}>
+        <SideBar />
+      </div>
+      <div style={{ gridColumn: "span 10" }}>
+        {" "}
+        <Outlet />
+      </div>
+    </div>
   );
 }
 

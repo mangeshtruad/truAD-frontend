@@ -90,8 +90,8 @@ export default function RaiseTicket() {
                 Help
               </h3>
             </div>
-            <div className="mainHelp_icon">
-              <div className="align-self-center" style={{ width: "50%" }}>
+            <div className="mainHelp_icon" style={{width:"40%"}}>
+              <div className="align-self-center" style={{ width: "40%" }}>
                 <p className="p-2 pt-3 dm-sans">
                   <Box
                     component={"h6"}
@@ -118,7 +118,7 @@ export default function RaiseTicket() {
                   </Box>
                 </p>
               </div>
-              <div className="material-searchbar" style={{width:"none"}}>
+              <div className="material-searchbar" style={{width:"30%"}}>
               <div className="material-searchbar-container">
                 <div className="material-searchbar-icons">
                   <img src={bell}></img>
@@ -235,7 +235,7 @@ export default function RaiseTicket() {
                       <td>
                         <p className="status-label rounded-pill">{el.status}</p>
                       </td>
-                      <td>{el.supportTeam}</td>
+                      <td>{el.supportTeam}IT Department</td>
                       <td>{el.createdAt}</td>
                       <td>{el.updatedAt}</td>
                       <td>

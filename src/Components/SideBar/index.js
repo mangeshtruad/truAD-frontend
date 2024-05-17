@@ -1,16 +1,22 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./SideBar.css";
 import TruAdlogo from "../../logo/Logo.png";
 import Logomark from "../../Assets/Logomark.png"
 import ItemList from "./itemList";
 import { CookiesProvider, useCookies } from "react-cookie";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 export default function SideBar() {
   const [cookies, setCookie, removeCookie] = useCookies(["user"]);
   const navigate = useNavigate();
-
+  let location = useLocation();
+  console.log(location.pathname)
   const[list, setlist]=useState(ItemList)
+  useEffect(() => {
+    // if (location.pathname !== "/") {
+      navigate("/dashboard");
+    // }
+  }, []);
   const hendleClick=(index, el)=>{
     const newlist=list.map((el,ind)=>{
       if(ind===index){
