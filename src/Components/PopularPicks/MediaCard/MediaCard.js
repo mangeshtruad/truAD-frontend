@@ -83,7 +83,12 @@ const MediaCard = ({ el,}) => {
         setClips={setClips}
       />
     ) : (
-      <Dialog handleClose={handleClose} open={open} clips={clips} name={el.Title}/>
+      // <Dialog handleClose={handleClose} open={open} clips={clips} name={el.Title}/>
+      <Uploadvideo
+        handleClose={handleClose}
+        open={open}
+        setClips={setClips}
+      />
     )}
     </>
   );

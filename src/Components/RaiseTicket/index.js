@@ -18,6 +18,7 @@ import dark_mode from "../../Assets/dark_mode.png";
 import bell from "../../Assets/bell.png";
 import info from "../../Assets/info.png";
 import "./raiseticket.css";
+import { styled } from '@mui/material/styles';
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
 export default function RaiseTicket() {
   const [open, setOpen] = React.useState(false);
@@ -90,9 +91,9 @@ export default function RaiseTicket() {
                 Help
               </h3>
             </div>
-            <div className="mainHelp_icon">
-              <div className="align-self-center" style={{ width: "50%" }}>
-                <p className="p-2 pt-3 dm-sans">
+            <div className="mainHelp_icon" style={{width:"40%", justifyContent:"end"}}>
+              <div className="align-self-center" style={{ width: "40%", minWidth:"280px" }}>
+                <p className="m-0 pt-3 dm-sans">
                   <Box
                     component={"h6"}
                     className="mainHelp_text"
@@ -118,7 +119,7 @@ export default function RaiseTicket() {
                   </Box>
                 </p>
               </div>
-              <div className="material-searchbar" style={{width:"none"}}>
+              <div className="material-searchbar" style={{width:"30%", minWidth:"100px"}}>
               <div className="material-searchbar-container">
                 <div className="material-searchbar-icons">
                   <img src={bell}></img>
@@ -136,7 +137,7 @@ export default function RaiseTicket() {
             <div class="col-4">
               <div class="row align-items-center">
                 <div class="col-8 resource-searchbar">
-                  <div class="input-group flex-nowrap overflow-hidden rounded-pill">
+                  <div class="input-group flex-nowrap overflow-hidden rounded-pill" style={{height:"30px"}}>
                     <span class="input-group-text" id="addon-wrapping">
                       <SearchIcon />
                     </span>
@@ -235,7 +236,7 @@ export default function RaiseTicket() {
                       <td>
                         <p className="status-label rounded-pill">{el.status}</p>
                       </td>
-                      <td>{el.supportTeam}</td>
+                      <td>{el.supportTeam}IT Department</td>
                       <td>{el.createdAt}</td>
                       <td>{el.updatedAt}</td>
                       <td>

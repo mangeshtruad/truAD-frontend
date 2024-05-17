@@ -96,7 +96,7 @@ export default function ResourceManagement() {
                   </h5>
                 </div>
                 <div class="col-8 resource-searchbar">
-                  <div class="input-group flex-nowrap overflow-hidden rounded-pill">
+                  <div class="input-group flex-nowrap overflow-hidden rounded-pill" style={{height:"30px"}}>
                     <span class="input-group-text" id="addon-wrapping">
                       <SearchIcon />
                     </span>

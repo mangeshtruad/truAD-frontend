@@ -48,7 +48,7 @@ export default function RaiseTicket() {
           <div class="col-4">
             <div class="row align-items-center">
               <div class="col-8 resource-searchbar">
-                <div class="input-group flex-nowrap overflow-hidden rounded-pill">
+                <div class="input-group flex-nowrap overflow-hidden rounded-pill" style={{height:"30px"}}>
                   <span class="input-group-text" id="addon-wrapping">
                     <SearchIcon />
                   </span>
