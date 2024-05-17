@@ -16,6 +16,8 @@ import { responsive, responsive1, Carousel } from "../videosider";
 import AIPopUp from "../AIDetection/AIPopUp";
 import ProcessedPopUp from "../ProcessedPopUp/ProcessedPopUp";
 import CallPopUp from "../CallPopUp/CallPopUp";
+import video_call from "../../Assets/video-call.png";
+import voice_call from "../../Assets/voice-call.png";
 
 const HomePage = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -103,7 +105,7 @@ const HomePage = () => {
           selectedClipId={selectedProcessedClip}
         />
       )}
-      {callOpen && <CallPopUp togglePopup={callToggle} />}
+      {/* {callOpen && <CallPopUp togglePopup={callToggle} />} */}
 
       <div className="homepage-header">
         <div className="homepage-user-info">
@@ -153,12 +155,24 @@ const HomePage = () => {
             </div>
           </div>
         </div>
-        <div className="homepage-call-btn" onClick={callToggle}>
+        {!callOpen ? <div className="homepage-call-btn" onClick={callToggle}>
           <div className="hompage-call-btnn-icon">
             <SupportAgentIcon />
           </div>
           <p>Call for Instant Support</p>
-        </div>
+        </div> :
+        <div className="homepage-calls-btn" onClick={callToggle}>
+          <div className="homepage-calls-btn-voice">
+            <div className="homepage-calls-btn-voice-icon">
+              <img src={voice_call}></img>
+            </div>
+          </div>
+          <div className="homepage-calls-btn-video">
+            <div className="homepage-calls-btn-video-icon">
+              <img src={video_call}></img>
+            </div>
+          </div>
+        </div>}
         <div
           className="homepage-ticket-btn"
           onClick={() => navigate("/dashboard/raiseticket")}

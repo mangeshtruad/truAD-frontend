@@ -180,6 +180,71 @@
     transition: all 0.5s ease;
 }
 
+.homepage-container .homepage-info-container .homepage-calls-btn{
+    width: 13rem;
+    height: 4rem;
+    border: 1px solid #66ffb3;
+    border-radius: 1rem;
+    display: flex;
+    align-items: center;
+    transition: all 0.5s ease;
+}
+
+.homepage-container .homepage-info-container .homepage-calls-btn .homepage-calls-btn-voice{
+    width: 48%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.homepage-container .homepage-info-container .homepage-calls-btn .homepage-calls-btn-voice .homepage-calls-btn-voice-icon{
+    width: 70%;
+    height: 80%;
+    background-color: #2FBDA3;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;    cursor: pointer;
+    transition: all 0.5s ease;
+}
+
+.homepage-container .homepage-info-container .homepage-calls-btn .homepage-calls-btn-voice .homepage-calls-btn-voice-icon:hover{
+    background-color: #66ffb3;
+}
+.homepage-container .homepage-info-container .homepage-calls-btn .homepage-calls-btn-voice .homepage-calls-btn-voice-icon > img{
+    width: 30px;
+    height: 30px;
+}
+
+.homepage-container .homepage-info-container .homepage-calls-btn .homepage-calls-btn-video{
+    width: 48%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.homepage-container .homepage-info-container .homepage-calls-btn .homepage-calls-btn-video .homepage-calls-btn-video-icon{
+    width: 70%;
+    height: 80%;
+    background-color: #2FBDA3;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.5s ease;
+}
+
+.homepage-container .homepage-info-container .homepage-calls-btn .homepage-calls-btn-video .homepage-calls-btn-video-icon:hover{
+    background-color: #66ffb3;
+}
+.homepage-container .homepage-info-container .homepage-calls-btn .homepage-calls-btn-video .homepage-calls-btn-video-icon > img{
+    width: 30px;
+    height: 30px;
+}
+
 .homepage-container .homepage-info-container .homepage-call-btn:hover{
     background-color: #2FBDA3;
 }
