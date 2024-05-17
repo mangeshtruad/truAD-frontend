@@ -1,0 +1,74 @@
+.notification-box {
+    width: 170px;
+    background-color: white;
+    position: absolute;
+    top: 48px;
+    left: 50%; /* Centers the notification box horizontally */
+    transform: translateX(-50%); /* Centers the notification box horizontally */
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    height: max-content;
+    border-radius: 1rem;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    text-align: center; /* Centers the text */
+}
+
+.notification-box > p{
+    margin: 0;
+    margin-bottom: 1px;
+}
+.notification-box::before {
+    content: '';
+    position: absolute;
+    top: -10px; /* Position the arrow above the box */
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 0 10px 10px 10px;
+    border-style: solid;
+    border-color: transparent transparent white transparent;
+    z-index: -1; /* Places the arrow behind the box */
+}
+
+.notification-box .notification-divider{
+    height: 1px;
+    background-color: grey;
+    width: 100%;
+}
+
+.notification-box .notifications{
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.notification-box .notifications .notification{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    margin: 10px 0;
+    transition: all 0.5s ease;
+    padding: 2px 5px;
+    border-radius: 0.5rem;
+}
+
+.notification-box .notifications .notification:hover{
+    background-color: 	#D8D8D8;
+}
+
+.notification-box .notifications .notification > h6 {
+    font-size: 12px;
+    margin: 0;
+    text-align: start;
+    margin-bottom: 4px;
+}
+
+.notification-box .notifications .notification > p{
+    font-size: 10px;
+    margin: 0;
+    text-align: start;
+}

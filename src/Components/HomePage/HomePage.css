@@ -88,12 +88,21 @@
     align-items: center;
 }
 
-.homepage-container .homepage-header .homepage-searchbar .homepage-searchbar-container .homepage-searchbar-icons > img{
+.homepage-container .homepage-header .homepage-searchbar .homepage-searchbar-container .homepage-searchbar-icons .homepage-searchbar-icons-notif{
+    position: relative;
+}
+
+.homepage-container .homepage-header .homepage-searchbar .homepage-searchbar-container .homepage-searchbar-icons .homepage-searchbar-icons-info{
+    position: relative;
+}
+
+.homepage-container .homepage-header .homepage-searchbar .homepage-searchbar-container .homepage-searchbar-icons  img{
     height: 15px;
     width: 15px
 }
 
 .homepage-container .homepage-header .homepage-searchbar .homepage-searchbar-container .homepage-searchbar-icons .homepage-profile{
+    position: relative;
     display: flex;
     align-items: center;
 }

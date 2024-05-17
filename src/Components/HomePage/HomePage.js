@@ -15,9 +15,12 @@ import { useNavigate } from "react-router-dom";
 import { responsive, responsive1, Carousel } from "../videosider";
 import AIPopUp from "../AIDetection/AIPopUp";
 import ProcessedPopUp from "../ProcessedPopUp/ProcessedPopUp";
-import CallPopUp from "../CallPopUp/CallPopUp";
 import video_call from "../../Assets/video-call.png";
 import voice_call from "../../Assets/voice-call.png";
+import Notification from "../Notification/Notification";
+import Information from "../Information/Information";
+import Profile from "../Profile/Profile";
+import Loader from "../Loader/Loader";
 
 const HomePage = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -30,6 +33,12 @@ const HomePage = () => {
   const [selectedProcessedClip, setSelectedProcessedClip] = useState(null);
   const [processedOpen, setProcessedOpen] = useState(false);
   const [callOpen, setCallOpen] = useState(false);
+  const [openBox, setOpenBox] = useState(null)
+  const [isLoading, setIsLoading] = useState(true)
+
+  const handleBoxToggle = (boxName) => {
+    setOpenBox(openBox === boxName ? null : boxName); // Toggle the box visibility
+  };
 
   const navigate = useNavigate();
 
@@ -84,6 +93,7 @@ const HomePage = () => {
         setOngoing(ongoingClips);
 
         setProcessedClips(processed);
+        setIsLoading(false)
       } catch (error) {
         console.error("Error fetching videos:", error);
       }
@@ -93,7 +103,8 @@ const HomePage = () => {
   }, []);
 
   return (
-    <div className="homepage-container">
+    <>
+    {isLoading ? <Loader/> : (<div className="homepage-container">
       {isOpen && <PopUp togglePopup={togglePopup} />}
 
       {availOpen && (
@@ -119,14 +130,22 @@ const HomePage = () => {
               <img src={search} alt=""></img>
             </div>
             <div className="homepage-searchbar-icons">
-              <img src={bell} alt=""></img>
+              <div className="homepage-searchbar-icons-notif">
+                <img src={bell} alt="" onClick={() => handleBoxToggle("notification")}/>
+                {openBox === "notification" && <Notification />}
+              </div>
               <img src={dark_mode} alt=""></img>
-              <img src={info} alt=""></img>
+              <div className="homepage-searchbar-icons-info">
+              <img src={info} alt="" onClick={() => handleBoxToggle("info")}></img>
+              {openBox === "info" && <Information />}
+              </div>
               <div className="homepage-profile">
                 <img
                   alt=""
                   src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8dXNlciUyMHByb2ZpbGV8ZW58MHx8MHx8fDA%3D"
+                  onClick={() => handleBoxToggle("profile")}
                 ></img>
+                {openBox === "profile" && <Profile />}
               </div>
             </div>
           </div>
@@ -155,24 +174,27 @@ const HomePage = () => {
             </div>
           </div>
         </div>
-        {!callOpen ? <div className="homepage-call-btn" onClick={callToggle}>
-          <div className="hompage-call-btnn-icon">
-            <SupportAgentIcon />
+        {!callOpen ? (
+          <div className="homepage-call-btn" onClick={callToggle}>
+            <div className="hompage-call-btnn-icon">
+              <SupportAgentIcon />
+            </div>
+            <p>Call for Instant Support</p>
           </div>
-          <p>Call for Instant Support</p>
-        </div> :
-        <div className="homepage-calls-btn" onClick={callToggle}>
-          <div className="homepage-calls-btn-voice">
-            <div className="homepage-calls-btn-voice-icon">
-              <img src={voice_call}></img>
+        ) : (
+          <div className="homepage-calls-btn" onClick={callToggle}>
+            <div className="homepage-calls-btn-voice">
+              <div className="homepage-calls-btn-voice-icon">
+                <img src={voice_call}></img>
+              </div>
+            </div>
+            <div className="homepage-calls-btn-video">
+              <div className="homepage-calls-btn-video-icon">
+                <img src={video_call}></img>
+              </div>
             </div>
           </div>
-          <div className="homepage-calls-btn-video">
-            <div className="homepage-calls-btn-video-icon">
-              <img src={video_call}></img>
-            </div>
-          </div>
-        </div>}
+        )}
         <div
           className="homepage-ticket-btn"
           onClick={() => navigate("/dashboard/raiseticket")}
@@ -371,7 +393,8 @@ const HomePage = () => {
           </div>
         </div>
       </div>
-    </div>
+    </div>)}
+    </>
   );
 };
 

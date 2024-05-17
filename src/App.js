@@ -16,6 +16,7 @@ import ActionPage from "./Components/ActionPage/ActionPage";
 import { MyContextProvider } from "./MyContext";
 import VerifyOTP from "./Components/VerifyOTP/VerifyOTP";
 import ConfirmPassword from "./Components/ConfirmPassword/ConfirmPassword";
+import Loader from "./Components/Loader/Loader";
 
 function App() {
   const router = createBrowserRouter([
@@ -75,6 +76,10 @@ function App() {
         {
           path: "/dashboard/actionpage",
           element: <ActionPage />,
+        },
+        {
+          path: "/dashboard/loader",
+          element: <Loader />,
         },
       ],
     },
