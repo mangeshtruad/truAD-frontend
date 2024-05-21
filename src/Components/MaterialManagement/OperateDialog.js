@@ -81,7 +81,7 @@ export default function OprateDialog(props) {
         <p>Operate</p>
       </div>
       {open && (
-        <div className="popup" ref={popupRef}>
+        <div className="popup" ref={popupRef} style={{width:"50%"}}>
           <div className="popup-header">
             <svg
               width="24"
