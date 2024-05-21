@@ -11,7 +11,6 @@ function ActionPage() {
   const [image, setimage] = useState(location?.state?.img || '');
   const [result, setResult] = useState('')
 
-  console.log("img", location.state.location)
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetch("https://truad-dashboard-backend.onrender.com/api/getMaterial");

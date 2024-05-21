@@ -1,10 +1,9 @@
-.notification-box {
-    width: max-content;
+.ticket-box {
+    width: 200px;
     background-color: white;
     position: absolute;
     top: 48px;
-    left: 50%; /* Centers the notification box horizontally */
-    transform: translateX(-50%); /* Centers the notification box horizontally */
+    right: 0; /* Positions the ticket box absolutely to the right */
     z-index: 3;
     display: flex;
     flex-direction: column;
@@ -15,29 +14,29 @@
     text-align: center; /* Centers the text */
 }
 
-.notification-box > p{
+.ticket-box > p{
     margin: 0;
     margin-bottom: 1px;
 }
-.notification-box::before {
+.ticket-box::before {
     content: '';
     position: absolute;
     top: -10px; /* Position the arrow above the box */
-    left: 50%;
-    transform: translateX(-50%);
+    right: 0;
+    transform: translateX(-90%);
     border-width: 0 10px 10px 10px;
     border-style: solid;
     border-color: transparent transparent white transparent;
     z-index: -1; /* Places the arrow behind the box */
 }
 
-.notification-box .notification-divider{
+.ticket-box .ticket-divider{
     height: 1px;
     background-color: grey;
     width: 100%;
 }
 
-.notification-box .notifications{
+.ticket-box .tickets{
     margin-top: 10px;
     display: flex;
     flex-direction: column;
@@ -45,30 +44,39 @@
     width: 100%;
 }
 
-.notification-box .notifications .notification{
+.ticket-box .tickets .ticket{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     width: 100%;
     margin: 10px 0;
-    transition: all 0.5s ease;
-    padding: 2px 5px;
-    border-radius: 0.5rem;
 }
 
-.notification-box .notifications .notification:hover{
-    background-color: 	#D8D8D8;
+.ticket-box .tickets .ticket > h6 {
+    font-size: 16px;
+    margin: 0;
+    text-align: start;
+    margin-bottom: 7px;
 }
 
-.notification-box .notifications .notification > h6 {
+.ticket-box .tickets .ticket > p{
     font-size: 12px;
     margin: 0;
     text-align: start;
-    margin-bottom: 4px;
 }
 
-.notification-box .notifications .notification > p{
-    font-size: 10px;
-    margin: 0;
-    text-align: start;
+.ticket-box .tickets button{
+    margin-top: 10px;
+    width: 100%;
+    padding: 10px 15px;
+    background-color: #2fbda3;
+    color: white;
+    border: none;
+    border-radius: 1rem;
+    transition: all 0.5s ease;
+}
+
+.ticket-box .tickets button:hover{
+    background-color: #205072;
+    cursor: pointer;
 }

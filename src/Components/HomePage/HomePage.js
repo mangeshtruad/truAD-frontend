@@ -21,6 +21,8 @@ import Notification from "../Notification/Notification";
 import Information from "../Information/Information";
 import Profile from "../Profile/Profile";
 import Loader from "../Loader/Loader";
+import TicketMenu from "../TicketMenu/TicketMenu";
+import ClipMenu from "../ClipMenu/ClipMenu";
 
 const HomePage = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -28,6 +30,7 @@ const HomePage = () => {
   const [items, setItems] = useState([]);
   const [ongoing, setOngoing] = useState([]);
   const [processedClips, setProcessedClips] = useState([]);
+  const [notifications, setNotifications] = useState([])
   const [availOpen, setAvailOpen] = useState(false);
   const [selectedOngoingClip, setSelectedOngoingClip] = useState(null);
   const [selectedProcessedClip, setSelectedProcessedClip] = useState(null);
@@ -35,6 +38,16 @@ const HomePage = () => {
   const [callOpen, setCallOpen] = useState(false);
   const [openBox, setOpenBox] = useState(null)
   const [isLoading, setIsLoading] = useState(true)
+  const [ticketOpen, setTicketOpen] = useState(false)
+  const [clipOpen, setClipOpen] = useState(false)
+
+  const handleTicketToggle = () => {
+    setTicketOpen(!ticketOpen)
+  }
+
+  const handleClipToggle = () => {
+    setClipOpen(!clipOpen)
+  }
 
   const handleBoxToggle = (boxName) => {
     setOpenBox(openBox === boxName ? null : boxName); // Toggle the box visibility
@@ -68,6 +81,16 @@ const HomePage = () => {
     processedToggle();
   };
 
+  const fetchNotification = async() => {
+    try {
+      const response = await fetch("http://localhost:4000/notifications");
+      const data = await response.json();
+      setNotifications(data.notifications)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   useEffect(() => {
     const fetchVideos = async () => {
       try {
@@ -93,6 +116,7 @@ const HomePage = () => {
         setOngoing(ongoingClips);
 
         setProcessedClips(processed);
+        console.log(processed)
         setIsLoading(false)
       } catch (error) {
         console.error("Error fetching videos:", error);
@@ -100,6 +124,7 @@ const HomePage = () => {
     };
 
     fetchVideos();
+    fetchNotification()
   }, []);
 
   return (
@@ -132,7 +157,7 @@ const HomePage = () => {
             <div className="homepage-searchbar-icons">
               <div className="homepage-searchbar-icons-notif">
                 <img src={bell} alt="" onClick={() => handleBoxToggle("notification")}/>
-                {openBox === "notification" && <Notification />}
+                {openBox === "notification" && <Notification notifications={notifications}/>}
               </div>
               <img src={dark_mode} alt=""></img>
               <div className="homepage-searchbar-icons-info">
@@ -176,10 +201,10 @@ const HomePage = () => {
         </div>
         {!callOpen ? (
           <div className="homepage-call-btn" onClick={callToggle}>
-            <div className="hompage-call-btnn-icon">
+            {/* <div className="hompage-call-btnn-icon">
               <SupportAgentIcon />
-            </div>
-            <p>Call for Instant Support</p>
+            </div> */}
+            <p>Instant Support</p>
           </div>
         ) : (
           <div className="homepage-calls-btn" onClick={callToggle}>
@@ -279,7 +304,7 @@ const HomePage = () => {
         <div className="homepage-tickets">
           <div className="homepage-tickets-header">
             <p>Tickets Raised (4)</p>
-            <div className="more-btn">
+            <div className="more-btn"  onClick={handleTicketToggle}>
               <img src={more} alt=""></img>
             </div>
           </div>
@@ -345,11 +370,12 @@ const HomePage = () => {
               </tbody>
             </table>
           </div>
+          {ticketOpen && <TicketMenu/>}
         </div>
         <div className="homepage-tickets">
           <div className="homepage-tickets-header">
             <p>Clip Advertisements (4)</p>
-            <div className="more-btn">
+            <div className="more-btn" onClick={handleClipToggle}>
               <img src={more} alt=""></img>
             </div>
           </div>
@@ -391,6 +417,7 @@ const HomePage = () => {
               </tbody>
             </table>
           </div>
+          {clipOpen && <ClipMenu />}
         </div>
       </div>
     </div>)}
