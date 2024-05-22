@@ -3,7 +3,7 @@ import "./MaterialLibrary.css";
 import dark_mode from "../../Assets/dark_mode.png";
 import bell from "../../Assets/bell.png";
 import info from "../../Assets/info.png";
-import search from "../../Assets/search.png";
+import SearchIcon from "@mui/icons-material/Search";
 import trash from "../../Assets/trash.png";
 import PopUp from "../UploadMaterial/PopUp";
 import { useNavigate } from "react-router-dom";
@@ -110,7 +110,7 @@ const MaterialLibrary = () => {
               </div>
             </div>
           </div>
-          <div className="material-info">
+          {/* <div className="material-info">
             <div className="material-library-searchbar">
               <p>Material Library</p>
               <div className="searchbar">
@@ -120,6 +120,41 @@ const MaterialLibrary = () => {
             </div>
             <div className="homepage-upload-btn" onClick={togglePopup}>
               <p>Upload New Materials</p>
+            </div>
+          </div> */}
+           <div class="row px-4 ps-1">
+            <div class="col-6">
+              <div class="row align-items-center">
+                <div class="col-4">
+                  <h5 className="dm-sans" style={{ fontWeight: "bold", color:"white"}}>
+                    Material Library
+                  </h5>
+                </div>
+                <div class="col-8 resource-searchbar" style={{maxWidth:"250px"}}>
+                  <div class="input-group flex-nowrap overflow-hidden rounded-pill" style={{height:"30px"}}>
+                    <span class="input-group-text" id="addon-wrapping">
+                      <SearchIcon />
+                    </span>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="search_bar"
+                      placeholder="Username"
+                      aria-label="Username"
+                      aria-describedby="addon-wrapping"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-8 text-end">
+              {/* <button
+                type="button"
+                class="add_resource dm-sans"
+                style={{ fontSize: "medium" }}
+              >
+                Add New Resource
+              </button> */}
             </div>
           </div>
           <div className="materials-container">
