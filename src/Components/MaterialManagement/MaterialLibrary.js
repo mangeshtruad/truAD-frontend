@@ -110,18 +110,7 @@ const MaterialLibrary = () => {
               </div>
             </div>
           </div>
-          {/* <div className="material-info">
-            <div className="material-library-searchbar">
-              <p>Material Library</p>
-              <div className="searchbar">
-                <input type="text" placeholder="Search"></input>
-                <img src={search}></img>
-              </div>
-            </div>
-            <div className="homepage-upload-btn" onClick={togglePopup}>
-              <p>Upload New Materials</p>
-            </div>
-          </div> */}
+       
            <div class="row px-4 ps-1">
             <div class="col-6">
               <div class="row align-items-center">
