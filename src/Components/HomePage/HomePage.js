@@ -83,7 +83,7 @@ const HomePage = () => {
 
   const fetchNotification = async() => {
     try {
-      const response = await fetch("http://localhost:4000/notifications");
+      const response = await fetch("https://truad-dashboard-backend.onrender.com/notifications");
       const data = await response.json();
       setNotifications(data.notifications)
     } catch (error) {
