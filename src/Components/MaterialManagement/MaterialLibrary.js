@@ -95,7 +95,7 @@ const MaterialLibrary = () => {
           <div className="material-header">
             <div className="material-user-info">
               <h4>Material Management</h4>
-              <p>Help</p>
+              
             </div>
             <div className="material-searchbar">
               <div className="material-searchbar-container">
