@@ -77,66 +77,16 @@ function ActionPage() {
   }
   return (
     <div style={{ width: "100%", backgroundColor: "#6c757d" }}>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          width: "100%",
-          height: "60px",
-          padding: "12px 20px 10px 20px",
-        }}
-      >
-        <div
-          style={{
-            backgroundColor: "#212529",
-            color: "#fffffff5",
-            width: "50%",
-            height: "50px",
-            margin: "0 10px",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            borderRadius: "7px",
-            boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
-            cursor: "pointer",
-          }}
-        >
-          <h4>Oprate</h4>
-        </div>
-
-        <div
-          onClick={() => {
-            navigate("/dashboard/raiseticket");
-          }}
-          style={{
-            backgroundColor: "#212529",
-            color: "#fffffff5",
-            width: "50%",
-            height: "50px",
-            margin: "0 10px",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            borderRadius: "7px",
-            boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
-            cursor: "pointer",
-          }}
-        >
-          <h4>Raise Ticket</h4>
-        </div>
-      </div>
 
       <div
         style={{
           display: "flex",
-          margin: "10px 20px",
-          height: "90vh",
+          height: "99.8vh",
         }}
       >
         <div
           style={{
-            width: "50%",
+            width: "75%",
             margin: "10px",
             display: "flex",
             flexDirection: "column",
@@ -240,11 +190,12 @@ function ActionPage() {
         {/* rigthSide */}
         <div
           style={{
-            width: "50%",
             backgroundColor: "#343a40",
             color: "#fffffff5",
             margin: "10px",
             borderRadius: "7px",
+            width:"25%",
+            textAlign:"center"
           }}
         >
           <h6
@@ -270,7 +221,7 @@ function ActionPage() {
               style={{
                 padding: "10px",
                 display: "grid",
-                gridTemplateColumns: "repeat(2, 1fr)",
+                gridTemplateColumns: "repeat(1  , 1fr)",
                 gap: "20px",
                 overflowY: "auto", // This allows scrolling within the grid if it overflows vertically
                 maxHeight: "calc(100% - 20px)", // Adjusted to account for padding and prevent overflow
