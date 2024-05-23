@@ -14,6 +14,7 @@ import Loader from "../Loader/Loader";
 const MaterialLibrary = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [data, setData] = useState([]);
+  const [material, setMaterial] = useState([]);
   const [delOpen, setDelOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -37,7 +38,7 @@ const MaterialLibrary = () => {
         const datar = await response.json();
 
         const materials = datar.materials;
-
+        setMaterial(materials);
         setData(materials);
         setIsLoading(false);
       } catch (error) {
@@ -47,6 +48,16 @@ const MaterialLibrary = () => {
 
     fetchData();
   }, []);
+  console.log(data);
+
+  const searchfilter = ({ target: { value } }) => {
+    if (value !== "") {
+      const arr = material.filter((el) => {
+        return el.name.includes(value);
+      });
+      setData(arr);
+    }
+  };
 
   const itemSelect = (item) => {
     setSelectedItem(item);
@@ -95,7 +106,6 @@ const MaterialLibrary = () => {
           <div className="material-header">
             <div className="material-user-info">
               <h4>Material Management</h4>
-              
             </div>
             <div className="material-searchbar">
               <div className="material-searchbar-container">
@@ -110,17 +120,26 @@ const MaterialLibrary = () => {
               </div>
             </div>
           </div>
-       
-           <div class="row px-4 ps-1">
+
+          <div class="row px-4 ps-1">
             <div class="col-6">
               <div class="row align-items-center">
                 <div class="col-4">
-                  <h5 className="dm-sans" style={{ fontWeight: "bold", color:"white"}}>
+                  <h5
+                    className="dm-sans"
+                    style={{ fontWeight: "bold", color: "white" }}
+                  >
                     Material Library
                   </h5>
                 </div>
-                <div class="col-8 resource-searchbar" style={{maxWidth:"250px"}}>
-                  <div class="input-group flex-nowrap overflow-hidden rounded-pill" style={{height:"30px"}}>
+                <div
+                  class="col-8 resource-searchbar"
+                  style={{ maxWidth: "250px" }}
+                >
+                  <div
+                    class="input-group flex-nowrap overflow-hidden rounded-pill"
+                    style={{ height: "30px" }}
+                  >
                     <span class="input-group-text" id="addon-wrapping">
                       <SearchIcon />
                     </span>
@@ -131,6 +150,7 @@ const MaterialLibrary = () => {
                       placeholder="Username"
                       aria-label="Username"
                       aria-describedby="addon-wrapping"
+                      onChange={(e) => searchfilter(e)}
                     />
                   </div>
                 </div>

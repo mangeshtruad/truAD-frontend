@@ -18,7 +18,7 @@ const MediaCard = ({ el,}) => {
     const apiKey = "37f889dd"; // Replace with your OMDb API key
     try {
       const response = await fetch(
-        `https://www.omdbapi.com/?i=${el.imdbID}&apikey=${apiKey}`
+        `https://www.omdbapi.com/?i=${el?.imdbID}&apikey=${apiKey}`
       );
 
       const data = await response.json();

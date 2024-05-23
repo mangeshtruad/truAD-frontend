@@ -45,7 +45,6 @@ export default function ResourceManagement() {
       const response = await fetch(
         `https://www.omdbapi.com/?s=${text}&apikey=${apiKey}`
       );
-
       const data = await response.json();
       setMedia(data.Search);
       setValue(data.Search);
@@ -61,6 +60,14 @@ export default function ResourceManagement() {
   const handleChange = (event) => {
     const text = event.target.value;
     setoption(text);
+    if (text === "") {
+      searchMovies("Comedy");
+    } else {
+      searchMovies(text);
+    }
+  };
+  const handleSearch = (event) => {
+    const text = event.target.value;
     if (text === "") {
       searchMovies("Comedy");
     } else {
@@ -116,6 +123,8 @@ export default function ResourceManagement() {
                         placeholder="Username"
                         aria-label="Username"
                         aria-describedby="addon-wrapping"
+                        onChange={(e)=>handleSearch(e)}
+                        
                       />
                     </div>
                   </div>
@@ -301,7 +310,7 @@ export default function ResourceManagement() {
                 </nav>
               </div>
               <div className="card_container">
-                {media.map((el, i) => {
+                {media?.map((el, i) => {
                   return <MediaCard key={i} el={el} image={image} />;
                 })}
               </div>
