@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styles from './DeleteDialog.module.css'; // Import CSS module
 
 import { Button } from '@mui/material';

@@ -90,11 +90,11 @@ export default function ResourceManagement() {
               <div className="material-searchbar">
                 <div className="material-searchbar-container">
                   <div className="material-searchbar-icons">
-                    <img src={bell}></img>
-                    <img src={dark_mode}></img>
-                    <img src={info}></img>
+                    <img src={bell} alt=""></img>
+                    <img src={dark_mode} alt=""></img>
+                    <img src={info} alt=""></img>
                     <div className="material-profile">
-                      <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8dXNlciUyMHByb2ZpbGV8ZW58MHx8MHx8fDA%3D"></img>
+                      <img alt="" src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8dXNlciUyMHByb2ZpbGV8ZW58MHx8MHx8fDA%3D"></img>
                     </div>
                   </div>
                 </div>

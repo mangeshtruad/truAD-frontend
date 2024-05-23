@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import Dialog from "../Dialog/Dialog";
 import Uploadvideo from "../Dialog/Uploadvideo";
 const MediaCard = ({ el,}) => {
   const [media, setMedia] = useState({});

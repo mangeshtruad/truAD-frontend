@@ -6,7 +6,7 @@ import info from "../../Assets/info.png";
 import SearchIcon from "@mui/icons-material/Search";
 import trash from "../../Assets/trash.png";
 import PopUp from "../UploadMaterial/PopUp";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import OprateDialog from "./OperateDialog";
 import DeletePopUp from "../DeletePopUp/DeletePopUp";
 import Loader from "../Loader/Loader";
@@ -19,7 +19,7 @@ const MaterialLibrary = () => {
   const [selectedItem, setSelectedItem] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const togglePopup = () => {
     setIsOpen(!isOpen);
@@ -78,12 +78,12 @@ const MaterialLibrary = () => {
       }
     );
 
-    if (response.status == 404) {
+    if (response.status === 404) {
       console.log("Material not found");
       return;
     }
 
-    if (response.status == 200) {
+    if (response.status === 200) {
       const filtered = data.filter((elem) => elem._id !== key);
       setData(filtered);
     }
@@ -110,11 +110,11 @@ const MaterialLibrary = () => {
             <div className="material-searchbar">
               <div className="material-searchbar-container">
                 <div className="material-searchbar-icons">
-                  <img src={bell}></img>
-                  <img src={dark_mode}></img>
-                  <img src={info}></img>
+                  <img src={bell} alt=""></img>
+                  <img src={dark_mode} alt=""></img>
+                  <img src={info} alt=""></img>
                   <div className="material-profile">
-                    <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8dXNlciUyMHByb2ZpbGV8ZW58MHx8MHx8fDA%3D"></img>
+                    <img alt="" src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8dXNlciUyMHByb2ZpbGV8ZW58MHx8MHx8fDA%3D"></img>
                   </div>
                 </div>
               </div>
@@ -182,20 +182,20 @@ const MaterialLibrary = () => {
               {data.length > 0 &&
                 data.map((item) => (
                   <div className="material-card">
-                    <img src={item.url}></img>
+                    <img src={item.url} alt=""></img>
                     <div className="material-card-title">
                       <p>{item.name}</p>
                     </div>
                     <div className="material-card-group">
                       <p>Material group: </p>
-                      <a>{item.group}</a>
+                      <a href={{}}>{item.group}</a>
                       <p>Material size: </p>
-                      <a>{item.size}</a>
+                      <a href={{}}>{item.size}</a>
                     </div>
                     <div className="material-card-btn">
                       <OprateDialog item={item}></OprateDialog>
                       <div className="material-card-delete-btn">
-                        <img src={trash} onClick={() => itemSelect(item)}></img>
+                        <img src={trash} onClick={() => itemSelect(item)} alt=""></img>
                       </div>
                     </div>
                   </div>

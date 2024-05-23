@@ -64,7 +64,7 @@ const SignUp = () => {
     <div className="signup-container">
       <div className="signup-left">
         <div className="signup-logo">
-          <img src={logo} />
+          <img src={logo} alt=""/>
         </div>
       </div>
       <div className="signup-right">
@@ -101,6 +101,7 @@ const SignUp = () => {
               <img
                 src={showPassword ? pass_show : pass_hide}
                 onClick={() => setShowPassword(!showPassword)}
+                alt=""
               ></img>
               {/* <div className="checkbox">
                 <div
@@ -125,7 +126,7 @@ const SignUp = () => {
               <div className="signup-form-end">
                 <span>
                   Already have an account?{" "}
-                  <a onClick={() => navigate("/")}>Sign In</a>
+                  <a onClick={() => navigate("/")} href={{}}>Sign In</a>
                 </span>
               </div>
             </form>

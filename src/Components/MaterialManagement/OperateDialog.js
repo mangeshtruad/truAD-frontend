@@ -1,13 +1,7 @@
 import * as React from "react";
 import { useEffect, useState, useRef } from "react";
-import { useCookies } from "react-cookie";
-import Button from "@mui/material/Button";
-import Dialog from "@mui/material/Dialog";
-import DialogActions from "@mui/material/DialogActions";
-import DialogContent from "@mui/material/DialogContent";
-import DialogTitle from "@mui/material/DialogTitle";
 import { useNavigate } from "react-router-dom";
-import { responsive, responsive1, Carousel } from "../videosider";
+import { responsive, Carousel } from "../videosider";
 export default function OprateDialog(props) {
   const [open, setOpen] = React.useState(false);
   const [videos, setVideos] = useState([]);

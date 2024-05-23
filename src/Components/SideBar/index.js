@@ -1,35 +1,33 @@
 import React, { useEffect, useState } from "react";
 import "./SideBar.css";
-import TruAdlogo from "../../logo/Logo.png";
-import Logomark from "../../Assets/Logomark.png"
+import Logomark from "../../Assets/Logomark.png";
 import ItemList from "./itemList";
-import { CookiesProvider, useCookies } from "react-cookie";
+import { useCookies } from "react-cookie";
 import { useNavigate, useLocation } from "react-router-dom";
 
 export default function SideBar() {
   const [cookies, setCookie, removeCookie] = useCookies(["user"]);
   const navigate = useNavigate();
   let location = useLocation();
-  console.log(location.pathname)
-  const[list, setlist]=useState(ItemList)
+  console.log(location.pathname);
+  const [list, setlist] = useState(ItemList);
   useEffect(() => {
     // if (location.pathname !== "/") {
-      navigate("/dashboard");
+    navigate("/dashboard");
     // }
   }, []);
-  const hendleClick=(index, el)=>{
-    const newlist=list.map((el,ind)=>{
-      if(ind===index){
-        el.isActive=true
-      }else{
-        el.isActive=false
-
+  const hendleClick = (index, el) => {
+    const newlist = list.map((el, ind) => {
+      if (ind === index) {
+        el.isActive = true;
+      } else {
+        el.isActive = false;
       }
       return el;
     });
     setlist(newlist);
-    navigate(el.targetLink)
-  }
+    navigate(el.targetLink);
+  };
   return (
     <div style={{ height: "100%" }}>
       <main>
@@ -39,7 +37,11 @@ export default function SideBar() {
         <ul className="list-sidebar">
           {list.map((el, index) => {
             return (
-              <li key={index} className={(el.isActive)?"active":""} onClick={()=>hendleClick(index, el)}>
+              <li
+                key={index}
+                className={el.isActive ? "active" : ""}
+                onClick={() => hendleClick(index, el)}
+              >
                 <div className="listItem">
                   <div className="listItem_icon">{el.icon}</div>
                   <div className="listItem_text">{el.name}</div>

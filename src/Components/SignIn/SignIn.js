@@ -6,7 +6,7 @@ import "./SignIn.css";
 import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router";
 import CircularProgress from "@mui/material/CircularProgress";
-import VerifyOTP from "../VerifyOTP/VerifyOTP";
+
 
 const SignIn = () => {
   const [cookies, setCookie] = useCookies(["user", "userdata"]);
@@ -115,7 +115,7 @@ const SignIn = () => {
                   </label>
                 </div>
                 <span>
-                  <a href='#' onClick={handleForget}>Forgot Password</a>
+                  <a href={{}} onClick={handleForget}>Forgot Password</a>
                 </span>
               </div>
               {/* <button type="button" onClick={handleSignIn}>Sign In</button> */}
@@ -129,7 +129,7 @@ const SignIn = () => {
               <div className="login-form-end">
                 <span>
                   Not registered yet?{" "}
-                  <a onClick={() => navigate("/signup")} href="#">
+                  <a onClick={() => navigate("/signup")} href={{}}>
                     Create an Account
                   </a>
                 </span>

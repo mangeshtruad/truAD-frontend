@@ -7,7 +7,6 @@ import search from "../../Assets/search.png";
 import more from "../../Assets/more.png";
 import done from "../../Assets/done.png";
 import pending from "../../Assets/pending.png";
-import SupportAgentIcon from "@mui/icons-material/SupportAgent";
 import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
 import PopUp from "../UploadMaterial/PopUp";
 import { useCookies } from "react-cookie";
@@ -26,7 +25,7 @@ import ClipMenu from "../ClipMenu/ClipMenu";
 
 const HomePage = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [cookies, setCookie, removeCookie] = useCookies(["user", "userdata"]);
+  const [cookies] = useCookies(["user", "userdata"]);
   const [items, setItems] = useState([]);
   const [ongoing, setOngoing] = useState([]);
   const [processedClips, setProcessedClips] = useState([]);
@@ -210,12 +209,12 @@ const HomePage = () => {
           <div className="homepage-calls-btn" onClick={callToggle}>
             <div className="homepage-calls-btn-voice">
               <div className="homepage-calls-btn-voice-icon">
-                <img src={voice_call}></img>
+                <img src={voice_call} alt=""></img>
               </div>
             </div>
             <div className="homepage-calls-btn-video">
               <div className="homepage-calls-btn-video-icon">
-                <img src={video_call}></img>
+                <img src={video_call} alt=""></img>
               </div>
             </div>
           </div>

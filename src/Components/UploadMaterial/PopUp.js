@@ -5,7 +5,7 @@ import "./PopUp.css"
 const PopUp = ({togglePopup}) => {
     const [image, setImage] = useState("");
     const [files, setFiles] = useState({})
-    const [cookies, setCookie, removeCookie] = useCookies(["user", "userdata"]);
+    const [cookies] = useCookies(["user", "userdata"]);
     const popupRef = useRef(null);
 
     const handleUploadButtonClick = () => {
@@ -47,11 +47,11 @@ const PopUp = ({togglePopup}) => {
             }
           })
     
-          if(response.status == 200){
+          if(response.status === 200){
             return console.log("Success")
           }
     
-          if(response.status == 500){
+          if(response.status === 500){
             return console.log("unsuccessful")
           }
         } catch (error) {
@@ -151,7 +151,7 @@ const PopUp = ({togglePopup}) => {
         </div>
       </div>
       <div className="popup-file">
-        {image ? <img src={image}></img> : <img src="https://upload.wikimedia.org/wikipedia/commons/4/49/A_black_image.jpg" style={{visibility: "hidden"}}></img>}
+        {image ? <img src={image} alt=''></img> : <img alt="" src="https://upload.wikimedia.org/wikipedia/commons/4/49/A_black_image.jpg" style={{visibility: "hidden"}}></img>}
       </div>
 
     </div>
