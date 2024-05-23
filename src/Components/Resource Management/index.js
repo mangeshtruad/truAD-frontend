@@ -122,13 +122,13 @@ export default function ResourceManagement() {
                 </div>
               </div>
               <div class="col-8 text-end">
-                <button
+                {/* <button
                   type="button"
                   class="add_resource dm-sans"
                   style={{ fontSize: "medium" }}
                 >
                   Add New Resource
-                </button>
+                </button> */}
               </div>
             </div>
             <div
