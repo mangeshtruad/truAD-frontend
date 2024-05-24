@@ -6,7 +6,7 @@ import info from "../../Assets/info.png";
 import SearchIcon from "@mui/icons-material/Search";
 import trash from "../../Assets/trash.png";
 import PopUp from "../UploadMaterial/PopUp";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import OprateDialog from "./OperateDialog";
 import DeletePopUp from "../DeletePopUp/DeletePopUp";
 import Loader from "../Loader/Loader";
@@ -18,6 +18,7 @@ import Profile from "../Profile/Profile";
 const MaterialLibrary = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [data, setData] = useState([]);
+  const [material, setMaterial] = useState([]);
   const [delOpen, setDelOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -28,7 +29,7 @@ const MaterialLibrary = () => {
     setOpenBox(openBox === boxName ? null : boxName); // Toggle the box visibility
   };
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const togglePopup = () => {
     setIsOpen(!isOpen);
@@ -47,7 +48,7 @@ const MaterialLibrary = () => {
         const datar = await response.json();
 
         const materials = datar.materials;
-
+        setMaterial(materials);
         setData(materials);
         setIsLoading(false);
       } catch (error) {
@@ -57,6 +58,16 @@ const MaterialLibrary = () => {
 
     fetchData();
   }, []);
+  console.log(data);
+
+  const searchfilter = ({ target: { value } }) => {
+    if (value !== "") {
+      const arr = material.filter((el) => {
+        return el.name.includes(value);
+      });
+      setData(arr);
+    }
+  };
 
   const itemSelect = (item) => {
     setSelectedItem(item);
@@ -77,12 +88,12 @@ const MaterialLibrary = () => {
       }
     );
 
-    if (response.status == 404) {
+    if (response.status === 404) {
       console.log("Material not found");
       return;
     }
 
-    if (response.status == 200) {
+    if (response.status === 200) {
       const filtered = data.filter((elem) => elem._id !== key);
       setData(filtered);
     }
@@ -105,10 +116,10 @@ const MaterialLibrary = () => {
           <div className="material-header">
             <div className="material-user-info">
               <h4>Material Management</h4>
-              
             </div>
             <div className="material-searchbar">
               <div className="material-searchbar-container">
+
               <div className="material-searchbar-icons">
                     <div
                       className="material-searchbar-icons-notif"
@@ -146,21 +157,31 @@ const MaterialLibrary = () => {
                       ></img>
                       {openBox === "profile" && <Profile />}
                     </div>
+
                   </div>
               </div>
             </div>
           </div>
-       
-           <div class="row px-4 ps-1">
+
+          <div class="row px-4 ps-1">
             <div class="col-6">
               <div class="row align-items-center">
                 <div class="col-4">
-                  <h5 className="dm-sans" style={{ fontWeight: "bold", color:"white"}}>
+                  <h5
+                    className="dm-sans"
+                    style={{ fontWeight: "bold", color: "white" }}
+                  >
                     Material Library
                   </h5>
                 </div>
-                <div class="col-8 resource-searchbar" style={{maxWidth:"250px"}}>
-                  <div class="input-group flex-nowrap overflow-hidden rounded-pill" style={{height:"30px"}}>
+                <div
+                  class="col-8 resource-searchbar"
+                  style={{ maxWidth: "250px" }}
+                >
+                  <div
+                    class="input-group flex-nowrap overflow-hidden rounded-pill"
+                    style={{ height: "30px" }}
+                  >
                     <span class="input-group-text" id="addon-wrapping">
                       <SearchIcon />
                     </span>
@@ -171,6 +192,7 @@ const MaterialLibrary = () => {
                       placeholder="Username"
                       aria-label="Username"
                       aria-describedby="addon-wrapping"
+                      onChange={(e) => searchfilter(e)}
                     />
                   </div>
                 </div>
@@ -202,20 +224,20 @@ const MaterialLibrary = () => {
               {data.length > 0 &&
                 data.map((item) => (
                   <div className="material-card">
-                    <img src={item.url}></img>
+                    <img src={item.url} alt=""></img>
                     <div className="material-card-title">
                       <p>{item.name}</p>
                     </div>
                     <div className="material-card-group">
                       <p>Material group: </p>
-                      <a>{item.group}</a>
+                      <a href={{}}>{item.group}</a>
                       <p>Material size: </p>
-                      <a>{item.size}</a>
+                      <a href={{}}>{item.size}</a>
                     </div>
                     <div className="material-card-btn">
                       <OprateDialog item={item}></OprateDialog>
                       <div className="material-card-delete-btn">
-                        <img src={trash} onClick={() => itemSelect(item)}></img>
+                        <img src={trash} onClick={() => itemSelect(item)} alt=""></img>
                       </div>
                     </div>
                   </div>

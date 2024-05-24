@@ -53,7 +53,6 @@ export default function ResourceManagement() {
       const response = await fetch(
         `https://www.omdbapi.com/?s=${text}&apikey=${apiKey}`
       );
-
       const data = await response.json();
       setMedia(data.Search);
       setValue(data.Search);
@@ -69,6 +68,14 @@ export default function ResourceManagement() {
   const handleChange = (event) => {
     const text = event.target.value;
     setoption(text);
+    if (text === "") {
+      searchMovies("Comedy");
+    } else {
+      searchMovies(text);
+    }
+  };
+  const handleSearch = (event) => {
+    const text = event.target.value;
     if (text === "") {
       searchMovies("Comedy");
     } else {
@@ -91,6 +98,7 @@ export default function ResourceManagement() {
               <div className="material-searchbar">
                 <div className="material-searchbar-container">
                   <div className="material-searchbar-icons">
+
                     <div
                       className="material-searchbar-icons-notif"
                       style={{ position: "relative" }}
@@ -126,6 +134,7 @@ export default function ResourceManagement() {
                         onClick={() => handleBoxToggle("profile")}
                       ></img>
                       {openBox === "profile" && <Profile />}
+
                     </div>
                   </div>
                 </div>
@@ -154,6 +163,8 @@ export default function ResourceManagement() {
                         placeholder="Username"
                         aria-label="Username"
                         aria-describedby="addon-wrapping"
+                        onChange={(e)=>handleSearch(e)}
+                        
                       />
                     </div>
                   </div>
@@ -339,7 +350,7 @@ export default function ResourceManagement() {
                 </nav>
               </div>
               <div className="card_container">
-                {media.map((el, i) => {
+                {media?.map((el, i) => {
                   return <MediaCard key={i} el={el} image={image} />;
                 })}
               </div>

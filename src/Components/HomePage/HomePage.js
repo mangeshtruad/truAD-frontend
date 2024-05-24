@@ -7,7 +7,6 @@ import search from "../../Assets/search.png";
 import more from "../../Assets/more.png";
 import done from "../../Assets/done.png";
 import pending from "../../Assets/pending.png";
-import SupportAgentIcon from "@mui/icons-material/SupportAgent";
 import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
 import PopUp from "../UploadMaterial/PopUp";
 import { useCookies } from "react-cookie";
@@ -26,7 +25,7 @@ import ClipMenu from "../ClipMenu/ClipMenu";
 
 const HomePage = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [cookies, setCookie, removeCookie] = useCookies(["user", "userdata"]);
+  const [cookies] = useCookies(["user", "userdata"]);
   const [items, setItems] = useState([]);
   const [ongoing, setOngoing] = useState([]);
   const [processedClips, setProcessedClips] = useState([]);
@@ -210,7 +209,9 @@ const HomePage = () => {
                 {/* <div className="hompage-call-btnn-icon">
               <SupportAgentIcon />
             </div> */}
+
                 <p>Instant Support</p>
+
               </div>
             ) : (
               <div className="homepage-calls-btn" onClick={callToggle}>
@@ -232,8 +233,10 @@ const HomePage = () => {
             >
               <p>Have an Issue? Raise a ticket</p>
             </div>
+
             <div className="homepage-upload-btn" onClick={togglePopup}>
               <p>Upload New Materials</p>
+
             </div>
           </div>
           <div className="homepage-clips">

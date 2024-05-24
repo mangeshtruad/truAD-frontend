@@ -59,6 +59,7 @@ export default function ResourceManagement() {
             <div className="material-searchbar">
               <div className="material-searchbar-container">
                 <div className="material-searchbar-icons">
+
                 <div
                   className="material-searchbar-icons-notif"
                   style={{ position: "relative" }}
@@ -71,6 +72,7 @@ export default function ResourceManagement() {
                   {openBox === "notification" && (
                     <Notification notifications={notifications} />
                   )}
+
                 </div>
                 <img src={dark_mode}></img>
                 <div
