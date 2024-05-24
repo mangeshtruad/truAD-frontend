@@ -69,7 +69,7 @@
     opacity: 0.5;
 }
 
-.analytics-container .analytics-header .analytics-searchbar .analytics-searchbar-container .searchbar > img {
+.analytics-container .analytics-header .analytics-searchbar .analytics-searchbar-container .searchbar  img {
     position: absolute;
     height: 10px;
     width: 10px;
@@ -85,7 +85,19 @@
     align-items: center;
 }
 
-.analytics-container .analytics-header .analytics-searchbar .analytics-searchbar-container .analytics-searchbar-icons > img{
+.analytics-container .analytics-header .analytics-searchbar .analytics-searchbar-container .analytics-searchbar-icons-notif{
+    position: relative;
+}
+
+.analytics-container .analytics-header .analytics-searchbar .analytics-searchbar-container .analytics-searchbar-icons-info{
+    position: relative;
+}
+
+.analytics-container .analytics-header .analytics-searchbar .analytics-searchbar-container .analytics-profile{
+    position: relative;
+}
+
+.analytics-container .analytics-header .analytics-searchbar .analytics-searchbar-container .analytics-searchbar-icons  img{
     height: 15px;
     width: 15px
 }

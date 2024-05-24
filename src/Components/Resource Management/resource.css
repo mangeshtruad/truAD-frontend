@@ -49,7 +49,8 @@ div.main_div {
   align-items: center;
 }
 
-.material-searchbar .material-searchbar-container .material-searchbar-icons > img{
+
+.material-searchbar .material-searchbar-container .material-searchbar-icons  img{
   height: 15px;
   width: 15px
 }
