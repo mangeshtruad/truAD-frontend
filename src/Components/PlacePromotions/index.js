@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from "react";
-
 import SearchIcon from "@mui/icons-material/Search";
 import image from "../../Assets/TruAd_White _Logo.png";
-
 import MediaCard from "./MediaCard/MediaCard";
-
 import dark_mode from "../../Assets/dark_mode.png";
 import bell from "../../Assets/bell.png";
 import info from "../../Assets/info.png";
@@ -12,6 +9,7 @@ import Loader from "../Loader/Loader";
 import Notification from "../Notification/Notification";
 import Information from "../Information/Information";
 import Profile from "../Profile/Profile";
+import { useCookies } from "react-cookie";
 
 
 export default function ResourceManagement() {
