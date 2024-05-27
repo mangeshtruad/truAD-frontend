@@ -53,9 +53,11 @@ const MaterialLibrary = () => {
   const searchfilter = ({ target: { value } }) => {
     if (value !== "") {
       const arr = material.filter((el) => {
-        return el.name.includes(value);
+        return el.name.toLowerCase().includes(value.toLowerCase());
       });
       setData(arr);
+    }else{
+      setData(material)
     }
   };
 
@@ -179,8 +181,8 @@ const MaterialLibrary = () => {
               </div>
             </div>
             <div className="material-cards">
-              {data.length > 0 &&
-                data.map((item) => (
+              {data?.length > 0 &&
+                data?.map((item) => (
                   <div className="material-card">
                     <img src={item.url} alt=""></img>
                     <div className="material-card-title">
