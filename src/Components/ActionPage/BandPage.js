@@ -1,13 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { Button } from "@mui/material";
 import { useLocation } from "react-router-dom";
+import PopUp from "../UploadBand/Popup";
 
 const BandPage = () => {
   const location = useLocation();
   const [bands, setBands] = useState([]);
-  const [result, setResult] = useState("");
   const [selectedBand, setSelectedBand] = useState(null);
-  const [processedVideoUrl, setProcessedVideoUrl] = useState(null)
+  const [processedVideoUrl, setProcessedVideoUrl] = useState(null);
+  const [open, setOpen] = useState(false);
+
+  const togglePopup = () => {
+    setOpen(!open);
+  };
 
   const fetchBands = async () => {
     try {
@@ -36,10 +41,10 @@ const BandPage = () => {
       });
 
       if (response.ok) {
-        // Assuming the response is a file download
         const blob = await response.blob();
         const url = window.URL.createObjectURL(blob);
-        setProcessedVideoUrl(url); // Set the processed video URL
+        console.log("Processed video URL:", url);
+        setProcessedVideoUrl(url);
       } else {
         console.log("Error:", response.statusText);
       }
@@ -48,13 +53,15 @@ const BandPage = () => {
     }
   };
 
+  useEffect(() => {
+    if (processedVideoUrl) {
+      console.log("Updated processedVideoUrl:", processedVideoUrl);
+    }
+  }, [processedVideoUrl]);
+
   return (
-    <div
-      style={{
-        display: "flex",
-        height: "99.8vh",
-      }}
-    >
+    <div style={{ display: "flex", height: "99.8vh" }}>
+      {open && <PopUp togglePopup={togglePopup} />}
       <div
         style={{
           width: "75%",
@@ -67,49 +74,39 @@ const BandPage = () => {
           boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
         }}
       >
-        <h6
-          style={{
-            textAlign: "center",
-            paddingTop: "15px",
-            paddingBottom: "5px",
-          }}
-        >
+        <h6 style={{ textAlign: "center", paddingTop: "15px", paddingBottom: "5px" }}>
           Resource
         </h6>
-        {location?.state?.location && !processedVideoUrl ? (
-          <video
-            style={{
-              width: "95%",
-              margin: "0 auto",
-              height: "40%",
-              borderRadius: "7px",
-              boxShadow: "rgba(0, 0, 1, 0.74) 0px 3px 8px",
-              backgroundColor: "white",
-            }}
-            title="Video Player"
-            controls
-          >
-            <source src={location.state.location.location} type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
-        ) : (
-            <video
-            style={{
-              width: "95%",
-              margin: "0 auto",
-              height: "40%",
-              borderRadius: "7px",
-              boxShadow: "rgba(0, 0, 1, 0.74) 0px 3px 8px",
-              backgroundColor: "white",
-            }}
-            title="Video Player"
-            controls
-          >
-            <source src={processedVideoUrl} type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
-        )}
-
+        {!processedVideoUrl && <video
+          style={{
+            width: "95%",
+            margin: "0 auto",
+            height: "40%",
+            borderRadius: "7px",
+            boxShadow: "rgba(0, 0, 1, 0.74) 0px 3px 8px",
+            backgroundColor: "white",
+          }}
+          title="Video Player"
+          controls
+        >
+          <source src={location.state.location.location} type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>}
+        {processedVideoUrl && <video
+          style={{
+            width: "95%",
+            margin: "0 auto",
+            height: "40%",
+            borderRadius: "7px",
+            boxShadow: "rgba(0, 0, 1, 0.74) 0px 3px 8px",
+            backgroundColor: "white",
+          }}
+          title="Video Player"
+          controls
+        >
+          <source src={processedVideoUrl} type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>}
         <div
           style={{
             display: "flex",
@@ -120,24 +117,12 @@ const BandPage = () => {
             position: "relative",
           }}
         >
-          <h6
-            style={{
-              textAlign: "center",
-              position: "absolute",
-              bottom: "0px",
-            }}
-          >
+          <h6 style={{ textAlign: "center", position: "absolute", bottom: "0px" }}>
             Selected Band
           </h6>
         </div>
 
-        <div
-          style={{
-            width: "95%",
-            margin: "0 auto",
-            height: "40%",
-          }}
-        >
+        <div style={{ width: "95%", margin: "0 auto", height: "40%" }}>
           {selectedBand && (
             <img
               src={selectedBand.location}
@@ -171,7 +156,7 @@ const BandPage = () => {
         </Button>
       </div>
 
-      {/* rigthSide */}
+      {/* rightSide */}
       <div
         style={{
           backgroundColor: "#343a40",
@@ -182,13 +167,8 @@ const BandPage = () => {
           textAlign: "center",
         }}
       >
-        <h6
-          style={{
-            textAlign: "center",
-            marginTop: "10px",
-            borderRadius: "7px",
-          }}
-        >
+        <button onClick={togglePopup}>Add bands</button>
+        <h6 style={{ textAlign: "center", marginTop: "10px", borderRadius: "7px" }}>
           All Bands
         </h6>
         <div
@@ -196,9 +176,9 @@ const BandPage = () => {
             display: "flex",
             flexWrap: "wrap",
             width: "100%",
-            height: "95%", // Ensure this is effectively limiting the height
+            height: "95%",
             padding: "10px",
-            overflow: "hidden", // Added to manage overflow
+            overflow: "hidden",
           }}
         >
           <div
@@ -207,34 +187,32 @@ const BandPage = () => {
               display: "grid",
               gridTemplateColumns: "repeat(1  , 1fr)",
               gap: "20px",
-              overflowY: "auto", // This allows scrolling within the grid if it overflows vertically
-              maxHeight: "calc(100% - 20px)", // Adjusted to account for padding and prevent overflow
+              overflowY: "auto",
+              maxHeight: "calc(100% - 20px)",
             }}
           >
-            {bands?.map((elem, index) => {
-              return (
-                <div
-                  key={index} // Moved the key here for proper list rendering
+            {bands?.map((elem, index) => (
+              <div
+                key={index}
+                style={{
+                  width: "100%",
+                  height: "auto",
+                }}
+              >
+                <img
+                  src={elem?.location}
+                  onClick={() => setSelectedBand(elem)}
                   style={{
-                    width: "100%", // Ensure this controls the size as intended
-                    height: "auto", // Adjusted for responsive height based on the content
+                    objectFit: "contain",
+                    width: "100%",
+                    height: "auto",
+                    borderRadius: "7px",
+                    maxHeight: "200px",
+                    boxShadow: "rgba(0, 0, 1, 0.74) 0px 3px 8px",
                   }}
-                >
-                  <img
-                    src={elem?.location}
-                    onClick={() => setSelectedBand(elem)}
-                    style={{
-                      objectFit: "contain",
-                      width: "100%",
-                      height: "auto", // Adjusted to maintain aspect ratio
-                      borderRadius: "7px",
-                      maxHeight: "200px", // Optional: limit image height if desired
-                      boxShadow: "rgba(0, 0, 1, 0.74) 0px 3px 8px",
-                    }}
-                  />
-                </div>
-              );
-            })}
+                />
+              </div>
+            ))}
           </div>
         </div>
       </div>
