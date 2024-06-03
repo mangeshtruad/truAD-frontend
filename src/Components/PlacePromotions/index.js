@@ -1,18 +1,27 @@
 import React, { useEffect, useState } from "react";
-
 import SearchIcon from "@mui/icons-material/Search";
 import image from "../../Assets/TruAd_White _Logo.png";
-
 import MediaCard from "./MediaCard/MediaCard";
-
 import dark_mode from "../../Assets/dark_mode.png";
 import bell from "../../Assets/bell.png";
 import info from "../../Assets/info.png";
 import Loader from "../Loader/Loader";
+import Notification from "../Notification/Notification";
+import Information from "../Information/Information";
+import Profile from "../Profile/Profile";
+import { useCookies } from "react-cookie";
+
 
 export default function ResourceManagement() {
   const [media, setMedia] = useState([]);
   const [isLoading, setisLoading] = useState(true)
+  const [openBox, setOpenBox] = useState(null);
+  const [notifications, setNotifications] = useState([]);
+
+  const handleBoxToggle = (boxName) => {
+    setOpenBox(openBox === boxName ? null : boxName); // Toggle the box visibility
+  };
+
   useEffect(() => {
     const fetchMedia = async () => {
       try {
@@ -48,13 +57,45 @@ export default function ResourceManagement() {
             <div className="material-searchbar">
               <div className="material-searchbar-container">
                 <div className="material-searchbar-icons">
-                  <img src={bell}alt=""></img>
-                  <img src={dark_mode}alt=""></img>
-                  <img src={info} alt=""></img>
-                  <div className="material-profile">
-                    <img alt="" src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8dXNlciUyMHByb2ZpbGV8ZW58MHx8MHx8fDA%3D"></img>
-                  </div>
+
+                <div
+                  className="material-searchbar-icons-notif"
+                  style={{ position: "relative" }}
+                >
+                  <img
+                    src={bell}
+                    alt=""
+                    onClick={() => handleBoxToggle("notification")}
+                  />
+                  {openBox === "notification" && (
+                    <Notification notifications={notifications} />
+                  )}
+
                 </div>
+                <img src={dark_mode}></img>
+                <div
+                  className="material-searchbar-icons-info"
+                  style={{ position: "relative" }}
+                >
+                  <img
+                    src={info}
+                    alt=""
+                    onClick={() => handleBoxToggle("info")}
+                  ></img>
+                  {openBox === "info" && <Information />}
+                </div>
+                <div
+                  className="material-profile"
+                  style={{ position: "relative" }}
+                >
+                  <img
+                    alt=""
+                    src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8dXNlciUyMHByb2ZpbGV8ZW58MHx8MHx8fDA%3D"
+                    onClick={() => handleBoxToggle("profile")}
+                  ></img>
+                  {openBox === "profile" && <Profile />}
+                </div>
+              </div>
               </div>
             </div>
           </div>

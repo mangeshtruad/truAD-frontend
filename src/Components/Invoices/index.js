@@ -11,9 +11,21 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 import dark_mode from "../../Assets/dark_mode.png";
 import bell from "../../Assets/bell.png";
 import info from "../../Assets/info.png";
-import "./invoice.css"
+import "./invoice.css";
+import Notification from "../Notification/Notification";
+import Information from "../Information/Information";
+import Profile from "../Profile/Profile";
+
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
+
 export default function RaiseTicket() {
+  const [openBox, setOpenBox] = useState(null);
+  const [notifications, setNotifications] = useState([]);
+
+  const handleBoxToggle = (boxName) => {
+    setOpenBox(openBox === boxName ? null : boxName); // Toggle the box visibility
+  };
+
   return (
     <div style={{ height: "100%" }}>
       <main className="main">
@@ -34,11 +46,41 @@ export default function RaiseTicket() {
           <div className="material-searchbar">
             <div className="material-searchbar-container">
               <div className="material-searchbar-icons">
-                <img src={bell}></img>
+                <div
+                  className="material-searchbar-icons-notif"
+                  style={{ position: "relative" }}
+                >
+                  <img
+                    src={bell}
+                    alt=""
+                    onClick={() => handleBoxToggle("notification")}
+                  />
+                  {openBox === "notification" && (
+                    <Notification notifications={notifications} />
+                  )}
+                </div>
                 <img src={dark_mode}></img>
-                <img src={info}></img>
-                <div className="material-profile">
-                  <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8dXNlciUyMHByb2ZpbGV8ZW58MHx8MHx8fDA%3D"></img>
+                <div
+                  className="material-searchbar-icons-info"
+                  style={{ position: "relative" }}
+                >
+                  <img
+                    src={info}
+                    alt=""
+                    onClick={() => handleBoxToggle("info")}
+                  ></img>
+                  {openBox === "info" && <Information />}
+                </div>
+                <div
+                  className="material-profile"
+                  style={{ position: "relative" }}
+                >
+                  <img
+                    alt=""
+                    src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8dXNlciUyMHByb2ZpbGV8ZW58MHx8MHx8fDA%3D"
+                    onClick={() => handleBoxToggle("profile")}
+                  ></img>
+                  {openBox === "profile" && <Profile />}
                 </div>
               </div>
             </div>
@@ -48,7 +90,10 @@ export default function RaiseTicket() {
           <div class="col-4">
             <div class="row align-items-center">
               <div class="col-8 resource-searchbar">
-                <div class="input-group flex-nowrap overflow-hidden rounded-pill" style={{height:"30px"}}>
+                <div
+                  class="input-group flex-nowrap overflow-hidden rounded-pill"
+                  style={{ height: "30px" }}
+                >
                   <span class="input-group-text" id="addon-wrapping">
                     <SearchIcon />
                   </span>
