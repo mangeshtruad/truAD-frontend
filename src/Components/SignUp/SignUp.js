@@ -126,7 +126,7 @@ const SignUp = () => {
               <div className="signup-form-end">
                 <span>
                   Already have an account?{" "}
-                  <a onClick={() => navigate("/")} href={{}}>Sign In</a>
+                  <a onClick={() => navigate("/")}>Sign In</a>
                 </span>
               </div>
             </form>

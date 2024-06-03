@@ -115,7 +115,7 @@ const SignIn = () => {
                   </label>
                 </div>
                 <span>
-                  <a href={{}} onClick={handleForget}>Forgot Password</a>
+                  <a onClick={handleForget}>Forgot Password</a>
                 </span>
               </div>
               {/* <button type="button" onClick={handleSignIn}>Sign In</button> */}
@@ -129,7 +129,7 @@ const SignIn = () => {
               <div className="login-form-end">
                 <span>
                   Not registered yet?{" "}
-                  <a onClick={() => navigate("/signup")} href={{}}>
+                  <a onClick={() => navigate("/signup")} >
                     Create an Account
                   </a>
                 </span>

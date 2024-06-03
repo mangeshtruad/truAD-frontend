@@ -34,7 +34,7 @@ const VisuallyHiddenInput = styled("input")({
   width: 1,
 });
 
-export default function CustomizedDialogs({ handleClose, open, user_email }) {
+export function CustomizedDialogs({ handleClose, open, user_email }) {
   const [image, setimage] = React.useState("");
   const [text, setText] = useState("");
   const [selectedOption, setSelectOption] = useState("option");
@@ -44,7 +44,7 @@ export default function CustomizedDialogs({ handleClose, open, user_email }) {
     if (file) {
       const url = URL.createObjectURL(file);
       setimage(url);
-      setFile(file)
+      setFile(file);
     }
   };
   const handleText = (e) => {
@@ -219,6 +219,48 @@ export default function CustomizedDialogs({ handleClose, open, user_email }) {
           Done
         </Button>
       </DialogActions>
+    </BootstrapDialog>
+  );
+}
+
+export function ImageDialogs({ handleClose, open}) {
+  return (
+    <BootstrapDialog
+      onClose={handleClose}
+      aria-labelledby="customized-dialog-title"
+      open={open}
+      sx={{
+        "& .css-1t1j96h-MuiPaper-root-MuiDialog-paper": {
+          margin: 0,
+          // width: "35%",
+          bgcolor: bg.bgDialog,
+          color: tx.textDialog,
+        },
+      }}
+    >
+      <DialogTitle sx={{ m: 0, p: 2 }} id="customized-dialog-title">
+        View Image
+      </DialogTitle>
+      <IconButton
+        aria-label="close"
+        onClick={handleClose}
+        sx={{
+          position: "absolute",
+          right: 8,
+          top: 8,
+          color: (theme) => theme.palette.grey[500],
+        }}
+      >
+        <CloseIcon />
+      </IconButton>
+      <DialogContent
+        dividers
+        sx={{
+          borderTopColor: "#B8BABC",
+        }}
+      >
+        <img src="https://upload.wikimedia.org/wikipedia/commons/f/f7/Generic_error_message.png" alt=""/>
+      </DialogContent>
     </BootstrapDialog>
   );
 }

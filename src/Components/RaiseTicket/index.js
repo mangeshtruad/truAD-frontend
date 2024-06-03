@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from "react";
-import NotificationsIcon from "@mui/icons-material/Notifications";
 import SearchIcon from "@mui/icons-material/Search";
-import ErrorOutlineOutlinedIcon from "@mui/icons-material/ErrorOutlineOutlined";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import TuneIcon from "@mui/icons-material/Tune";
-import Avatar from "@mui/material/Avatar";
 import { Divider, Box, Button } from "@mui/material";
 import TablePagination from "./Pagination";
 import image from "../../Assets/TruAd_White _Logo.png";
@@ -12,18 +9,19 @@ import IconButton from "@mui/material/IconButton";
 import Checkbox from "@mui/material/Checkbox";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
-import Dialog from "./Dialog/Dialog";
+import {ImageDialogs, CustomizedDialogs as Dialog} from "./Dialog/Dialog";
 import { useCookies } from "react-cookie";
 import dark_mode from "../../Assets/dark_mode.png";
 import bell from "../../Assets/bell.png";
 import info from "../../Assets/info.png";
 import "./raiseticket.css";
-import { styled } from '@mui/material/styles';
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
 export default function RaiseTicket() {
   const [open, setOpen] = React.useState(false);
+  const [Iopen, setIopen] = React.useState(false);
   const [cookies, setCookie] = useCookies(["user"]);
   const [user, setuser] = useState({});
+  const [initialData, setinitialData] = useState([]);
   const [ticket, setticket] = useState([]);
 
   const handleClickOpen = () => {
@@ -74,12 +72,22 @@ export default function RaiseTicket() {
         });
         setuser(ticketData.user);
         setticket(ticketdata);
+        setinitialData(ticketdata)
       } catch (error) {
         console.log("error=>", error);
       }
     };
     getTicket();
   }, [cookies]);
+
+  const handerchange = ({target:{value}})=>{
+    if(value === ""){
+      setticket(initialData)
+      return
+    }
+    const arr = ticket.filter(({id})=>id.includes(value))
+    setticket(arr)
+  }
 
   return (
     <React.Fragment>
@@ -122,11 +130,11 @@ export default function RaiseTicket() {
               <div className="material-searchbar" style={{width:"30%", minWidth:"100px"}}>
               <div className="material-searchbar-container">
                 <div className="material-searchbar-icons">
-                  <img src={bell}></img>
-                  <img src={dark_mode}></img>
-                  <img src={info}></img>
+                  <img src={bell} alt=""></img>
+                  <img src={dark_mode} alt=""></img>
+                  <img src={info} alt=""></img>
                   <div className="material-profile">
-                    <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8dXNlciUyMHByb2ZpbGV8ZW58MHx8MHx8fDA%3D"></img>
+                    <img alt="" src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8dXNlciUyMHByb2ZpbGV8ZW58MHx8MHx8fDA%3D"></img>
                   </div>
                 </div>
               </div>
@@ -148,6 +156,7 @@ export default function RaiseTicket() {
                       placeholder="Enter Ticket ID"
                       aria-label="Username"
                       aria-describedby="addon-wrapping"
+                      onChange={handerchange}
                     />
                   </div>
                 </div>
@@ -168,12 +177,6 @@ export default function RaiseTicket() {
             </div>
           </div>
           <div className="table_div">
-            {/* <ul className="row table_navbar" style={{ flexWrap: "nowrap" }}>
-              <li className="col navigationItem">All(10)</li>
-              <li className="col navigationItem">Resoved(5)</li>
-              <li className="col navigationItem">Pending(4)</li>
-              <li className="col-7"></li>
-            </ul> */}
             <table id="table">
               <thead>
                 <tr>
@@ -244,6 +247,7 @@ export default function RaiseTicket() {
                           className="button-outlined-small rounded-3"
                           variant="outlined"
                           size="small"
+                          onClick={()=>setIopen(true)}
                         >
                           View File
                         </Button>
@@ -269,6 +273,7 @@ export default function RaiseTicket() {
         </main>
       </div>
       <Dialog handleClose={handleClose} open={open} user_email={user.email}/>
+      <ImageDialogs open={Iopen} handleClose={()=>setIopen(false)}/>
     </React.Fragment>
   );
 }
