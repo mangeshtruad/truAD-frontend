@@ -129,7 +129,7 @@ const SignIn = () => {
               <div className="login-form-end">
                 <span>
                   Not registered yet?{" "}
-                  <a onClick={() => navigate("/signup")} href={{}}>
+                  <a onClick={() => navigate("/signup")} >
                     Create an Account
                   </a>
                 </span>

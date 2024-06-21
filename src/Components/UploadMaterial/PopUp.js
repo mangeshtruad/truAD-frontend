@@ -15,7 +15,8 @@ const PopUp = ({togglePopup}) => {
     
     const handleFileUpload = (e) => {
       const file = e.target.files[0];
-      setImage(URL.createObjectURL(file));
+      // setImage(URL.createObjectURL(file));
+      setImage(file)
     };
 
     const handleChange = (e) => {
@@ -24,39 +25,64 @@ const PopUp = ({togglePopup}) => {
   
     const handleSubmit = async(e) => {
 
-      e.preventDefault();
-      // console.log(cookies.user)
+      // e.preventDefault();
+      // // console.log(cookies.user)
+      // const fileObj = {
+      //   name: files.Name,
+      //   type: files.Type,
+      //   size: files.Size,
+      //   // date: files.Date,
+      //   url: image, // Changed 'file' to 'Image' to match the object key
+      //   group: files.Group,}
+
+      //   console.log(fileObj)
+      //   try {
+      //     const response = await fetch("https://truad-dashboard-backend.onrender.com/api/uploadMaterial", {
+      //       method: "POST",
+      //       body: JSON.stringify({
+      //         material : fileObj
+      //       }),
+      //       headers: {
+      //         "Authorization": `Bearer ${cookies.user}`,
+      //         "Content-Type" : "application/json"
+      //       }
+      //     })
+    
+      //     if(response.status === 200){
+      //       return console.log("Success")
+      //     }
+    
+      //     if(response.status === 500){
+      //       return console.log("unsuccessful")
+      //     }
+      //   } catch (error) {
+      //     console.log(error)
+      //   }
+      const form = new FormData();
       const fileObj = {
         name: files.Name,
         type: files.Type,
         size: files.Size,
-        // date: files.Date,
-        url: image, // Changed 'file' to 'Image' to match the object key
-        group: files.Group,}
+        date: files.Date || Date.now(),
+        group: files.Group,
+      }
+      form.append('file', image)
+      form.append('fileObj', JSON.stringify(fileObj))
 
-        console.log(fileObj)
-        try {
-          const response = await fetch("https://truad-dashboard-backend.onrender.com/api/uploadMaterial", {
-            method: "POST",
-            body: JSON.stringify({
-              material : fileObj
-            }),
-            headers: {
-              "Authorization": `Bearer ${cookies.user}`,
-              "Content-Type" : "application/json"
-            }
-          })
-    
-          if(response.status === 200){
-            return console.log("Success")
-          }
-    
-          if(response.status === 500){
-            return console.log("unsuccessful")
-          }
-        } catch (error) {
-          console.log(error)
-        }
+      try {
+        const response = await fetch("http://localhost:4000/api/uploadMaterial", {
+          method: "POST",
+          body: form,
+          headers: {
+                    "Authorization": `Bearer ${cookies.user}`,
+                  }
+        })
+        const data = await response.json()
+        console.log(data)
+        togglePopup()
+      } catch (error) {
+        console.log(error)
+      }
     };
 
     useEffect(() => {

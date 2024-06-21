@@ -95,6 +95,7 @@ const MaterialLibrary = () => {
 
     if (response.status === 200) {
       const filtered = data.filter((elem) => elem._id !== key);
+      toggleDelPopup()
       setData(filtered);
     }
   }

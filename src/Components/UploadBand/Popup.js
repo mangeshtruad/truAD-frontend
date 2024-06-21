@@ -28,7 +28,7 @@ const PopUp = ({togglePopup}) => {
         const form = new FormData();
         form.append('band', files);
         form.append('name', bandName)
-        const response = await fetch("http://localhost:4000/band", {
+        const response = await fetch("https://truad-dashboard-backend.onrender.com/band", {
             method: "POST",
             body: form
         })

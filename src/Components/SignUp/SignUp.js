@@ -44,6 +44,11 @@ const SignUp = () => {
           return setError("User already exists");
         }
 
+        if (response.status === 400) {
+          setloader(false);
+          return setError("Password must be at least 8 characters long and contain at least one special character, one uppercase character, and one number.");
+        }
+
         if (response.status === 200) {
           // const data = await response.json();
           // console.log(data);
@@ -126,7 +131,7 @@ const SignUp = () => {
               <div className="signup-form-end">
                 <span>
                   Already have an account?{" "}
-                  <a onClick={() => navigate("/")} href={{}}>Sign In</a>
+                  <a onClick={() => navigate("/")} >Sign In</a>
                 </span>
               </div>
             </form>
