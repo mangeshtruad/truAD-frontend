@@ -29,7 +29,7 @@ const SignUp = () => {
     if (valid) {
       try {
         const response = await fetch(
-          "https://truad-dashboard-backend.onrender.com/api/register",
+          "https://truad-backend.onrender.com//api/register",
           {
             method: "POST",
             body: JSON.stringify(user),
@@ -46,7 +46,9 @@ const SignUp = () => {
 
         if (response.status === 400) {
           setloader(false);
-          return setError("Password must be at least 8 characters long and contain at least one special character, one uppercase character, and one number.");
+          return setError(
+            "Password must be at least 8 characters long and contain at least one special character, one uppercase character, and one number."
+          );
         }
 
         if (response.status === 200) {
@@ -69,7 +71,7 @@ const SignUp = () => {
     <div className="signup-container">
       <div className="signup-left">
         <div className="signup-logo">
-          <img src={logo} alt=""/>
+          <img src={logo} alt="" />
         </div>
       </div>
       <div className="signup-right">
@@ -124,8 +126,8 @@ const SignUp = () => {
                 <CircularProgress color="inherit" sx={{ margin: "auto" }} />
               ) : (
                 <button type="button" onClick={handleSubmit}>
-                Sign Up
-              </button>
+                  Sign Up
+                </button>
               )}
 
               <div className="signup-form-end">

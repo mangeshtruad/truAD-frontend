@@ -14,7 +14,6 @@ import Notification from "../Notification/Notification";
 import Information from "../Information/Information";
 import Profile from "../Profile/Profile";
 
-
 const MaterialLibrary = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [data, setData] = useState([]);
@@ -43,7 +42,7 @@ const MaterialLibrary = () => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          "https://truad-dashboard-backend.onrender.com/api/getMaterial"
+          "https://truad-backend.onrender.com//api/getMaterial"
         );
         const datar = await response.json();
 
@@ -66,8 +65,8 @@ const MaterialLibrary = () => {
         return el.name.toLowerCase().includes(value.toLowerCase());
       });
       setData(arr);
-    }else{
-      setData(material)
+    } else {
+      setData(material);
     }
   };
 
@@ -78,7 +77,7 @@ const MaterialLibrary = () => {
 
   async function handleDelete(key) {
     const response = await fetch(
-      "https://truad-dashboard-backend.onrender.com/api/deleteMaterial",
+      "https://truad-backend.onrender.com//api/deleteMaterial",
       {
         method: "POST",
         body: JSON.stringify({
@@ -97,7 +96,7 @@ const MaterialLibrary = () => {
 
     if (response.status === 200) {
       const filtered = data.filter((elem) => elem._id !== key);
-      toggleDelPopup()
+      toggleDelPopup();
       setData(filtered);
     }
   }
@@ -122,46 +121,44 @@ const MaterialLibrary = () => {
             </div>
             <div className="material-searchbar">
               <div className="material-searchbar-container">
-
-              <div className="material-searchbar-icons">
-                    <div
-                      className="material-searchbar-icons-notif"
-                      style={{ position: "relative" }}
-                    >
-                      <img
-                        src={bell}
-                        alt=""
-                        onClick={() => handleBoxToggle("notification")}
-                      />
-                      {openBox === "notification" && (
-                        <Notification notifications={notifications} />
-                      )}
-                    </div>
-                    <img src={dark_mode}></img>
-                    <div
-                      className="material-searchbar-icons-info"
-                      style={{ position: "relative" }}
-                    >
-                      <img
-                        src={info}
-                        alt=""
-                        onClick={() => handleBoxToggle("info")}
-                      ></img>
-                      {openBox === "info" && <Information />}
-                    </div>
-                    <div
-                      className="material-profile"
-                      style={{ position: "relative" }}
-                    >
-                      <img
-                        alt=""
-                        src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8dXNlciUyMHByb2ZpbGV8ZW58MHx8MHx8fDA%3D"
-                        onClick={() => handleBoxToggle("profile")}
-                      ></img>
-                      {openBox === "profile" && <Profile />}
-                    </div>
-
+                <div className="material-searchbar-icons">
+                  <div
+                    className="material-searchbar-icons-notif"
+                    style={{ position: "relative" }}
+                  >
+                    <img
+                      src={bell}
+                      alt=""
+                      onClick={() => handleBoxToggle("notification")}
+                    />
+                    {openBox === "notification" && (
+                      <Notification notifications={notifications} />
+                    )}
                   </div>
+                  <img src={dark_mode}></img>
+                  <div
+                    className="material-searchbar-icons-info"
+                    style={{ position: "relative" }}
+                  >
+                    <img
+                      src={info}
+                      alt=""
+                      onClick={() => handleBoxToggle("info")}
+                    ></img>
+                    {openBox === "info" && <Information />}
+                  </div>
+                  <div
+                    className="material-profile"
+                    style={{ position: "relative" }}
+                  >
+                    <img
+                      alt=""
+                      src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8dXNlciUyMHByb2ZpbGV8ZW58MHx8MHx8fDA%3D"
+                      onClick={() => handleBoxToggle("profile")}
+                    ></img>
+                    {openBox === "profile" && <Profile />}
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -240,7 +237,11 @@ const MaterialLibrary = () => {
                     <div className="material-card-btn">
                       <OprateDialog item={item}></OprateDialog>
                       <div className="material-card-delete-btn">
-                        <img src={trash} onClick={() => itemSelect(item)} alt=""></img>
+                        <img
+                          src={trash}
+                          onClick={() => itemSelect(item)}
+                          alt=""
+                        ></img>
                       </div>
                     </div>
                   </div>

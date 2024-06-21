@@ -80,12 +80,11 @@ const HomePage = () => {
     processedToggle();
   };
 
-
   useEffect(() => {
     const fetchVideos = async () => {
       try {
         const response = await fetch(
-          "https://truad-dashboard-backend.onrender.com/allItems",
+          "https://truad-backend.onrender.com//allItems",
           {
             method: "GET",
           }
@@ -211,7 +210,6 @@ const HomePage = () => {
             </div> */}
 
                 <p>Instant Support</p>
-
               </div>
             ) : (
               <div className="homepage-calls-btn" onClick={callToggle}>
@@ -236,7 +234,6 @@ const HomePage = () => {
 
             <div className="homepage-upload-btn" onClick={togglePopup}>
               <p>Upload New Materials</p>
-
             </div>
           </div>
           <div className="homepage-clips">

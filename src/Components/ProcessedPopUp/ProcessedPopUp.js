@@ -4,7 +4,7 @@ import "./ProcessedPopUp.css";
 
 const ProcessedPopUp = ({ togglePopup, selectedClipId }) => {
   const popupRef = useRef(null);
-  const navigate = useNavigate() 
+  const navigate = useNavigate();
 
   useEffect(() => {
     function handleClickOutside(event) {
@@ -21,26 +21,28 @@ const ProcessedPopUp = ({ togglePopup, selectedClipId }) => {
     };
   }, []);
 
-  const deleteBlend = async() => {
+  const deleteBlend = async () => {
     try {
-        const response = await fetch("https://truad-dashboard-backend.onrender.com/remove-blend", {
+      const response = await fetch(
+        "https://truad-backend.onrender.com//remove-blend",
+        {
+          method: "POST",
+          body: JSON.stringify({
+            itemID: selectedClipId._id,
+          }),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
-            method:"POST",
-            body: JSON.stringify({
-                itemID: selectedClipId._id
-            }),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        })
-
-        const data = await response.json()
-        console.log(data)
-        togglePopup()
+      const data = await response.json();
+      console.log(data);
+      togglePopup();
     } catch (error) {
-        console.log(error)
+      console.log(error);
     }
-  }
+  };
 
   return (
     <div className="processedpopup" ref={popupRef}>
@@ -77,8 +79,17 @@ const ProcessedPopUp = ({ togglePopup, selectedClipId }) => {
         </video>
       </div>
       <div className="processedpopup-submit-btn">
-        <button className="processedpopup-cancel-btn" onClick={deleteBlend}>Delete</button>
-        <button className="processedpopup-next-btn" onClick={() => navigate('/dashboard/actionpage', {state: {location: selectedClipId}})}>
+        <button className="processedpopup-cancel-btn" onClick={deleteBlend}>
+          Delete
+        </button>
+        <button
+          className="processedpopup-next-btn"
+          onClick={() =>
+            navigate("/dashboard/actionpage", {
+              state: { location: selectedClipId },
+            })
+          }
+        >
           Operate
         </button>
       </div>

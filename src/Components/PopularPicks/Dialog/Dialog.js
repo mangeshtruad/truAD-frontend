@@ -23,32 +23,34 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
 }));
 
 export default function CustomizedDialogs({ handleClose, open, clips, name }) {
-
-  const aiDetection = async(id) => {
+  const aiDetection = async (id) => {
     try {
-      const response = await fetch("https://truad-dashboard-backend.onrender.com/blend-clip", {
+      const response = await fetch(
+        "https://truad-backend.onrender.com//blend-clip",
+        {
           method: "POST",
           body: JSON.stringify({
-              id,
+            id,
           }),
           headers: {
-              "Content-Type" : "application/json"
-          }
-      })
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
-      if(response.status === 500){
-          console.log("Internal Server Error")
-          return
+      if (response.status === 500) {
+        console.log("Internal Server Error");
+        return;
       }
 
-      if(response.status === 200){
-          console.log("Success")
-          return
+      if (response.status === 200) {
+        console.log("Success");
+        return;
       }
-  } catch (error) {
-      console.log(error)
-  }
-  }
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <BootstrapDialog
       onClose={handleClose}
@@ -93,7 +95,12 @@ export default function CustomizedDialogs({ handleClose, open, clips, name }) {
         <Stack direction={"column"} spacing={2} pt={3}>
           {clips.map((clip, index) => {
             return (
-              <Stack key={index} direction={"row"} alignItems={"end"} spacing={1}>
+              <Stack
+                key={index}
+                direction={"row"}
+                alignItems={"end"}
+                spacing={1}
+              >
                 <div className="clip-container rounded-2 rounded-bottom-4">
                   <video autoplay muted loop playsinline>
                     <source src={clip.location} type="video/mp4" />

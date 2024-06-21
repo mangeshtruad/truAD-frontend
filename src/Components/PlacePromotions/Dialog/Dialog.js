@@ -24,32 +24,34 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
 }));
 
 export default function CustomizedDialogs({ handleClose, open, clips, name }) {
-
-  const aiDetection = async(id) => {
+  const aiDetection = async (id) => {
     try {
-      const response = await fetch("https://truad-dashboard-backend.onrender.com/blend-clip", {
+      const response = await fetch(
+        "https://truad-backend.onrender.com//blend-clip",
+        {
           method: "POST",
           body: JSON.stringify({
-              id,
+            id,
           }),
           headers: {
-              "Content-Type" : "application/json"
-          }
-      })
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
-      if(response.status === 500){
-          console.log("Internal Server Error")
-          return
+      if (response.status === 500) {
+        console.log("Internal Server Error");
+        return;
       }
 
-      if(response.status === 200){
-          console.log("Success")
-          return
+      if (response.status === 200) {
+        console.log("Success");
+        return;
       }
-  } catch (error) {
-      console.log(error)
-  }
-  }
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <BootstrapDialog
       onClose={handleClose}
@@ -119,42 +121,43 @@ export default function CustomizedDialogs({ handleClose, open, clips, name }) {
           })}
         </Stack> */}
         <Carousel showDots={false} responsive={responsive}>
-        {
-          clips.map((clip, index) =>{return(
-            <Stack
+          {clips.map((clip, index) => {
+            return (
+              <Stack
                 key={index}
                 spacing={1}
                 sx={{
-                  marginBottom:3
+                  marginBottom: 3,
                 }}
               >
-                <div className="clip-container rounded-2" style={{width:"100%",
-                  
-                }}>
+                <div
+                  className="clip-container rounded-2"
+                  style={{ width: "100%" }}
+                >
                   <video autoplay muted loop playsinline>
                     <source src={clip.location} type="video/mp4" />
                     Your browser does not support the video tag.
                   </video>
-                  <div className="content p-2" > 
+                  <div className="content p-2">
                     <p>{clip.name}</p>
                   </div>
                 </div>
-                <div style={{textAlign:"center"}}>
+                <div style={{ textAlign: "center" }}>
                   <Button
                     endIcon={<KeyboardArrowRightIcon />}
                     variant="contained"
                     className="ai-detection-btn"
                     onClick={(e) => aiDetection(clip._id)}
                     sx={{
-                      fontSize:"small"
+                      fontSize: "small",
                     }}
                   >
-                     Send for AI detection
+                    Send for AI detection
                   </Button>
                 </div>
               </Stack>
-          )})
-        }
+            );
+          })}
         </Carousel>
       </DialogContent>
 

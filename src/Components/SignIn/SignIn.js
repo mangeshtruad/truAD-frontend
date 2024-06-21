@@ -7,7 +7,6 @@ import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router";
 import CircularProgress from "@mui/material/CircularProgress";
 
-
 const SignIn = () => {
   const [cookies, setCookie] = useCookies(["user", "userdata"]);
   const [showPassword, setShowPassword] = useState(false);
@@ -25,7 +24,7 @@ const SignIn = () => {
     try {
       setloader(true);
       const response = await fetch(
-        "https://truad-dashboard-backend.onrender.com/api/login",
+        "https://truad-backend.onrender.com//api/login",
         {
           method: "POST",
           body: JSON.stringify({ email: user.email, password: user.password }),
@@ -65,8 +64,8 @@ const SignIn = () => {
   };
 
   const handleForget = () => {
-    navigate('/verifyOTP')
-  }
+    navigate("/verifyOTP");
+  };
 
   return (
     <div className="login-container">
@@ -122,16 +121,15 @@ const SignIn = () => {
               {loader ? (
                 <CircularProgress color="inherit" sx={{ margin: "auto" }} />
               ) : (
-                <button type="button" onClick={handleSignIn}>Sign In</button>
-                
+                <button type="button" onClick={handleSignIn}>
+                  Sign In
+                </button>
               )}
 
               <div className="login-form-end">
                 <span>
                   Not registered yet?{" "}
-                  <a onClick={() => navigate("/signup")} >
-                    Create an Account
-                  </a>
+                  <a onClick={() => navigate("/signup")}>Create an Account</a>
                 </span>
               </div>
             </form>

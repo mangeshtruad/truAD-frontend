@@ -3,77 +3,78 @@ import { Button } from "@mui/material";
 import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 const MaterialPage = () => {
-  
-    const location = useLocation();
-    const navigate = useNavigate();
-    const [data, setData] = useState([]);
-    const [image, setimage] = useState(location?.state?.img || '');
-    const [result, setResult] = useState('')
-  
-    useEffect(() => {
-      const fetchData = async () => {
-        const response = await fetch("https://truad-dashboard-backend.onrender.com/api/getMaterial");
-        const datar = await response.json();
-  
-        const materials = datar.materials;
-  
-        console.log(materials);
-        setData(materials);
-  
-        console.log("updated", data);
-      };
-  
-      fetchData();
-    }, []);
-  
-    const handleClipChange = async() => {
-      console.log(location.state.location)
-      console.log("image", image)
-      // try {
-      //     const response = await fetch("https://truad-dashboard-backend.onrender.com/blend-clip", {
-      //         method: "POST",
-      //         body: JSON.stringify({
-      //             id: location.state.location._id
-      //         }),
-      //         headers: {
-      //             "Content-Type" : "application/json"
-      //         }
-      //     })
-  
-      //     if(response.status == 500){
-      //         console.log("Internal Server Error")
-      //         return
-      //     }
-  
-      //     if(response.status == 200){
-      //         console.log("Success")
-      //         return
-      //     }
-      // } catch (error) {
-      //     console.log(error)
-      // }
-      try {
-          const response = await fetch ("http://127.0.0.1:5000/apply_material", {
-              method: 'POST',
-              body: JSON.stringify({
-                  material_name: image.name,
-                  video: location.state.location
-              }),
-              headers: {
-                  'Content-Type' : "application/json"
-              }
-          })
-          if (!response.ok) {
-              throw new Error("Failed to fetch image");
-            }
-    
-            const blob = await response.blob();
-            const url = URL.createObjectURL(blob);
-            setResult(url)
-          } catch (error) {
-              console.error("Error fetching image:", error);
-            }
+  const location = useLocation();
+  const navigate = useNavigate();
+  const [data, setData] = useState([]);
+  const [image, setimage] = useState(location?.state?.img || "");
+  const [result, setResult] = useState("");
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await fetch(
+        "https://truad-backend.onrender.com//api/getMaterial"
+      );
+      const datar = await response.json();
+
+      const materials = datar.materials;
+
+      console.log(materials);
+      setData(materials);
+
+      console.log("updated", data);
+    };
+
+    fetchData();
+  }, []);
+
+  const handleClipChange = async () => {
+    console.log(location.state.location);
+    console.log("image", image);
+    // try {
+    //     const response = await fetch("https://truad-backend.onrender.com//blend-clip", {
+    //         method: "POST",
+    //         body: JSON.stringify({
+    //             id: location.state.location._id
+    //         }),
+    //         headers: {
+    //             "Content-Type" : "application/json"
+    //         }
+    //     })
+
+    //     if(response.status == 500){
+    //         console.log("Internal Server Error")
+    //         return
+    //     }
+
+    //     if(response.status == 200){
+    //         console.log("Success")
+    //         return
+    //     }
+    // } catch (error) {
+    //     console.log(error)
+    // }
+    try {
+      const response = await fetch("http://127.0.0.1:5000/apply_material", {
+        method: "POST",
+        body: JSON.stringify({
+          material_name: image.name,
+          video: location.state.location,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      if (!response.ok) {
+        throw new Error("Failed to fetch image");
+      }
+
+      const blob = await response.blob();
+      const url = URL.createObjectURL(blob);
+      setResult(url);
+    } catch (error) {
+      console.error("Error fetching image:", error);
     }
+  };
   return (
     <div
       style={{

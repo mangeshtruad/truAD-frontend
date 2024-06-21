@@ -24,7 +24,7 @@ export default function OprateDialog(props) {
         console.log("error=", error);
       }
       const response = await fetch(
-        "https://truad-dashboard-backend.onrender.com/get-video",
+        "https://truad-backend.onrender.com//get-video",
         {
           method: "GET",
         }
@@ -75,7 +75,7 @@ export default function OprateDialog(props) {
         <p>Operate</p>
       </div>
       {open && (
-        <div className="popup" ref={popupRef} style={{width:"50%"}}>
+        <div className="popup" ref={popupRef} style={{ width: "50%" }}>
           <div className="popup-header">
             <svg
               width="24"

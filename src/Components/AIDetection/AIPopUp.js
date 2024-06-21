@@ -7,7 +7,7 @@ const AIPopUp = ({ togglePopup, selectedClipId }) => {
   const aiDetection = async () => {
     try {
       const response = await fetch(
-        "https://truad-dashboard-backend.onrender.com/blend-clip",
+        "https://truad-backend.onrender.com//blend-clip",
         {
           method: "POST",
           body: JSON.stringify({

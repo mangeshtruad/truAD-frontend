@@ -31,7 +31,7 @@ export default function ResourceManagement() {
   const fetchNotification = async () => {
     try {
       const response = await fetch(
-        "https://truad-dashboard-backend.onrender.com/notifications"
+        "https://truad-backend.onrender.com//notifications"
       );
       const data = await response.json();
       setNotifications(data.notifications);
@@ -81,7 +81,7 @@ export default function ResourceManagement() {
       }
     };
     fetchMedia();
-    fetchNotification()
+    fetchNotification();
   }, [filter, value]);
 
   const handleFilter = (option) => {
@@ -96,14 +96,13 @@ export default function ResourceManagement() {
       );
       const data = await response.json();
       setMedia(data.Search);
-     
     } catch (error) {
       console.error("Error fetching data:", error);
     }
   };
   const handleSearch = (event) => {
     const text = event.target.value;
-    setSearchTerm(text)
+    setSearchTerm(text);
     if (text === "") {
       searchMovies("Comedy");
     } else {
@@ -157,12 +156,10 @@ export default function ResourceManagement() {
                     onClick={() => handleBoxToggle("profile")}
                   ></img>
                   {openBox === "profile" && <Profile />}
-
                 </div>
               </div>
             </div>
           </div>
-
         </div>
         <div class="row px-4">
           <div class="col-5">
@@ -270,7 +267,6 @@ export default function ResourceManagement() {
                 ></li>
               </ul>
             </nav>
-
           </div>
           <div className="card_container">
             {media.map((el, i) => {

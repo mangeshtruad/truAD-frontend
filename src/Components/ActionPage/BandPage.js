@@ -16,7 +16,7 @@ const BandPage = () => {
 
   const fetchBands = async () => {
     try {
-      const response = await fetch("https://truad-dashboard-backend.onrender.com/band");
+      const response = await fetch("https://truad-backend.onrender.com//band");
       const data = await response.json();
       setBands(data.bands);
       console.log(data.bands);
@@ -74,39 +74,49 @@ const BandPage = () => {
           boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
         }}
       >
-        <h6 style={{ textAlign: "center", paddingTop: "15px", paddingBottom: "5px" }}>
+        <h6
+          style={{
+            textAlign: "center",
+            paddingTop: "15px",
+            paddingBottom: "5px",
+          }}
+        >
           Resource
         </h6>
-        {!processedVideoUrl && <video
-          style={{
-            width: "95%",
-            margin: "0 auto",
-            height: "40%",
-            borderRadius: "7px",
-            boxShadow: "rgba(0, 0, 1, 0.74) 0px 3px 8px",
-            backgroundColor: "white",
-          }}
-          title="Video Player"
-          controls
-        >
-          <source src={location.state.location.location} type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>}
-        {processedVideoUrl && <video
-          style={{
-            width: "95%",
-            margin: "0 auto",
-            height: "40%",
-            borderRadius: "7px",
-            boxShadow: "rgba(0, 0, 1, 0.74) 0px 3px 8px",
-            backgroundColor: "white",
-          }}
-          title="Video Player"
-          controls
-        >
-          <source src={processedVideoUrl} type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>}
+        {!processedVideoUrl && (
+          <video
+            style={{
+              width: "95%",
+              margin: "0 auto",
+              height: "40%",
+              borderRadius: "7px",
+              boxShadow: "rgba(0, 0, 1, 0.74) 0px 3px 8px",
+              backgroundColor: "white",
+            }}
+            title="Video Player"
+            controls
+          >
+            <source src={location.state.location.location} type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        )}
+        {processedVideoUrl && (
+          <video
+            style={{
+              width: "95%",
+              margin: "0 auto",
+              height: "40%",
+              borderRadius: "7px",
+              boxShadow: "rgba(0, 0, 1, 0.74) 0px 3px 8px",
+              backgroundColor: "white",
+            }}
+            title="Video Player"
+            controls
+          >
+            <source src={processedVideoUrl} type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        )}
         <div
           style={{
             display: "flex",
@@ -117,7 +127,9 @@ const BandPage = () => {
             position: "relative",
           }}
         >
-          <h6 style={{ textAlign: "center", position: "absolute", bottom: "0px" }}>
+          <h6
+            style={{ textAlign: "center", position: "absolute", bottom: "0px" }}
+          >
             Selected Band
           </h6>
         </div>
@@ -168,7 +180,13 @@ const BandPage = () => {
         }}
       >
         <button onClick={togglePopup}>Add bands</button>
-        <h6 style={{ textAlign: "center", marginTop: "10px", borderRadius: "7px" }}>
+        <h6
+          style={{
+            textAlign: "center",
+            marginTop: "10px",
+            borderRadius: "7px",
+          }}
+        >
           All Bands
         </h6>
         <div

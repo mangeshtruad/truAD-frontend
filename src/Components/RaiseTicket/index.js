@@ -9,7 +9,7 @@ import IconButton from "@mui/material/IconButton";
 import Checkbox from "@mui/material/Checkbox";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
-import {ImageDialogs, CustomizedDialogs as Dialog} from "./Dialog/Dialog";
+import { ImageDialogs, CustomizedDialogs as Dialog } from "./Dialog/Dialog";
 import { useCookies } from "react-cookie";
 import dark_mode from "../../Assets/dark_mode.png";
 import bell from "../../Assets/bell.png";
@@ -34,7 +34,7 @@ export default function RaiseTicket() {
     const getTicket = async () => {
       try {
         const data = await fetch(
-          "https://truad-dashboard-backend.onrender.com/api/user",
+          "https://truad-backend.onrender.com//api/user",
           {
             method: "GET", // Added method for clarity, assuming it's a GET request
             headers: {
@@ -44,7 +44,7 @@ export default function RaiseTicket() {
           }
         );
         const ticketData = await data.json();
-     
+
         const formatter = new Intl.DateTimeFormat("en-US", {
           day: "2-digit",
           month: "2-digit",
@@ -72,7 +72,7 @@ export default function RaiseTicket() {
         });
         setuser(ticketData.user);
         setticket(ticketdata);
-        setinitialData(ticketdata)
+        setinitialData(ticketdata);
       } catch (error) {
         console.log("error=>", error);
       }
@@ -80,14 +80,14 @@ export default function RaiseTicket() {
     getTicket();
   }, [cookies]);
 
-  const handerchange = ({target:{value}})=>{
-    if(value === ""){
-      setticket(initialData)
-      return
+  const handerchange = ({ target: { value } }) => {
+    if (value === "") {
+      setticket(initialData);
+      return;
     }
-    const arr = ticket.filter(({id})=>id.includes(value))
-    setticket(arr)
-  }
+    const arr = ticket.filter(({ id }) => id.includes(value));
+    setticket(arr);
+  };
 
   return (
     <React.Fragment>
@@ -99,8 +99,14 @@ export default function RaiseTicket() {
                 Help
               </h3>
             </div>
-            <div className="mainHelp_icon" style={{width:"40%", justifyContent:"end"}}>
-              <div className="align-self-center" style={{ width: "40%", minWidth:"280px" }}>
+            <div
+              className="mainHelp_icon"
+              style={{ width: "40%", justifyContent: "end" }}
+            >
+              <div
+                className="align-self-center"
+                style={{ width: "40%", minWidth: "280px" }}
+              >
                 <p className="m-0 pt-3 dm-sans">
                   <Box
                     component={"h6"}
@@ -127,25 +133,34 @@ export default function RaiseTicket() {
                   </Box>
                 </p>
               </div>
-              <div className="material-searchbar" style={{width:"30%", minWidth:"100px"}}>
-              <div className="material-searchbar-container">
-                <div className="material-searchbar-icons">
-                  <img src={bell} alt=""></img>
-                  <img src={dark_mode} alt=""></img>
-                  <img src={info} alt=""></img>
-                  <div className="material-profile">
-                    <img alt="" src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8dXNlciUyMHByb2ZpbGV8ZW58MHx8MHx8fDA%3D"></img>
+              <div
+                className="material-searchbar"
+                style={{ width: "30%", minWidth: "100px" }}
+              >
+                <div className="material-searchbar-container">
+                  <div className="material-searchbar-icons">
+                    <img src={bell} alt=""></img>
+                    <img src={dark_mode} alt=""></img>
+                    <img src={info} alt=""></img>
+                    <div className="material-profile">
+                      <img
+                        alt=""
+                        src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8dXNlciUyMHByb2ZpbGV8ZW58MHx8MHx8fDA%3D"
+                      ></img>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
             </div>
           </div>
           <div class="row px-4">
             <div class="col-4">
               <div class="row align-items-center">
                 <div class="col-8 resource-searchbar">
-                  <div class="input-group flex-nowrap overflow-hidden rounded-pill" style={{height:"30px"}}>
+                  <div
+                    class="input-group flex-nowrap overflow-hidden rounded-pill"
+                    style={{ height: "30px" }}
+                  >
                     <span class="input-group-text" id="addon-wrapping">
                       <SearchIcon />
                     </span>
@@ -247,7 +262,7 @@ export default function RaiseTicket() {
                           className="button-outlined-small rounded-3"
                           variant="outlined"
                           size="small"
-                          onClick={()=>setIopen(true)}
+                          onClick={() => setIopen(true)}
                         >
                           View File
                         </Button>
@@ -272,8 +287,8 @@ export default function RaiseTicket() {
           </div>
         </main>
       </div>
-      <Dialog handleClose={handleClose} open={open} user_email={user.email}/>
-      <ImageDialogs open={Iopen} handleClose={()=>setIopen(false)}/>
+      <Dialog handleClose={handleClose} open={open} user_email={user.email} />
+      <ImageDialogs open={Iopen} handleClose={() => setIopen(false)} />
     </React.Fragment>
   );
 }

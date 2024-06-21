@@ -27,7 +27,7 @@ export default function CustomizedDialogs({ handleClose, open, clips, name }) {
   const aiDetection = async (id) => {
     try {
       const response = await fetch(
-        "https://truad-dashboard-backend.onrender.com/blend-clip",
+        "https://truad-backend.onrender.com//blend-clip",
         {
           method: "POST",
           body: JSON.stringify({
@@ -56,7 +56,7 @@ export default function CustomizedDialogs({ handleClose, open, clips, name }) {
       console.log(error);
     }
   };
- 
+
   return (
     <BootstrapDialog
       onClose={handleClose}
@@ -148,83 +148,87 @@ export default function CustomizedDialogs({ handleClose, open, clips, name }) {
         </Stack> */}
         {/* <Stack direction={"row"} spacing={2}> */}
         <Carousel showDots={false} responsive={responsive}>
-        {
-          clips.map((clip, index) =>{return(
-            <Stack
+          {clips.map((clip, index) => {
+            return (
+              <Stack
                 key={index}
                 spacing={1}
                 sx={{
-                  marginBottom:3
+                  marginBottom: 3,
                 }}
               >
-                <div className="clip-container rounded-2" style={{width:"100%",
-                  
-                }}>
+                <div
+                  className="clip-container rounded-2"
+                  style={{ width: "100%" }}
+                >
                   <video autoplay muted loop playsinline>
                     <source src={clip.location} type="video/mp4" />
                     Your browser does not support the video tag.
                   </video>
-                  <div className="content p-2" > 
+                  <div className="content p-2">
                     <p>{clip.name}</p>
                   </div>
                 </div>
-                <div style={{textAlign:"center"}}>
+                <div style={{ textAlign: "center" }}>
                   <Button
                     endIcon={<KeyboardArrowRightIcon />}
                     variant="contained"
                     className="ai-detection-btn"
                     onClick={(e) => aiDetection(clip._id)}
                     sx={{
-                      fontSize:"small"
+                      fontSize: "small",
                     }}
                   >
-                     Send for AI detection
+                    Send for AI detection
                   </Button>
                 </div>
               </Stack>
-          )})
-        }
+            );
+          })}
         </Carousel>
-        <div className="p-2"/>
+        <div className="p-2" />
         <Typography gutterBottom>Process Clips</Typography>
         <Carousel showDots={false} responsive={responsive}>
-        {
-          clips.filter((elem) => elem.blendFile).map((clip, index) =>{return(
-            <Stack
-                key={index}
-                spacing={1}
-                sx={{
-                  marginBottom:3
-                }}
-              >
-                <div className="clip-container rounded-2" style={{width:"100%",
-                  
-                }}>
-                  <video autoplay muted loop playsinline>
-                    <source src={clip.location} type="video/mp4" />
-                    Your browser does not support the video tag.
-                  </video>
-                  <div className="content p-2" > 
-                    <p>{clip.name}</p>
-                  </div>
-                </div>
-                <div style={{textAlign:"center"}}>
-                  <Button
-                    endIcon={<KeyboardArrowRightIcon />}
-                    variant="contained"
-                    className="ai-detection-btn"
-                    onClick={(e) => aiDetection(clip._id)}
-                    sx={{
-                      paddingInline: "2rem",
-                      fontSize:"small"
-                    }}
+          {clips
+            .filter((elem) => elem.blendFile)
+            .map((clip, index) => {
+              return (
+                <Stack
+                  key={index}
+                  spacing={1}
+                  sx={{
+                    marginBottom: 3,
+                  }}
+                >
+                  <div
+                    className="clip-container rounded-2"
+                    style={{ width: "100%" }}
                   >
-                    Track VideoClip
-                  </Button>
-                </div>
-              </Stack>
-          )})
-        }
+                    <video autoplay muted loop playsinline>
+                      <source src={clip.location} type="video/mp4" />
+                      Your browser does not support the video tag.
+                    </video>
+                    <div className="content p-2">
+                      <p>{clip.name}</p>
+                    </div>
+                  </div>
+                  <div style={{ textAlign: "center" }}>
+                    <Button
+                      endIcon={<KeyboardArrowRightIcon />}
+                      variant="contained"
+                      className="ai-detection-btn"
+                      onClick={(e) => aiDetection(clip._id)}
+                      sx={{
+                        paddingInline: "2rem",
+                        fontSize: "small",
+                      }}
+                    >
+                      Track VideoClip
+                    </Button>
+                  </div>
+                </Stack>
+              );
+            })}
         </Carousel>
         {/* </Stack> */}
       </DialogContent>
