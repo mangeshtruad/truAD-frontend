@@ -26,9 +26,9 @@ const VerifyOTP = () => {
     e.preventDefault();
     try {
       const response = await fetch(
-        "https://truad-backend.onrender.com//api/forgot",
+        "https://truad-backend.onrender.com/api/forgot",
         {
-          //https://truad-backend.onrender.com//api/register
+          //https://truad-backend.onrender.com/api/register
           method: "POST",
           body: JSON.stringify({
             email,
@@ -61,7 +61,7 @@ const VerifyOTP = () => {
     console.log(otp);
     try {
       const response = await fetch(
-        "https://truad-backend.onrender.com//verifyOtp",
+        "https://truad-backend.onrender.com/verifyOtp",
         {
           method: "POST",
           body: JSON.stringify({

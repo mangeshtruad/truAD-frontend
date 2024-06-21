@@ -36,7 +36,7 @@ const PopUp = ({ togglePopup }) => {
 
     //   console.log(fileObj)
     //   try {
-    //     const response = await fetch("https://truad-backend.onrender.com//api/uploadMaterial", {
+    //     const response = await fetch("https://truad-backend.onrender.com/api/uploadMaterial", {
     //       method: "POST",
     //       body: JSON.stringify({
     //         material : fileObj

@@ -30,7 +30,7 @@ const ConfirmPassword = () => {
 
     try {
       const response = await fetch(
-        "https://truad-backend.onrender.com//resetPassword",
+        "https://truad-backend.onrender.com/resetPassword",
         {
           method: "POST",
           body: JSON.stringify({

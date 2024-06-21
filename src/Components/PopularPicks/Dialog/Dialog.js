@@ -26,7 +26,7 @@ export default function CustomizedDialogs({ handleClose, open, clips, name }) {
   const aiDetection = async (id) => {
     try {
       const response = await fetch(
-        "https://truad-backend.onrender.com//blend-clip",
+        "https://truad-backend.onrender.com/blend-clip",
         {
           method: "POST",
           body: JSON.stringify({

@@ -29,7 +29,7 @@ const SignUp = () => {
     if (valid) {
       try {
         const response = await fetch(
-          "https://truad-backend.onrender.com//api/register",
+          "https://truad-backend.onrender.com/api/register",
           {
             method: "POST",
             body: JSON.stringify(user),

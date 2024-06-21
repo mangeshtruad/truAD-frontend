@@ -16,7 +16,7 @@ const BandPage = () => {
 
   const fetchBands = async () => {
     try {
-      const response = await fetch("https://truad-backend.onrender.com//band");
+      const response = await fetch("https://truad-backend.onrender.com/band");
       const data = await response.json();
       setBands(data.bands);
       console.log(data.bands);

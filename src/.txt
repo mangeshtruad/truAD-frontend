@@ -61,7 +61,7 @@ const HomePage = () => {
     const fetchVideos = async () => {
       try {
         const response = await fetch(
-          "https://truad-backend.onrender.com//allItems",
+          "https://truad-backend.onrender.com/allItems",
           {
             method: "GET",
           }

@@ -14,7 +14,7 @@ const Notification = () => {
   const fetchNotification = async () => {
     try {
       const response = await fetch(
-        "https://truad-backend.onrender.com//notifications"
+        "https://truad-backend.onrender.com/notifications"
       );
       const data = await response.json();
       setNotifications(data.notifications);

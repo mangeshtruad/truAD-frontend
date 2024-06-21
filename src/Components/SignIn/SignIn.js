@@ -24,7 +24,7 @@ const SignIn = () => {
     try {
       setloader(true);
       const response = await fetch(
-        "https://truad-backend.onrender.com//api/login",
+        "https://truad-backend.onrender.com/api/login",
         {
           method: "POST",
           body: JSON.stringify({ email: user.email, password: user.password }),

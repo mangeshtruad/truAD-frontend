@@ -25,7 +25,7 @@ export default function ResourceManagement() {
     const fetchMedia = async () => {
       try {
         const response = await fetch(
-          `https://truad-backend.onrender.com//get-ids`
+          `https://truad-backend.onrender.com/get-ids`
         );
         const data = await response.json();
         // console.log(data.ids)

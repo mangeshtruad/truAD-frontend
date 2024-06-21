@@ -42,7 +42,7 @@ const MaterialLibrary = () => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          "https://truad-backend.onrender.com//api/getMaterial"
+          "https://truad-backend.onrender.com/api/getMaterial"
         );
         const datar = await response.json();
 
@@ -77,7 +77,7 @@ const MaterialLibrary = () => {
 
   async function handleDelete(key) {
     const response = await fetch(
-      "https://truad-backend.onrender.com//api/deleteMaterial",
+      "https://truad-backend.onrender.com/api/deleteMaterial",
       {
         method: "POST",
         body: JSON.stringify({

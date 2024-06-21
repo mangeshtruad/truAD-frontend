@@ -12,7 +12,7 @@ const MaterialPage = () => {
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetch(
-        "https://truad-backend.onrender.com//api/getMaterial"
+        "https://truad-backend.onrender.com/api/getMaterial"
       );
       const datar = await response.json();
 
@@ -31,7 +31,7 @@ const MaterialPage = () => {
     console.log(location.state.location);
     console.log("image", image);
     // try {
-    //     const response = await fetch("https://truad-backend.onrender.com//blend-clip", {
+    //     const response = await fetch("https://truad-backend.onrender.com/blend-clip", {
     //         method: "POST",
     //         body: JSON.stringify({
     //             id: location.state.location._id

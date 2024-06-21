@@ -24,7 +24,7 @@ export default function OprateDialog(props) {
         console.log("error=", error);
       }
       const response = await fetch(
-        "https://truad-backend.onrender.com//get-video",
+        "https://truad-backend.onrender.com/get-video",
         {
           method: "GET",
         }

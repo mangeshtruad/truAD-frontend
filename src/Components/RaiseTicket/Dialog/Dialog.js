@@ -61,7 +61,7 @@ export function CustomizedDialogs({ handleClose, open, user_email }) {
       formData.append("viewImage", file); // Assuming 'file' is defined elsewhere in your code
       console.log(formData);
       const response = await fetch(
-        `https://truad-backend.onrender.com//api/user/${user_email}`,
+        `https://truad-backend.onrender.com/api/user/${user_email}`,
         {
           method: "POST", // It's good practice to use uppercase HTTP methods
           // headers: {

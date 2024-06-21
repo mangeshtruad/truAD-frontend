@@ -29,7 +29,7 @@ const MediaCard = ({ el }) => {
   const fetchVids = async () => {
     try {
       const response = await fetch(
-        "https://truad-backend.onrender.com//get-existingItem",
+        "https://truad-backend.onrender.com/get-existingItem",
         {
           method: "POST",
           body: JSON.stringify({

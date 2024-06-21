@@ -34,7 +34,7 @@ export default function RaiseTicket() {
     const getTicket = async () => {
       try {
         const data = await fetch(
-          "https://truad-backend.onrender.com//api/user",
+          "https://truad-backend.onrender.com/api/user",
           {
             method: "GET", // Added method for clarity, assuming it's a GET request
             headers: {
