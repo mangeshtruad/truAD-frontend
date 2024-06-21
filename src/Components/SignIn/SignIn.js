@@ -115,7 +115,7 @@ const SignIn = () => {
                   </label>
                 </div>
                 <span>
-                  <a href={{}} onClick={handleForget}>Forgot Password</a>
+                  <a onClick={handleForget}>Forgot Password</a>
                 </span>
               </div>
               {/* <button type="button" onClick={handleSignIn}>Sign In</button> */}
