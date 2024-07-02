@@ -16,7 +16,7 @@ A little intro about the installation.
 
 ```bash
 $ git clone https://github.com/aniketmu/final-project-frontend.git
-$ cd /app
+$ cd /truAD-frontend
 $ npm install
 $ npm start
 ```
