@@ -15,8 +15,8 @@ This is the frontend for the TruAD dashboard.
 A little intro about the installation.
 
 ```bash
-$ git clone https://github.com/aniketmu/final-project-frontend.git
-$ cd /app
+$ git clone https://github.com/mangeshtruad/truAD-frontend.git
+$ cd /truAD-frontend
 $ npm install
 $ npm start
 ```
